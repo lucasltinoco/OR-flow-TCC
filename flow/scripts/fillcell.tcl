@@ -6,7 +6,9 @@ if { [env_var_exists_and_non_empty FILL_CELLS] } {
 
   set_propagated_clock [all_clocks]
 
+  puts "$::env(FILL_CELLS)"
   log_cmd filler_placement $::env(FILL_CELLS)
+  # log_cmd filler_placement "FILLER_ASAP7_75t_R DECAPx1_ASAP7_75t_R DECAPx2_ASAP7_75t_R DECAPx4_ASAP7_75t_R DECAPx6_ASAP7_75t_R DECAPx10_ASAP7_75t_R"
   check_placement
 
   orfs_write_db $::env(RESULTS_DIR)/5_3_fillcell.odb

@@ -54,6 +54,8 @@
 # DESIGN_CONFIG=./designs/sky130hs/jpeg/config.mk
 # DESIGN_CONFIG=./designs/sky130hs/riscv32i/config.mk
 
+# DESIGN_CONFIG=./designs/asap7/aes-mbff/config.mk
+DESIGN_CONFIG=./designs/asap7/aes-mbff-tcc-v1/config.mk
 # DESIGN_CONFIG=./designs/asap7/aes/config.mk
 # DESIGN_CONFIG=./designs/asap7/ethmac/config.mk
 # DESIGN_CONFIG=./designs/asap7/gcd/config.mk
