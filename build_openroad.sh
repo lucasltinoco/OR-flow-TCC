@@ -227,6 +227,8 @@ __args_setup() {
                 echo "[INFO FLW-0015] Overwriting OpenROAD app compilation flags."
                 OPENROAD_APP_ARGS="${OPENROAD_APP_USER_ARGS}"
         else
+                OPENROAD_APP_ARGS+=" -Dabsl_DIR=/home/lucast/workspace/OR-flow-TCC/dependencies/lib/cmake/absl"
+                OPENROAD_APP_ARGS+=" -DCMAKE_PREFIX_PATH=/home/lucast/workspace/OR-flow-TCC/dependencies"
                 OPENROAD_APP_ARGS+=" ${OPENROAD_APP_USER_ARGS}"
         fi
 }

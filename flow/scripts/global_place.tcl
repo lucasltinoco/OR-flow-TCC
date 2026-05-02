@@ -69,7 +69,13 @@ if { $result != 0 } {
 log_cmd estimate_parasitics -placement
 
 if { $::env(CLUSTER_FLOPS) } {
-  cluster_flops -tray_weight $::env(ALPHA) -timing_weight $::env(BETA) -max_split_size 500 -num_paths 0
+  if { $::env(ALPHA) == "" || $::env(BETA) == "" } {
+    # utl::error GPL 201 "ALPHA and BETA environment variables must be set for clustering flops."
+    cluster_flops -tray_weight 40.0 -timing_weight 1.0 -max_split_size 500 -num_paths 0
+  } else {
+    cluster_flops -tray_weight $::env(ALPHA) -timing_weight $::env(BETA) -max_split_size 500 -num_paths 0
+  }
+  
   log_cmd estimate_parasitics -placement
 }
 
