@@ -4,10 +4,9 @@ list=$(ls ./designs/asap7)
 alphas=(2 4 8 16 67 130 193 256)
 b=0.1
 
-bypass_list=(
-  "cva6"
-  "mock-cpu"
-)
+bypass_list=()
+
+# TBD: go to tools/OpenROAD, checkout to baseline branch and rerun build_openroad.sh --local
 
 for design in $list
 do

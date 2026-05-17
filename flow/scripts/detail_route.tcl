@@ -41,6 +41,8 @@ append additional_args " -verbose 1"
 # having to go spelunking in Tcl or modify configuration scripts, while
 # not having to wait too long or generating large useless reports.
 
+set_thread_count 16
+
 set arguments [expr {
   [env_var_exists_and_non_empty DETAILED_ROUTE_ARGS] ? $::env(DETAILED_ROUTE_ARGS) :
   [concat $additional_args {-drc_report_iter_step 5}]
@@ -82,3 +84,6 @@ if { ![design_is_routed] } {
 # in final so there is no need to repeat it here.
 
 orfs_write_db $::env(RESULTS_DIR)/5_2_route.odb
+
+# reset thread count
+set_thread_count 32
