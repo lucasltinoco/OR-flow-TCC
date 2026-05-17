@@ -1,0 +1,85 @@
+OpenROAD ee3d65ce03b2656092ed62bf9205c5c11049c575 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNH2V2X_RVT_TT_nldm_FAKE.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNV2X_RVT_TT_nldm_FAKE.lib
+read_db -hier ./results/asap7/mock-alu/modified_alpha_8-beta_0.1/3_3_place_gp.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+estimate_parasitics -placement
+replace_arith_modules -path_count 1000 -target setup -slack_threshold 0.0
+[INFO RSZ-0151] Starting arithmetic module replacement to optimize 'setup' target
+[INFO RSZ-0152] Analyzing 1000 critical paths with slack < 0.00
+[INFO RSZ-0153] Identified 811 violating endpoints
+[INFO RSZ-0154] Identified 1 critical arithmetic instances
+[WARNING ODB-0453] The modules cannot be swapped because module ALU_64_0_64_0_65_unused_CO_X_HAN_CARLSON has 229 ports but module ALU_64_0_64_0_65_unused_CO_X_KOGGE_STONE has 198 ports.
+[INFO RSZ-0160] 0 arithmetic instances have swapped to improve 'setup' target
+[INFO GPL-0006] Execute incremental mode global placement.
+[INFO GPL-0001] ---- Initialize GPL Main Data Structures
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: (  0.054  0.270 ) um
+[INFO GPL-0004] CoreBBox: (  2.052  2.160 ) ( 55.350 55.350 ) um
+[INFO GPL-0036] Movable instances area:       1539.517 um^2
+[INFO GPL-0037] Total instances area:         1556.809 um^2
+[INFO GPL-0035] Pin density area adjust:       101.296 um^2
+[INFO GPL-0032] ---- Initialize Region: Top-level
+[INFO GPL-0006] Number of instances:             12124
+[INFO GPL-0007] Movable instances:               11531
+[INFO GPL-0008] Fixed instances:                   593
+[INFO GPL-0009] Dummy instances:                     0
+[INFO GPL-0010] Number of nets:                  13956
+[INFO GPL-0011] Number of pins:                  38552
+[INFO GPL-0012] Die BBox:  (  0.000  0.000 ) ( 57.354 57.354 ) um
+[INFO GPL-0013] Core BBox: (  2.052  2.160 ) ( 55.350 55.350 ) um
+[INFO GPL-0016] Core area:                    2834.921 um^2
+[INFO GPL-0014] Region name: top-level.
+[INFO GPL-0015] Region area:                  2834.921 um^2
+[INFO GPL-0017] Fixed instances area:           17.292 um^2
+[INFO GPL-0018] Movable instances area:       1640.813 um^2
+[INFO GPL-0019] Utilization:                    58.234 %
+[INFO GPL-0020] Standard cells area:          1640.813 um^2
+[INFO GPL-0021] Large instances area:            0.000 um^2
+[INFO GPL-0154] Identified 11531 placed instances
+[INFO GPL-0155] Identified 0 not placed instances
+[INFO GPL-0156] Identified all instances as placed. Skipping incremental mode
+Perform buffer insertion and gate resizing...
+repair_design -verbose
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |     13956
+     1000 |     +0.0% |       0 |       0 |             0 |     12956
+     2000 |     +0.0% |       0 |       0 |             0 |     11956
+     3000 |     +0.0% |       0 |       0 |             0 |     10956
+     4000 |     +0.0% |       0 |       0 |             0 |      9956
+     5000 |     +0.0% |       0 |       0 |             0 |      8956
+     6000 |     +0.0% |       0 |       0 |             0 |      7956
+     7000 |     +0.0% |       0 |       0 |             0 |      6956
+     8000 |     +0.0% |       0 |       0 |             0 |      5956
+     9000 |     +0.0% |       0 |       0 |             0 |      4956
+    10000 |     +0.0% |       0 |       0 |             0 |      3956
+    11000 |     +0.0% |       0 |       0 |             0 |      2956
+    12000 |     +0.0% |       0 |       0 |             0 |      1956
+    13000 |     +0.0% |       0 |       0 |             0 |       956
+    final |     +0.0% |       0 |       0 |             0 |         0
+---------------------------------------------------------------------
+Floating nets: 
+Report metrics stage 3, resizer...
+
+==========================================================================
+resizer report_design_area
+--------------------------------------------------------------------------
+Design area 1557 um^2 55% utilization.
+Instance count before 12124, after 12124
+Pin count before 38352, after 38352
+write_db ./results/asap7/mock-alu/modified_alpha_8-beta_0.1/3_4_place_resized.odb
+Elapsed time: 0:02.99[h:]min:sec. CPU time: user 4.54 sys 2.18 (224%). Peak memory: 267684KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+3_4_place_resized                  2            261 4652f85c948cf30e39be

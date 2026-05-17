@@ -1,0 +1,277 @@
+OpenROAD fe1aa0f9d0254fac87b82c886c04ee1544e46885 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNH2V2X_RVT_TT_nldm_FAKE.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNV2X_RVT_TT_nldm_FAKE.lib
+read_db ./results/asap7/uart/baseline_alpha_2-beta_0.1/3_place.odb
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
+[INFO CTS-0050] Root buffer is BUFx4_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx8_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx4_ASAP7_75t_R
+                    BUFx10_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx10_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0010]  Clock net "clk" has 39 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 39.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0023]  Original sink region: [(2262, 1350), (15508, 13365)].
+[INFO CTS-0024]  Normalized sink region: [(1.67556, 1), (11.4874, 9.9)].
+[INFO CTS-0025]     Width:  9.8119.
+[INFO CTS-0026]     Height: 8.9000.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 20
+    Sub-region size: 4.9059 X 8.9000
+[INFO CTS-0034]     Segment length (rounded): 2.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 10
+    Sub-region size: 4.9059 X 4.4500
+[INFO CTS-0034]     Segment length (rounded): 2.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 39.
+[INFO CTS-0018]     Created 5 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 5 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 9:1, 10:3..
+[INFO CTS-0017]     Max level of the clock tree: 2.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 40
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 22.56 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 1
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                     664
+Diamond Move Success:            664 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement          2.7 u
+average displacement        0.0 u
+max displacement            0.9 u
+original HPWL            1191.7 u
+legalized HPWL           1254.6 u
+delta HPWL                    5 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -skip_gate_cloning -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove SplitLoadMove 
+[INFO RSZ-0094] Found 67 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 67 out of 67 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% |  -36.860 |    -1003.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       10 |       0 |       3 |        6 |      0 |     1 |    +0.7% |  -45.119 |    -1014.3 |     67 | _tray_size4_139/D1
+       20 |       1 |       6 |        8 |      0 |     5 |    +1.0% |  -32.500 |     -856.6 |     67 | _tray_size2_134/D0
+       20 |       0 |       0 |        2 |      0 |     0 |    +0.2% |  -25.472 |     -754.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       30 |       0 |       2 |        4 |      0 |     5 |    +0.5% |  -27.173 |     -737.0 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       30 |       0 |       0 |        2 |      0 |     0 |    +0.2% |  -25.472 |     -754.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       35 |       0 |       0 |        2 |      0 |     0 |    +0.2% |  -25.472 |     -754.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       40 |       0 |       1 |        3 |      0 |     2 |    +0.3% |  -34.212 |     -835.6 |     67 | uart_tx_inst.prescale_reg[15]$_SDFFE_PP0P_/D
+       42 |       0 |       0 |        2 |      0 |     0 |    +0.2% |  -25.472 |     -754.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       43 |       0 |       0 |        2 |      0 |     0 |    +0.2% |  -25.472 |     -754.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       50 |       0 |       2 |        3 |      0 |     3 |    +0.4% |  -27.173 |     -770.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       51 |       0 |       0 |        2 |      0 |     0 |    +0.2% |  -25.472 |     -754.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       60 |       0 |       3 |        8 |      0 |     0 |    +1.0% |  -34.986 |     -836.9 |     67 | _tray_size4_139/D3
+       66 |       0 |       0 |        3 |      0 |     0 |    +0.3% |  -25.472 |     -750.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       70 |       0 |       2 |        4 |      0 |     0 |    +0.5% |  -27.931 |     -838.3 |     67 | _tray_size4_139/D1
+       79 |       0 |       0 |        3 |      0 |     0 |    +0.3% |  -25.472 |     -750.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       80 |       0 |       0 |        3 |      0 |     0 |    +0.3% |  -25.472 |     -750.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       90 |       0 |       3 |       11 |      0 |     0 |    +1.4% |  -27.081 |     -800.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+       92 |       0 |       0 |        3 |      0 |     0 |    +0.3% |  -25.472 |     -750.8 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      100 |       0 |       3 |        8 |      0 |     0 |    +1.0% |  -34.986 |     -836.9 |     67 | _tray_size4_139/D3
+      105 |       0 |       0 |        4 |      0 |     0 |    +0.4% |  -25.472 |     -719.2 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      110 |       0 |       3 |        5 |      0 |     0 |    +0.6% |  -27.081 |     -800.0 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      117 |       0 |       0 |        4 |      0 |     0 |    +0.4% |  -25.472 |     -719.2 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      120 |       0 |       1 |        5 |      0 |     0 |    +0.5% |  -31.597 |     -847.0 |     67 | _tray_size4_139/D1
+      129 |       0 |       0 |        4 |      0 |     0 |    +0.4% |  -25.472 |     -719.2 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      130 |       0 |       0 |        4 |      0 |     0 |    +0.4% |  -25.472 |     -719.2 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      140 |       0 |       4 |       11 |      0 |     0 |    +1.4% |  -27.081 |     -787.4 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      141 |       0 |       0 |        4 |      0 |     0 |    +0.4% |  -25.472 |     -719.2 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      150 |       0 |       3 |       10 |      0 |     0 |    +1.3% |  -27.081 |     -813.3 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      153 |       0 |       0 |        4 |      0 |     0 |    +0.4% |  -25.472 |     -719.2 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      160 |       0 |       2 |        6 |      0 |     2 |    +0.7% |  -31.942 |     -816.6 |     67 | uart_tx_inst.prescale_reg[15]$_SDFFE_PP0P_/D
+      162 |       0 |       0 |        4 |      0 |     0 |    +0.4% |  -25.472 |     -719.2 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      167 |       0 |       0 |        4 |      0 |     0 |    +0.4% |  -25.472 |     -719.2 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      170 |       0 |       1 |        4 |      0 |     1 |    +0.6% |  -25.472 |     -708.7 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      179 |       0 |       3 |        6 |      0 |     6 |    +1.1% |  -25.472 |     -562.6 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      180 |       0 |       3 |        6 |      0 |     6 |    +1.1% |  -25.472 |     -562.6 |     67 | uart_tx_inst.prescale_reg[17]$_SDFFE_PP0P_/D
+      187 |       0 |       6 |        7 |      0 |     7 |    +1.3% |  -24.772 |     -608.9 |     67 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      190 |       0 |       6 |        7 |      0 |     9 |    +1.3% |  -24.772 |     -608.2 |     67 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      191 |       0 |       6 |        7 |      0 |     9 |    +1.3% |  -24.772 |     -608.2 |     67 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      200 |       0 |       9 |        8 |      0 |    13 |    +1.5% |  -24.772 |     -609.9 |     67 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      202 |       0 |       9 |        7 |      0 |    10 |    +1.4% |  -24.772 |     -595.5 |     67 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      206 |       0 |       9 |        7 |      0 |    13 |    +1.4% |  -24.772 |     -594.3 |     67 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      210 |       0 |      11 |        9 |      0 |    13 |    +1.7% |  -26.897 |     -616.8 |     67 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      210 |       0 |       9 |        7 |      0 |    13 |    +1.4% |  -24.772 |     -594.3 |     66 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      212 |       0 |       9 |        7 |      0 |    13 |    +1.4% |  -24.772 |     -594.3 |     66 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      217 |       0 |       9 |        7 |      0 |    13 |    +1.4% |  -24.772 |     -594.3 |     65 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      219 |       0 |       9 |        7 |      0 |    13 |    +1.4% |  -24.772 |     -594.3 |     65 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      220 |       0 |       9 |        7 |      0 |    13 |    +1.4% |  -24.772 |     -594.3 |     65 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      223 |       0 |       9 |        9 |      0 |    14 |    +1.6% |  -24.772 |     -587.6 |     65 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      224 |       0 |       9 |        9 |      0 |    14 |    +1.6% |  -24.772 |     -587.6 |     64 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      228 |       0 |      11 |        9 |      0 |    14 |    +1.9% |  -24.772 |     -553.8 |     64 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      230 |       0 |      11 |        9 |      0 |    15 |    +1.9% |  -24.772 |     -553.2 |     64 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      231 |       0 |      11 |        9 |      0 |    15 |    +1.9% |  -24.772 |     -553.2 |     64 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      235 |       0 |      11 |        9 |      0 |    18 |    +1.9% |  -24.772 |     -530.4 |     64 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      237 |       0 |      11 |        9 |      0 |    18 |    +1.9% |  -24.772 |     -530.4 |     63 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      239 |       0 |      11 |        9 |      0 |    19 |    +1.9% |  -24.772 |     -529.5 |     61 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      240 |       0 |      11 |        9 |      0 |    19 |    +1.9% |  -24.772 |     -529.5 |     61 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      243 |       0 |      11 |        9 |      0 |    21 |    +1.9% |  -24.772 |     -528.9 |     61 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      246 |       0 |      11 |        9 |      0 |    22 |    +1.9% |  -24.772 |     -527.6 |     61 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      249 |       0 |      12 |        9 |      0 |    22 |    +2.0% |  -24.772 |     -529.2 |     61 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      250 |       0 |      12 |        9 |      0 |    22 |    +2.0% |  -24.772 |     -529.2 |     61 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      251 |       0 |      12 |        9 |      0 |    23 |    +2.0% |  -24.772 |     -526.9 |     61 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      255 |       0 |      12 |        9 |      0 |    25 |    +2.0% |  -24.772 |     -526.7 |     61 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      256 |       0 |      12 |        9 |      0 |    25 |    +2.0% |  -24.772 |     -526.7 |     60 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      259 |       0 |      12 |        9 |      0 |    25 |    +2.0% |  -24.772 |     -526.7 |     60 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      260 |       0 |      12 |        9 |      0 |    25 |    +2.0% |  -24.772 |     -526.7 |     60 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      260 |       0 |      12 |        9 |      0 |    25 |    +2.0% |  -24.772 |     -526.7 |     59 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      265 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     59 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      270 |       0 |      12 |       12 |      0 |    28 |    +2.3% |  -24.772 |     -658.1 |     59 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      272 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     59 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      273 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     58 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      278 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     58 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      280 |       0 |      12 |       11 |      0 |    26 |    +2.2% |  -24.772 |     -640.0 |     58 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      283 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     58 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      288 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     58 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      289 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     57 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      290 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     57 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      294 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     57 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      299 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     57 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      300 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     57 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      304 |       0 |      12 |       10 |      0 |    26 |    +2.1% |  -24.772 |     -523.5 |     57 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      307 |       0 |      13 |       10 |      0 |    27 |    +2.1% |  -24.772 |     -523.5 |     55 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      310 |       0 |      13 |       12 |      0 |    27 |    +2.3% |  -24.772 |     -652.5 |     55 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      312 |       0 |      13 |       10 |      0 |    27 |    +2.1% |  -24.772 |     -523.5 |     55 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      314 |       0 |      13 |       10 |      0 |    27 |    +2.1% |  -24.772 |     -523.5 |     55 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      316 |       0 |      14 |       10 |      0 |    27 |    +2.1% |  -24.772 |     -521.5 |     53 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      317 |       0 |      14 |       10 |      0 |    27 |    +2.1% |  -24.772 |     -521.5 |     52 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      319 |       0 |      15 |       10 |      0 |    27 |    +2.2% |  -24.772 |     -508.5 |     50 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      320 |       0 |      15 |       10 |      0 |    27 |    +2.2% |  -24.772 |     -508.5 |     50 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      320 |       0 |      15 |       10 |      0 |    27 |    +2.2% |  -24.772 |     -508.5 |     49 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      323 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     47 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      324 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      325 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     45 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      326 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     44 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      327 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     43 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      328 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     42 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      329 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     41 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      330 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     41 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      330 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     40 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      331 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     39 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+      332 |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     38 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     333* |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     334* |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     335* |       0 |      15 |       11 |      0 |    28 |    +2.3% |  -24.771 |     -506.4 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     338* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     339* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     340* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     340* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     341* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     342* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     343* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     344* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     345* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     346* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     347* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     348* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     349* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     350* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     350* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     351* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     352* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     353* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     354* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     355* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     356* |       0 |      15 |       11 |      0 |    30 |    +2.3% |  -24.771 |     -503.0 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     358* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     359* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     360* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     360* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     361* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     362* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     363* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     364* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     365* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     366* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     367* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     368* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     369* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     370* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     370* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     371* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     372* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     373* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     374* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     375* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     376* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     377* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     378* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     379* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     380* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     380* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+     381* |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+    final |       0 |      15 |       11 |      0 |    31 |    +2.3% |  -24.771 |     -502.2 |     46 | uart_tx_inst.prescale_reg[7]$_SDFFE_PP0P_/D
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0045] Inserted 11 buffers, 1 to split loads.
+[INFO RSZ-0051] Resized 15 instances: 15 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 31 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0033] No hold violations found.
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                     675
+Diamond Move Success:            675 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement         17.2 u
+average displacement        0.0 u
+max displacement            1.0 u
+original HPWL            1264.9 u
+legalized HPWL           1282.6 u
+delta HPWL                    1 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 91 um^2 41% utilization.
+write_db ./results/asap7/uart/baseline_alpha_2-beta_0.1/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/uart/baseline_alpha_2-beta_0.1/4_cts.sdc
+Elapsed time: 0:02.76[h:]min:sec. CPU time: user 3.17 sys 0.40 (129%). Peak memory: 238320KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                            2            232 5b6f3d6adc232a21bd1e

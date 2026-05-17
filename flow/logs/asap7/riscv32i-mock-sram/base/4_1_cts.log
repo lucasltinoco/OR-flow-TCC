@@ -1,0 +1,619 @@
+OpenROAD fe1aa0f9d0254fac87b82c886c04ee1544e46885 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_liberty ./results/asap7/riscv32i-mock-sram_fakeram7_256x32/base/fakeram7_256x32_typ.lib
+read_db -hier ./results/asap7/riscv32i-mock-sram/base/3_place.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets -sink_clustering_size 10 -sink_clustering_max_diameter 50
+[INFO CTS-0050] Root buffer is BUFx16f_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx16f_ASAP7_75t_R
+                    BUFx24_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0011]  Clock net "clk" for macros has 4 sinks.
+[INFO CTS-0011]  Clock net "clk_regs" for registers has 1056 sinks.
+[INFO CTS-0008] TritonCTS found 2 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 4.
+[INFO CTS-0029]  Macro  sinks will be clustered in groups of up to 4 and with maximum cluster diameter of 64.8 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0023]  Original sink region: [(22126, 29196), (51532, 29196)].
+[INFO CTS-0024]  Normalized sink region: [(16.3896, 21.6267), (38.1719, 21.6267)].
+[INFO CTS-0025]     Width:  21.7822.
+[INFO CTS-0026]     Height: 0.0000.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 2
+    Sub-region size: 10.8911 X 0.0000
+[INFO CTS-0034]     Segment length (rounded): 5.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 4.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_regs.
+[INFO CTS-0028]  Total number of sinks: 1056.
+[INFO CTS-0029]  Register sinks will be clustered in groups of up to 10 and with maximum cluster diameter of 50.0 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0204] A clustering solution was found from clustering size of 10 and clustering diameter of 50.
+[INFO CTS-0205] Better solution may be possible if either -sink_clustering_size, -sink_clustering_max_diameter, or both options are omitted to enable automatic clustering.
+[INFO CTS-0019]  Total number of sinks after clustering: 106.
+[INFO CTS-0024]  Normalized sink region: [(4.29185, 4.26), (42.4412, 28.3996)].
+[INFO CTS-0025]     Width:  38.1493.
+[INFO CTS-0026]     Height: 24.1396.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 53
+    Sub-region size: 19.0747 X 24.1396
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 27
+    Sub-region size: 19.0747 X 12.0698
+[INFO CTS-0034]     Segment length (rounded): 6.
+ Level 3
+    Direction: Horizontal
+    Sinks per sub-region: 14
+    Sub-region size: 9.5373 X 12.0698
+[INFO CTS-0034]     Segment length (rounded): 4.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 106.
+[INFO CTS-0018]     Created 3 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 3 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:2..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0018]     Created 115 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 115 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 6:1, 9:1, 10:106, 11:1, 13:1, 14:1, 15:1, 17:2..
+[INFO CTS-0017]     Max level of the clock tree: 3.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 4
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 75.03 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 0
+[INFO CTS-0098] Clock net "clk_regs"
+[INFO CTS-0099]  Sinks 1068
+[INFO CTS-0100]  Leaf buffers 106
+[INFO CTS-0101]  Average sink wire length 32.26 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 12
+[INFO CTS-0033] Balancing latency for clock clk
+[INFO CTS-0036]  inserted 1 delay buffers
+[INFO CTS-0037] Total number of delay buffers: 1
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9788
+Diamond Move Success:           9788 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        959.1 u
+average displacement        0.1 u
+max displacement            9.5 u
+original HPWL           41963.8 u
+legalized HPWL          43536.9 u
+delta HPWL                    4 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 400 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 400 out of 400 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% | -134.767 |    -5215.4 |    400 | dataadr[0]
+       10 |       0 |       4 |        4 |      0 |     3 |    +0.0% |  -59.298 |     -605.9 |    400 | dataadr[31]
+       20 |       0 |       7 |       11 |      0 |     6 |    +0.1% |  -44.158 |     -344.3 |    400 | dataadr[31]
+       30 |       0 |      11 |       16 |      0 |     9 |    +0.1% |  -40.312 |     -226.2 |    400 | dataadr[0]
+       40 |       0 |      16 |       20 |      0 |    12 |    +0.1% |  -36.713 |     -163.1 |    400 | dataadr[0]
+       50 |       0 |      22 |       24 |      0 |    13 |    +0.1% |  -28.228 |     -118.4 |    400 | dataadr[0]
+       60 |       0 |      29 |       27 |      0 |    15 |    +0.2% |  -21.895 |      -75.1 |    400 | dataadr[0]
+       70 |       0 |      33 |       30 |      0 |    19 |    +0.2% |  -19.157 |      -63.5 |    400 | dataadr[0]
+       80 |       0 |      40 |       33 |      0 |    20 |    +0.2% |  -14.599 |      -42.9 |    400 | dataadr[31]
+       84 |       0 |      41 |       35 |      0 |    21 |    +0.2% |  -13.307 |      -26.2 |    398 | dataadr[0]
+       85 |       0 |      41 |       35 |      0 |    21 |    +0.2% |  -13.307 |      -26.2 |    397 | dataadr[0]
+       86 |       0 |      41 |       35 |      0 |    21 |    +0.2% |  -13.307 |      -26.2 |    396 | dataadr[0]
+       87 |       0 |      41 |       35 |      0 |    21 |    +0.2% |  -13.307 |      -26.2 |    395 | dataadr[0]
+       88 |       0 |      41 |       35 |      0 |    21 |    +0.2% |  -13.307 |      -26.2 |    394 | dataadr[0]
+       90 |       0 |      42 |       35 |      0 |    21 |    +0.2% |  -13.307 |      -23.6 |    394 | dataadr[0]
+       94 |       0 |      44 |       35 |      0 |    23 |    +0.2% |  -13.307 |      -19.4 |    392 | dataadr[0]
+      100 |       0 |      48 |       36 |      0 |    23 |    +0.2% |  -16.798 |      -18.9 |    392 | dataadr[0]
+      103 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    391 | dataadr[0]
+      104 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    390 | dataadr[0]
+      105 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    389 | dataadr[0]
+      106 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    388 | dataadr[0]
+      107 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    387 | dataadr[0]
+      108 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    386 | dataadr[0]
+      109 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    385 | dataadr[0]
+      110 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    385 | dataadr[0]
+      110 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    384 | dataadr[0]
+      111 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    383 | dataadr[0]
+      112 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    382 | dataadr[0]
+      113 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    381 | dataadr[0]
+      114 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    380 | dataadr[0]
+      115 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    379 | dataadr[0]
+      116 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    378 | dataadr[0]
+      117 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    377 | dataadr[0]
+      118 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    376 | dataadr[0]
+      119 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    375 | dataadr[0]
+      120 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    375 | dataadr[0]
+      120 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    374 | dataadr[0]
+      121 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    373 | dataadr[0]
+      122 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    372 | dataadr[0]
+      123 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    371 | dataadr[0]
+      124 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    370 | dataadr[0]
+      125 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    369 | dataadr[0]
+      126 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    368 | dataadr[0]
+      127 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    367 | dataadr[0]
+      128 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    366 | dataadr[0]
+      129 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    365 | dataadr[0]
+      130 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    365 | dataadr[0]
+      130 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    364 | dataadr[0]
+      131 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    363 | dataadr[0]
+      132 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    362 | dataadr[0]
+      133 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    361 | dataadr[0]
+      134 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    360 | dataadr[0]
+      135 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    359 | dataadr[0]
+      136 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    358 | dataadr[0]
+      137 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    357 | dataadr[0]
+      138 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    356 | dataadr[0]
+      139 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    355 | dataadr[0]
+      140 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    355 | dataadr[0]
+      140 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    354 | dataadr[0]
+      141 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    353 | dataadr[0]
+      142 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    352 | dataadr[0]
+      143 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    351 | dataadr[0]
+      144 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    350 | dataadr[0]
+      145 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    349 | dataadr[0]
+      146 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    348 | dataadr[0]
+      147 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    347 | dataadr[0]
+      148 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    346 | dataadr[0]
+      149 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    345 | dataadr[0]
+      150 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    345 | dataadr[0]
+      150 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    344 | dataadr[0]
+      151 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    343 | dataadr[0]
+      152 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    342 | dataadr[0]
+      153 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    341 | dataadr[0]
+      154 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    340 | dataadr[0]
+      155 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    339 | dataadr[0]
+      156 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    338 | dataadr[0]
+      157 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    337 | dataadr[0]
+      158 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    336 | dataadr[0]
+      159 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    335 | dataadr[0]
+      160 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    335 | dataadr[0]
+      160 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    334 | dataadr[0]
+      161 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    333 | dataadr[0]
+      162 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    332 | dataadr[0]
+      163 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    331 | dataadr[0]
+      164 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    330 | dataadr[0]
+      165 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    329 | dataadr[0]
+      166 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    328 | dataadr[0]
+      167 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    327 | dataadr[0]
+      168 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    326 | dataadr[0]
+      169 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    325 | dataadr[0]
+      170 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    325 | dataadr[0]
+      170 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    324 | dataadr[0]
+      171 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    323 | dataadr[0]
+      172 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    322 | dataadr[0]
+      173 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    321 | dataadr[0]
+      174 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    320 | dataadr[0]
+      175 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    319 | dataadr[0]
+      176 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    318 | dataadr[0]
+      177 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    317 | dataadr[0]
+      178 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    316 | dataadr[0]
+      179 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    315 | dataadr[0]
+      180 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    315 | dataadr[0]
+      180 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    314 | dataadr[0]
+      181 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    313 | dataadr[0]
+      182 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    312 | dataadr[0]
+      183 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    311 | dataadr[0]
+      184 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    310 | dataadr[0]
+      185 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    309 | dataadr[0]
+      186 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    308 | dataadr[0]
+      187 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    307 | dataadr[0]
+      188 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    306 | dataadr[0]
+      189 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    305 | dataadr[0]
+      190 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    305 | dataadr[0]
+      190 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    304 | dataadr[0]
+      191 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    303 | dataadr[0]
+      192 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    302 | dataadr[0]
+      193 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    301 | dataadr[0]
+      194 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    300 | dataadr[0]
+      195 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    299 | dataadr[0]
+      196 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    298 | dataadr[0]
+      197 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    297 | dataadr[0]
+      198 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    296 | dataadr[0]
+      199 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    295 | dataadr[0]
+      200 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    295 | dataadr[0]
+      200 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    294 | dataadr[0]
+      201 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    293 | dataadr[0]
+      202 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    292 | dataadr[0]
+      203 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    291 | dataadr[0]
+      204 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    290 | dataadr[0]
+      205 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    289 | dataadr[0]
+      206 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    288 | dataadr[0]
+      207 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    287 | dataadr[0]
+      208 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    286 | dataadr[0]
+      209 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    285 | dataadr[0]
+      210 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    285 | dataadr[0]
+      210 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    284 | dataadr[0]
+      211 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    283 | dataadr[0]
+      212 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    282 | dataadr[0]
+      213 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    281 | dataadr[0]
+      214 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    280 | dataadr[0]
+      215 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    279 | dataadr[0]
+      216 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    278 | dataadr[0]
+      217 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    277 | dataadr[0]
+      218 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    276 | dataadr[0]
+      219 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    275 | dataadr[0]
+      220 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    275 | dataadr[0]
+      220 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    274 | dataadr[0]
+      221 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    273 | dataadr[0]
+      222 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    272 | dataadr[0]
+      223 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    271 | dataadr[0]
+      224 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    270 | dataadr[0]
+      225 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    269 | dataadr[0]
+      226 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    268 | dataadr[0]
+      227 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    267 | dataadr[0]
+      228 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    266 | dataadr[0]
+      229 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    265 | dataadr[0]
+      230 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    265 | dataadr[0]
+      230 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    264 | dataadr[0]
+      231 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    263 | dataadr[0]
+      232 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    262 | dataadr[0]
+      233 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    261 | dataadr[0]
+      234 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    260 | dataadr[0]
+      235 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    259 | dataadr[0]
+      236 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    258 | dataadr[0]
+      237 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    257 | dataadr[0]
+      238 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    256 | dataadr[0]
+      239 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    255 | dataadr[0]
+      240 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    255 | dataadr[0]
+      240 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    254 | dataadr[0]
+      241 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    253 | dataadr[0]
+      242 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    252 | dataadr[0]
+      243 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    251 | dataadr[0]
+      244 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    250 | dataadr[0]
+      245 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    249 | dataadr[0]
+      246 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    248 | dataadr[0]
+      247 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    247 | dataadr[0]
+      248 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    246 | dataadr[0]
+      249 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    245 | dataadr[0]
+      250 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    245 | dataadr[0]
+      250 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    244 | dataadr[0]
+      251 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    243 | dataadr[0]
+      252 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    242 | dataadr[0]
+      253 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    241 | dataadr[0]
+      254 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    240 | dataadr[0]
+      255 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    239 | dataadr[0]
+      256 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    238 | dataadr[0]
+      257 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    237 | dataadr[0]
+      258 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    236 | dataadr[0]
+      259 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    235 | dataadr[0]
+      260 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    235 | dataadr[0]
+      260 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    234 | dataadr[0]
+      261 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    233 | dataadr[0]
+      262 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    232 | dataadr[0]
+      263 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    231 | dataadr[0]
+      264 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    230 | dataadr[0]
+      265 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    229 | dataadr[0]
+      266 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    228 | dataadr[0]
+      267 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    227 | dataadr[0]
+      268 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    226 | dataadr[0]
+      269 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    225 | dataadr[0]
+      270 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    225 | dataadr[0]
+      270 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    224 | dataadr[0]
+      271 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    223 | dataadr[0]
+      272 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    222 | dataadr[0]
+      273 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    221 | dataadr[0]
+      274 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    220 | dataadr[0]
+      275 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    219 | dataadr[0]
+      276 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    218 | dataadr[0]
+      277 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    217 | dataadr[0]
+      278 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    216 | dataadr[0]
+      279 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    215 | dataadr[0]
+      280 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    215 | dataadr[0]
+      280 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    214 | dataadr[0]
+      281 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    213 | dataadr[0]
+      282 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    212 | dataadr[0]
+      283 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    211 | dataadr[0]
+      284 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    210 | dataadr[0]
+      285 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    209 | dataadr[0]
+      286 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    208 | dataadr[0]
+      287 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    207 | dataadr[0]
+      288 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    206 | dataadr[0]
+      289 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    205 | dataadr[0]
+      290 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    205 | dataadr[0]
+      290 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    204 | dataadr[0]
+      291 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    203 | dataadr[0]
+      292 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    202 | dataadr[0]
+      293 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    201 | dataadr[0]
+      294 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    200 | dataadr[0]
+      295 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    199 | dataadr[0]
+      296 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    198 | dataadr[0]
+      297 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    197 | dataadr[0]
+      298 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    196 | dataadr[0]
+      299 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    195 | dataadr[0]
+      300 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    195 | dataadr[0]
+      300 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    194 | dataadr[0]
+      301 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    193 | dataadr[0]
+      302 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    192 | dataadr[0]
+      303 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    191 | dataadr[0]
+      304 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    190 | dataadr[0]
+      305 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    189 | dataadr[0]
+      306 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    188 | dataadr[0]
+      307 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    187 | dataadr[0]
+      308 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    186 | dataadr[0]
+      309 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    185 | dataadr[0]
+      310 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    185 | dataadr[0]
+      310 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    184 | dataadr[0]
+      311 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    183 | dataadr[0]
+      312 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    182 | dataadr[0]
+      313 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    181 | dataadr[0]
+      314 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    180 | dataadr[0]
+      315 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    179 | dataadr[0]
+      316 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    178 | dataadr[0]
+      317 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    177 | dataadr[0]
+      318 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    176 | dataadr[0]
+      319 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    175 | dataadr[0]
+      320 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    175 | dataadr[0]
+      320 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    174 | dataadr[0]
+      321 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    173 | dataadr[0]
+      322 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    172 | dataadr[0]
+      323 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    171 | dataadr[0]
+      324 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    170 | dataadr[0]
+      325 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    169 | dataadr[0]
+      326 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    168 | dataadr[0]
+      327 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    167 | dataadr[0]
+      328 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    166 | dataadr[0]
+      329 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    165 | dataadr[0]
+      330 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    165 | dataadr[0]
+      330 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    164 | dataadr[0]
+      331 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    163 | dataadr[0]
+      332 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    162 | dataadr[0]
+      333 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    161 | dataadr[0]
+      334 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    160 | dataadr[0]
+      335 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    159 | dataadr[0]
+      336 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    158 | dataadr[0]
+      337 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    157 | dataadr[0]
+      338 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    156 | dataadr[0]
+      339 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    155 | dataadr[0]
+      340 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    155 | dataadr[0]
+      340 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    154 | dataadr[0]
+      341 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    153 | dataadr[0]
+      342 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    152 | dataadr[0]
+      343 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    151 | dataadr[0]
+      344 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    150 | dataadr[0]
+      345 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    149 | dataadr[0]
+      346 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    148 | dataadr[0]
+      347 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    147 | dataadr[0]
+      348 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    146 | dataadr[0]
+      349 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    145 | dataadr[0]
+      350 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    145 | dataadr[0]
+      350 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    144 | dataadr[0]
+      351 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    143 | dataadr[0]
+      352 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    142 | dataadr[0]
+      353 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    141 | dataadr[0]
+      354 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    140 | dataadr[0]
+      355 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    139 | dataadr[0]
+      356 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    138 | dataadr[0]
+      357 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    137 | dataadr[0]
+      358 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    136 | dataadr[0]
+      359 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    135 | dataadr[0]
+      360 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    135 | dataadr[0]
+      360 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    134 | dataadr[0]
+      361 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    133 | dataadr[0]
+      362 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    132 | dataadr[0]
+      363 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    131 | dataadr[0]
+      364 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    130 | dataadr[0]
+      365 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    129 | dataadr[0]
+      366 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    128 | dataadr[0]
+      367 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    127 | dataadr[0]
+      368 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    126 | dataadr[0]
+      369 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    125 | dataadr[0]
+      370 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    125 | dataadr[0]
+      370 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    124 | dataadr[0]
+      371 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    123 | dataadr[0]
+      372 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    122 | dataadr[0]
+      373 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    121 | dataadr[0]
+      374 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    120 | dataadr[0]
+      375 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    119 | dataadr[0]
+      376 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    118 | dataadr[0]
+      377 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    117 | dataadr[0]
+      378 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    116 | dataadr[0]
+      379 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    115 | dataadr[0]
+      380 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    115 | dataadr[0]
+      380 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    114 | dataadr[0]
+      381 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    113 | dataadr[0]
+      382 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    112 | dataadr[0]
+      383 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    111 | dataadr[0]
+      384 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    110 | dataadr[0]
+      385 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    109 | dataadr[0]
+      386 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    108 | dataadr[0]
+      387 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    107 | dataadr[0]
+      388 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    106 | dataadr[0]
+      389 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    105 | dataadr[0]
+      390 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    105 | dataadr[0]
+      390 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    104 | dataadr[0]
+      391 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    103 | dataadr[0]
+      392 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    102 | dataadr[0]
+      393 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    101 | dataadr[0]
+      394 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |    100 | dataadr[0]
+      395 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     99 | dataadr[0]
+      396 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     98 | dataadr[0]
+      397 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     97 | dataadr[0]
+      398 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     96 | dataadr[0]
+      399 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     95 | dataadr[0]
+      400 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     95 | dataadr[0]
+      400 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     94 | dataadr[0]
+      401 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     93 | dataadr[0]
+      402 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     92 | dataadr[0]
+      403 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     91 | dataadr[0]
+      404 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     90 | dataadr[0]
+      405 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     89 | dataadr[0]
+      406 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     88 | dataadr[0]
+      407 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     87 | dataadr[0]
+      408 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     86 | dataadr[0]
+      409 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     85 | dataadr[0]
+      410 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     85 | dataadr[0]
+      410 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     84 | dataadr[0]
+      411 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     83 | dataadr[0]
+      412 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     82 | dataadr[0]
+      413 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     81 | dataadr[0]
+      414 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     80 | dataadr[0]
+      415 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     79 | dataadr[0]
+      416 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     78 | dataadr[0]
+      417 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     77 | dataadr[0]
+      418 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     76 | dataadr[0]
+      419 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     75 | dataadr[0]
+      420 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     75 | dataadr[0]
+      420 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     74 | dataadr[0]
+      421 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     73 | dataadr[0]
+      422 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     72 | dataadr[0]
+      423 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     71 | dataadr[0]
+      424 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     70 | dataadr[0]
+      425 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     69 | dataadr[0]
+      426 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     68 | dataadr[0]
+      427 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     67 | dataadr[0]
+      428 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     66 | dataadr[0]
+      429 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     65 | dataadr[0]
+      430 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     65 | dataadr[0]
+      430 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     64 | dataadr[0]
+      431 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     63 | dataadr[0]
+      432 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     62 | dataadr[0]
+      433 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     61 | dataadr[0]
+      434 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     60 | dataadr[0]
+      435 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     59 | dataadr[0]
+      436 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     58 | dataadr[0]
+      437 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     57 | dataadr[0]
+      438 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     56 | dataadr[0]
+      439 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     55 | dataadr[0]
+      440 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     55 | dataadr[0]
+      440 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     54 | dataadr[0]
+      441 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     53 | dataadr[0]
+      442 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     52 | dataadr[0]
+      443 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     51 | dataadr[0]
+      444 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     50 | dataadr[0]
+      445 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     49 | dataadr[0]
+      446 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     48 | dataadr[0]
+      447 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     47 | dataadr[0]
+      448 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     46 | dataadr[0]
+      449 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     45 | dataadr[0]
+      450 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     45 | dataadr[0]
+      450 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     44 | dataadr[0]
+      451 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     43 | dataadr[0]
+      452 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     42 | dataadr[0]
+      453 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     41 | dataadr[0]
+      454 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     40 | dataadr[0]
+      455 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     39 | dataadr[0]
+      456 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     38 | dataadr[0]
+      457 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     37 | dataadr[0]
+      458 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     36 | dataadr[0]
+      459 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     35 | dataadr[0]
+      460 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     35 | dataadr[0]
+      460 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     34 | dataadr[0]
+      461 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     33 | dataadr[0]
+      462 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     32 | dataadr[0]
+      463 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     31 | dataadr[0]
+      464 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     30 | dataadr[0]
+      465 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     29 | dataadr[0]
+      466 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     28 | dataadr[0]
+      467 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     27 | dataadr[0]
+      468 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     26 | dataadr[0]
+      469 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     25 | dataadr[0]
+      470 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     25 | dataadr[0]
+      470 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     24 | dataadr[0]
+      471 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     23 | dataadr[0]
+      472 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     22 | dataadr[0]
+      473 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     21 | dataadr[0]
+      474 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     20 | dataadr[0]
+      475 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     19 | dataadr[0]
+      476 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     18 | dataadr[0]
+      477 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     17 | dataadr[0]
+      478 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     16 | dataadr[0]
+      479 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     15 | dataadr[0]
+      480 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     15 | dataadr[0]
+      480 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     14 | dataadr[0]
+      481 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     13 | dataadr[0]
+      482 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     12 | dataadr[0]
+      483 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     11 | dataadr[0]
+      484 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |     10 | dataadr[0]
+      485 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      9 | dataadr[0]
+      486 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      8 | dataadr[0]
+      487 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      7 | dataadr[0]
+      488 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      6 | dataadr[0]
+      489 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      5 | dataadr[0]
+      490 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      5 | dataadr[0]
+      490 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      4 | dataadr[0]
+      491 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      3 | dataadr[0]
+      492 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      2 | dataadr[0]
+      493 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      1 | dataadr[0]
+      494 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      0 | dataadr[0]
+      495 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      0 | dataadr[0]
+      496 |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      0 | dataadr[0]
+     497* |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      2 | dataadr[0]
+     498* |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      2 | dataadr[0]
+    final |       0 |      45 |       36 |      0 |    23 |    +0.2% |  -13.307 |      -15.4 |      2 | dataadr[0]
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0040] Inserted 36 buffers.
+[INFO RSZ-0051] Resized 45 instances: 45 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 23 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0033] No hold violations found.
+Took 7 seconds: repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+Repair timing output passed lec test
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9824
+Diamond Move Success:           9824 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        198.5 u
+average displacement        0.0 u
+max displacement            2.8 u
+original HPWL           43645.7 u
+legalized HPWL          43823.0 u
+delta HPWL                    0 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 1975 um^2 67% utilization.
+write_db ./results/asap7/riscv32i-mock-sram/base/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/riscv32i-mock-sram/base/4_cts.sdc
+Elapsed time: 0:25.07[h:]min:sec. CPU time: user 66.53 sys 25.38 (366%). Peak memory: 312816KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                           25            305 3ef3061294ddac245b97

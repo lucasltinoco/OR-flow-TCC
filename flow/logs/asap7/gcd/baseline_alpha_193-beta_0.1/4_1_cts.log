@@ -1,0 +1,152 @@
+OpenROAD fe1aa0f9d0254fac87b82c886c04ee1544e46885 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNH2V2X_RVT_TT_nldm_FAKE.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNV2X_RVT_TT_nldm_FAKE.lib
+read_db ./results/asap7/gcd/baseline_alpha_193-beta_0.1/3_place.odb
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
+[INFO CTS-0050] Root buffer is BUFx2_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx4_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx2_ASAP7_75t_R
+                    BUFx4_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx4_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "core_clock".
+[INFO CTS-0010]  Clock net "clk" has 11 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 11.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0023]  Original sink region: [(745, 810), (6582, 7290)].
+[INFO CTS-0024]  Normalized sink region: [(0.551852, 0.6), (4.87556, 5.4)].
+[INFO CTS-0025]     Width:  4.3237.
+[INFO CTS-0026]     Height: 4.8000.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 6
+    Sub-region size: 4.3237 X 2.4000
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 11.
+[INFO CTS-0018]     Created 3 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 3 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 4:1, 7:1..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 12
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 11.73 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 1
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                     357
+Diamond Move Success:            357 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement          1.6 u
+average displacement        0.0 u
+max displacement            0.6 u
+original HPWL             652.7 u
+legalized HPWL            684.5 u
+delta HPWL                    5 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -skip_last_gasp -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 23 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 23 out of 23 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% |  -56.553 |     -416.9 |     23 | resp_msg[13]
+       10 |       0 |       0 |        6 |      0 |     5 |    +1.2% |  -42.596 |     -297.4 |     23 | resp_msg[15]
+       20 |       0 |       0 |       15 |      0 |     7 |    +2.9% |  -29.222 |     -192.9 |     23 | resp_msg[12]
+       30 |       0 |       0 |       20 |      0 |    12 |    +4.0% |  -27.000 |     -182.1 |     23 | resp_msg[13]
+       35 |       0 |       0 |       21 |      0 |    13 |    +4.2% |  -26.543 |     -180.8 |     23 | resp_msg[12]
+       40 |       0 |       1 |       22 |      0 |    15 |    +4.5% |  -26.814 |     -179.3 |     23 | resp_msg[13]
+       44 |       0 |       0 |       21 |      0 |    14 |    +4.2% |  -26.543 |     -180.2 |     23 | resp_msg[12]
+       48 |       0 |       1 |       21 |      0 |    16 |    +4.2% |  -26.543 |     -178.1 |     23 | resp_msg[12]
+       50 |       0 |       2 |       21 |      0 |    16 |    +4.2% |  -26.208 |     -177.8 |     23 | resp_msg[12]
+       50 |       0 |       2 |       21 |      0 |    16 |    +4.2% |  -26.208 |     -177.8 |     23 | resp_msg[12]
+       53 |       0 |       3 |       21 |      0 |    17 |    +4.3% |  -26.208 |     -176.9 |     23 | resp_msg[12]
+       60 |       0 |       3 |       23 |      0 |    21 |    +4.7% |  -26.129 |     -181.6 |     23 | resp_msg[12]
+       61 |       0 |       3 |       22 |      0 |    20 |    +4.5% |  -26.129 |     -171.0 |     23 | resp_msg[12]
+       66 |       0 |       4 |       23 |      0 |    22 |    +4.7% |  -26.129 |     -180.0 |     23 | resp_msg[12]
+       70 |       0 |       5 |       23 |      0 |    24 |    +4.7% |  -26.202 |     -180.2 |     23 | resp_msg[12]
+       70 |       0 |       4 |       23 |      0 |    22 |    +4.7% |  -26.129 |     -180.0 |     23 | resp_msg[12]
+       71 |       0 |       4 |       23 |      0 |    22 |    +4.7% |  -26.129 |     -180.0 |     22 | resp_msg[12]
+       74 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     22 | resp_msg[12]
+       75 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     21 | resp_msg[12]
+       76 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     20 | resp_msg[12]
+       77 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     19 | resp_msg[12]
+       78 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     18 | resp_msg[12]
+       79 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     17 | resp_msg[12]
+       80 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     17 | resp_msg[12]
+       80 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     16 | resp_msg[12]
+       81 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     15 | resp_msg[12]
+       82 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     14 | resp_msg[12]
+       83 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     13 | resp_msg[12]
+       84 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     12 | resp_msg[12]
+       85 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     11 | resp_msg[12]
+       86 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |     10 | resp_msg[12]
+       87 |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |      9 | resp_msg[12]
+    final |       0 |       5 |       23 |      0 |    23 |    +4.7% |  -26.129 |     -179.2 |      9 | resp_msg[12]
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0040] Inserted 23 buffers.
+[INFO RSZ-0051] Resized 5 instances: 5 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 23 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0033] No hold violations found.
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                     380
+Diamond Move Success:            380 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement         26.3 u
+average displacement        0.1 u
+max displacement            1.2 u
+original HPWL             699.1 u
+legalized HPWL            725.8 u
+delta HPWL                    4 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 48 um^2 81% utilization.
+write_db ./results/asap7/gcd/baseline_alpha_193-beta_0.1/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/gcd/baseline_alpha_193-beta_0.1/4_cts.sdc
+Elapsed time: 0:01.92[h:]min:sec. CPU time: user 1.99 sys 0.13 (110%). Peak memory: 235968KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                            1            230 c6d7e945252d48778c33

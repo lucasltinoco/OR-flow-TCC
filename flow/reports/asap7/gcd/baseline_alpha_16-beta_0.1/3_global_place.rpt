@@ -1,0 +1,181 @@
+
+==========================================================================
+global place report_tns
+--------------------------------------------------------------------------
+tns max -140.28
+
+==========================================================================
+global place report_wns
+--------------------------------------------------------------------------
+wns max -15.88
+
+==========================================================================
+global place report_worst_slack
+--------------------------------------------------------------------------
+worst slack max -15.88
+
+==========================================================================
+global place report_clock_min_period
+--------------------------------------------------------------------------
+core_clock period_min = 325.88 fmax = 3068.57
+
+==========================================================================
+global place report_checks -path_delay min
+--------------------------------------------------------------------------
+Startpoint: ctrl.state.out[1]$_DFF_P_
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: ctrl.state.out[1]$_DFF_P_
+          (rising edge-triggered flip-flop clocked by core_clock)
+Path Group: core_clock
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ ctrl.state.out[1]$_DFF_P_/CLK (DFFHQNx1_ASAP7_75t_R)
+     2    1.06   14.57   33.74   33.74 ^ ctrl.state.out[1]$_DFF_P_/QN (DFFHQNx1_ASAP7_75t_R)
+                                         _006_ (net)
+                 14.57    0.02   33.77 ^ _430_/B (AO21x1_ASAP7_75t_R)
+     1    0.91    7.96   12.76   46.52 ^ _430_/Y (AO21x1_ASAP7_75t_R)
+                                         _190_ (net)
+                  7.96    0.03   46.55 ^ _446_/A1 (AOI21x1_ASAP7_75t_R)
+     1    0.74    6.53    7.15   53.70 v _446_/Y (AOI21x1_ASAP7_75t_R)
+                                         _001_ (net)
+                  6.53    0.04   53.74 v ctrl.state.out[1]$_DFF_P_/D (DFFHQNx1_ASAP7_75t_R)
+                                 53.74   data arrival time
+
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ ctrl.state.out[1]$_DFF_P_/CLK (DFFHQNx1_ASAP7_75t_R)
+                          8.60    8.60   library hold time
+                                  8.60   data required time
+-----------------------------------------------------------------------------
+                                  8.60   data required time
+                                -53.74   data arrival time
+-----------------------------------------------------------------------------
+                                 45.14   slack (MET)
+
+
+
+==========================================================================
+global place report_checks -path_delay max
+--------------------------------------------------------------------------
+Startpoint: _tray_size4_63
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: resp_msg[13] (output port clocked by core_clock)
+Path Group: core_clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ _tray_size4_63/CLK (DFFHQNH2V2Xx1_ASAP7_75t_R)
+     3    2.70   35.91   56.85   56.85 ^ _tray_size4_63/QN2 (DFFHQNH2V2Xx1_ASAP7_75t_R)
+                                         _039_ (net)
+                 35.91    0.19   57.04 ^ _588_/A (HAxp5_ASAP7_75t_R)
+     5    3.65   64.68   60.94  117.98 v _588_/SN (HAxp5_ASAP7_75t_R)
+                                         _041_ (net)
+                 64.68    0.14  118.11 v _330_/A2 (OA21x2_ASAP7_75t_R)
+     3    1.81   10.69   30.81  148.92 v _330_/Y (OA21x2_ASAP7_75t_R)
+                                         _107_ (net)
+                 10.69    0.05  148.97 v _335_/A (AND2x2_ASAP7_75t_R)
+     2    1.41    7.13   16.65  165.62 v _335_/Y (AND2x2_ASAP7_75t_R)
+                                         _112_ (net)
+                  7.13    0.05  165.67 v _386_/C (OR3x2_ASAP7_75t_R)
+     3    2.97   14.23   27.82  193.49 v _386_/Y (OR3x2_ASAP7_75t_R)
+                                         _161_ (net)
+                 14.23    0.15  193.64 v _389_/A2 (OA21x2_ASAP7_75t_R)
+     1    0.60    6.15   18.12  211.76 v _389_/Y (OA21x2_ASAP7_75t_R)
+                                         _164_ (net)
+                  6.15    0.02  211.79 v _393_/C (OR5x2_ASAP7_75t_R)
+     2    1.62   14.10   37.61  249.39 v _393_/Y (OR5x2_ASAP7_75t_R)
+                                         net41 (net)
+                 14.11    0.15  249.54 v output41/A (BUFx2_ASAP7_75t_R)
+     1    0.15    4.11   14.34  263.88 v output41/Y (BUFx2_ASAP7_75t_R)
+                                         resp_msg[13] (net)
+                  4.11    0.00  263.88 v resp_msg[13] (out)
+                                263.88   data arrival time
+
+                  0.00  310.00  310.00   clock core_clock (rise edge)
+                          0.00  310.00   clock network delay (ideal)
+                          0.00  310.00   clock reconvergence pessimism
+                        -62.00  248.00   output external delay
+                                248.00   data required time
+-----------------------------------------------------------------------------
+                                248.00   data required time
+                               -263.88   data arrival time
+-----------------------------------------------------------------------------
+                                -15.88   slack (VIOLATED)
+
+
+
+==========================================================================
+global place report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: _tray_size4_63
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: resp_msg[13] (output port clocked by core_clock)
+Path Group: core_clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ _tray_size4_63/CLK (DFFHQNH2V2Xx1_ASAP7_75t_R)
+     3    2.70   35.91   56.85   56.85 ^ _tray_size4_63/QN2 (DFFHQNH2V2Xx1_ASAP7_75t_R)
+                                         _039_ (net)
+                 35.91    0.19   57.04 ^ _588_/A (HAxp5_ASAP7_75t_R)
+     5    3.65   64.68   60.94  117.98 v _588_/SN (HAxp5_ASAP7_75t_R)
+                                         _041_ (net)
+                 64.68    0.14  118.11 v _330_/A2 (OA21x2_ASAP7_75t_R)
+     3    1.81   10.69   30.81  148.92 v _330_/Y (OA21x2_ASAP7_75t_R)
+                                         _107_ (net)
+                 10.69    0.05  148.97 v _335_/A (AND2x2_ASAP7_75t_R)
+     2    1.41    7.13   16.65  165.62 v _335_/Y (AND2x2_ASAP7_75t_R)
+                                         _112_ (net)
+                  7.13    0.05  165.67 v _386_/C (OR3x2_ASAP7_75t_R)
+     3    2.97   14.23   27.82  193.49 v _386_/Y (OR3x2_ASAP7_75t_R)
+                                         _161_ (net)
+                 14.23    0.15  193.64 v _389_/A2 (OA21x2_ASAP7_75t_R)
+     1    0.60    6.15   18.12  211.76 v _389_/Y (OA21x2_ASAP7_75t_R)
+                                         _164_ (net)
+                  6.15    0.02  211.79 v _393_/C (OR5x2_ASAP7_75t_R)
+     2    1.62   14.10   37.61  249.39 v _393_/Y (OR5x2_ASAP7_75t_R)
+                                         net41 (net)
+                 14.11    0.15  249.54 v output41/A (BUFx2_ASAP7_75t_R)
+     1    0.15    4.11   14.34  263.88 v output41/Y (BUFx2_ASAP7_75t_R)
+                                         resp_msg[13] (net)
+                  4.11    0.00  263.88 v resp_msg[13] (out)
+                                263.88   data arrival time
+
+                  0.00  310.00  310.00   clock core_clock (rise edge)
+                          0.00  310.00   clock network delay (ideal)
+                          0.00  310.00   clock reconvergence pessimism
+                        -62.00  248.00   output external delay
+                                248.00   data required time
+-----------------------------------------------------------------------------
+                                248.00   data required time
+                               -263.88   data arrival time
+-----------------------------------------------------------------------------
+                                -15.88   slack (VIOLATED)
+
+
+
+==========================================================================
+global place report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.62e-04   1.59e-05   4.32e-09   1.78e-04  25.4%
+Combinational          2.91e-04   2.30e-04   2.13e-08   5.22e-04  74.6%
+Clock                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  4.53e-04   2.46e-04   2.56e-08   7.00e-04 100.0%
+                          64.8%      35.2%       0.0%

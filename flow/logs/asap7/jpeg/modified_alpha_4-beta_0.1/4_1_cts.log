@@ -1,0 +1,194 @@
+OpenROAD ee3d65ce03b2656092ed62bf9205c5c11049c575 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNH2V2X_RVT_TT_nldm_FAKE.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNV2X_RVT_TT_nldm_FAKE.lib
+read_db ./results/asap7/jpeg/modified_alpha_4-beta_0.1/3_place.odb
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
+[INFO CTS-0050] Root buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx24_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0010]  Clock net "clk" has 2064 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 1 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 2064.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0206] Best clustering solution was found from clustering size of 10 and clustering diameter of 50.
+[INFO CTS-0019]  Total number of sinks after clustering: 126.
+[INFO CTS-0024]  Normalized sink region: [(2.47185, 3.07638), (70.0603, 69.147)].
+[INFO CTS-0025]     Width:  67.5884.
+[INFO CTS-0026]     Height: 66.0706.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 63
+    Sub-region size: 33.7942 X 66.0706
+[INFO CTS-0034]     Segment length (rounded): 16.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 32
+    Sub-region size: 33.7942 X 33.0353
+[INFO CTS-0034]     Segment length (rounded): 16.
+ Level 3
+    Direction: Horizontal
+    Sinks per sub-region: 16
+    Sub-region size: 16.8971 X 33.0353
+[INFO CTS-0034]     Segment length (rounded): 8.
+ Level 4
+    Direction: Vertical
+    Sinks per sub-region: 8
+    Sub-region size: 16.8971 X 16.5176
+[INFO CTS-0034]     Segment length (rounded): 8.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 10.
+[INFO CTS-0035]  Number of sinks covered: 126.
+[INFO CTS-0018]     Created 147 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 4.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 4.
+[INFO CTS-0015]     Created 147 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:1, 7:2, 8:14, 10:1, 11:4, 12:1, 13:9, 14:11, 15:11, 16:23, 17:24, 18:12, 19:16, 20:9, 21:4..
+[INFO CTS-0017]     Max level of the clock tree: 4.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 2174
+[INFO CTS-0100]  Leaf buffers 126
+[INFO CTS-0101]  Average sink wire length 167.72 um
+[INFO CTS-0102]  Path depth 3 - 4
+[INFO CTS-0207]  Dummy loads inserted 110
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                   53498
+Diamond Move Success:          53498 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        680.6 u
+average displacement        0.0 u
+max displacement            1.4 u
+original HPWL          145616.9 u
+legalized HPWL         150013.4 u
+delta HPWL                    3 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 41 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 41 out of 41 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% |  -30.289 |     -525.6 |     41 | _tray_size4_8015/D1
+       10 |       0 |       0 |        7 |      0 |     5 |    +0.0% |  -24.032 |     -467.1 |     41 | fdct_zigzag.dct_mod.dct_block_1.dct_unit_6.macu.mult_res[17]$_DFFE_PP_/D
+       12 |       0 |       0 |        9 |      0 |     6 |    +0.0% |  -23.745 |     -443.0 |     39 | _tray_size4_8015/D1
+       15 |       0 |       0 |       11 |      0 |     7 |    +0.0% |  -23.745 |     -437.5 |     37 | _tray_size4_8015/D1
+       19 |       0 |       0 |       13 |      0 |     9 |    +0.0% |  -23.745 |     -400.2 |     35 | _tray_size4_8015/D1
+       20 |       0 |       0 |       13 |      0 |     9 |    +0.0% |  -23.745 |     -400.2 |     35 | _tray_size4_8015/D1
+       20 |       0 |       0 |       13 |      0 |     9 |    +0.0% |  -23.745 |     -400.2 |     34 | _tray_size4_8015/D1
+       22 |       0 |       0 |       15 |      0 |     9 |    +0.0% |  -23.745 |     -353.6 |     32 | _tray_size4_8015/D1
+       27 |       0 |       0 |       20 |      0 |    11 |    +0.0% |  -23.745 |     -331.1 |     30 | _tray_size4_8015/D1
+       30 |       0 |       0 |       21 |      0 |    12 |    +0.0% |  -23.745 |     -308.7 |     29 | _tray_size4_8015/D1
+       30 |       0 |       0 |       21 |      0 |    12 |    +0.0% |  -23.745 |     -308.7 |     28 | _tray_size4_8015/D1
+       32 |       0 |       0 |       23 |      0 |    12 |    +0.0% |  -23.745 |     -260.7 |     26 | _tray_size4_8015/D1
+       35 |       0 |       0 |       25 |      0 |    13 |    +0.0% |  -23.745 |     -234.1 |     24 | _tray_size4_8015/D1
+       36 |       0 |       0 |       25 |      0 |    13 |    +0.0% |  -23.745 |     -234.1 |     23 | _tray_size4_8015/D1
+       39 |       0 |       0 |       27 |      0 |    14 |    +0.0% |  -23.745 |     -191.7 |     21 | _tray_size4_8015/D1
+       40 |       0 |       0 |       27 |      0 |    14 |    +0.0% |  -23.745 |     -191.7 |     21 | _tray_size4_8015/D1
+       40 |       0 |       0 |       27 |      0 |    14 |    +0.0% |  -23.745 |     -191.7 |     20 | _tray_size4_8015/D1
+       43 |       0 |       0 |       28 |      0 |    15 |    +0.0% |  -23.745 |     -182.2 |     18 | _tray_size4_8015/D1
+       44 |       0 |       0 |       28 |      0 |    15 |    +0.0% |  -23.745 |     -182.2 |     17 | _tray_size4_8015/D1
+       47 |       0 |       0 |       30 |      0 |    16 |    +0.0% |  -23.745 |     -161.3 |     15 | _tray_size4_8015/D1
+       48 |       0 |       0 |       30 |      0 |    16 |    +0.0% |  -23.745 |     -161.3 |     14 | _tray_size4_8015/D1
+       50 |       0 |       1 |       30 |      0 |    16 |    +0.0% |  -23.745 |      -99.9 |     13 | _tray_size4_8015/D1
+       50 |       0 |       1 |       30 |      0 |    16 |    +0.0% |  -23.745 |      -99.9 |     12 | _tray_size4_8015/D1
+       51 |       0 |       1 |       30 |      0 |    16 |    +0.0% |  -23.745 |      -99.9 |     11 | _tray_size4_8015/D1
+       52 |       0 |       1 |       30 |      0 |    16 |    +0.0% |  -23.745 |      -99.9 |     10 | _tray_size4_8015/D1
+       53 |       0 |       1 |       30 |      0 |    16 |    +0.0% |  -23.745 |      -99.9 |      9 | _tray_size4_8015/D1
+       58 |       0 |       1 |       33 |      0 |    18 |    +0.0% |  -23.745 |      -87.1 |      7 | _tray_size4_8015/D1
+       60 |       0 |       1 |       33 |      0 |    19 |    +0.0% |  -23.745 |      -88.8 |      7 | _tray_size4_8015/D1
+       61 |       0 |       1 |       35 |      0 |    19 |    +0.1% |  -23.745 |      -76.0 |      5 | _tray_size4_8015/D1
+       62 |       0 |       1 |       35 |      0 |    19 |    +0.1% |  -23.745 |      -76.0 |      4 | _tray_size4_8015/D1
+       63 |       0 |       1 |       35 |      0 |    19 |    +0.1% |  -23.745 |      -76.0 |      3 | _tray_size4_8015/D1
+       64 |       0 |       1 |       35 |      0 |    19 |    +0.1% |  -23.745 |      -76.0 |      2 | _tray_size4_8015/D1
+       69 |       0 |       1 |       38 |      0 |    21 |    +0.1% |  -23.745 |      -61.1 |      0 | _tray_size4_8015/D1
+       70 |       0 |       1 |       38 |      0 |    21 |    +0.1% |  -23.745 |      -61.1 |      0 | _tray_size4_8015/D1
+       70 |       0 |       1 |       38 |      0 |    21 |    +0.1% |  -23.745 |      -61.1 |      0 | _tray_size4_8015/D1
+       73 |       0 |       1 |       40 |      0 |    22 |    +0.1% |   -7.223 |      -38.4 |      0 | _tray_size4_8462/D2
+       74 |       0 |       1 |       40 |      0 |    22 |    +0.1% |   -7.223 |      -38.4 |      0 | _tray_size4_8462/D2
+       75 |       0 |       1 |       40 |      0 |    22 |    +0.1% |   -7.223 |      -38.4 |      0 | _tray_size4_8462/D2
+       79 |       0 |       1 |       42 |      0 |    24 |    +0.1% |   -5.530 |      -30.5 |      0 | _tray_size2_8153/D0
+       80 |       0 |       1 |       42 |      0 |    24 |    +0.1% |   -5.530 |      -30.5 |      0 | _tray_size2_8153/D0
+       80 |       0 |       1 |       42 |      0 |    24 |    +0.1% |   -5.530 |      -30.5 |      0 | _tray_size2_8153/D0
+       81 |       0 |       1 |       42 |      0 |    24 |    +0.1% |   -5.530 |      -30.5 |      0 | _tray_size2_8153/D0
+       84 |       0 |       1 |       43 |      0 |    25 |    +0.1% |   -5.069 |      -24.9 |      0 | _tray_size4_8015/D1
+       87 |       0 |       1 |       45 |      0 |    26 |    +0.1% |   -5.069 |      -20.4 |      0 | _tray_size4_8015/D1
+       90 |       0 |       1 |       46 |      0 |    27 |    +0.1% |   -5.069 |      -16.3 |      0 | _tray_size4_8015/D1
+       90 |       0 |       1 |       46 |      0 |    27 |    +0.1% |   -5.069 |      -16.3 |      0 | _tray_size4_8015/D1
+       93 |       0 |       1 |       48 |      0 |    28 |    +0.1% |   -5.069 |      -12.6 |      0 | _tray_size4_8015/D1
+       96 |       0 |       1 |       50 |      0 |    29 |    +0.1% |   -5.069 |       -9.3 |      0 | _tray_size4_8015/D1
+       99 |       0 |       1 |       52 |      0 |    30 |    +0.1% |   -5.069 |       -6.4 |      0 | _tray_size4_8015/D1
+      100 |       0 |       1 |       52 |      0 |    30 |    +0.1% |   -5.069 |       -6.4 |      0 | _tray_size4_8015/D1
+      102 |       0 |       1 |       54 |      0 |    31 |    +0.1% |   -5.069 |       -5.1 |      0 | _tray_size4_8015/D1
+      103 |       0 |       1 |       54 |      0 |    31 |    +0.1% |   -5.069 |       -5.1 |      0 | _tray_size4_8015/D1
+     106* |       0 |       1 |       54 |      0 |    33 |    +0.1% |    0.487 |        0.0 |      0 | _tray_size4_8168/D2
+    final |       0 |       1 |       54 |      0 |    33 |    +0.1% |    0.487 |        0.0 |      0 | _tray_size4_8168/D2
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0040] Inserted 54 buffers.
+[INFO RSZ-0051] Resized 1 instances: 1 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 33 instances.
+[INFO RSZ-0046] Found 16 endpoints with hold violations.
+Iteration | Resized | Buffers | Cloned Gates |   Area   |   WNS   |   TNS   | Endpoint
+--------------------------------------------------------------------------------------
+        0 |       0 |       0 |            0 |    +0.0% | -32.706 | -324.018 | rle.rz4.den$_DFFE_PN0P_/RESETN
+       10 |       0 |      20 |            0 |    +0.0% | -24.726 | -65.117 | _tray_size4_8057/D0
+    final |       0 |      29 |            0 |    +0.0% |   0.656 |   0.000 | _tray_size4_8057/D0
+--------------------------------------------------------------------------------------
+[INFO RSZ-0032] Inserted 29 hold buffers.
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                   53581
+Diamond Move Success:          53581 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        131.6 u
+average displacement        0.0 u
+max displacement            2.9 u
+original HPWL          150057.4 u
+legalized HPWL         150174.2 u
+delta HPWL                    0 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 6363 um^2 72% utilization.
+write_db ./results/asap7/jpeg/modified_alpha_4-beta_0.1/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/jpeg/modified_alpha_4-beta_0.1/4_cts.sdc
+Elapsed time: 0:14.68[h:]min:sec. CPU time: user 27.89 sys 13.52 (282%). Peak memory: 600088KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                           14            586 4eaf76f4775ead5623e4

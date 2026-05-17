@@ -1,0 +1,198 @@
+OpenROAD ee3d65ce03b2656092ed62bf9205c5c11049c575 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_liberty ./results/asap7/riscv32i-mock-sram_fakeram7_256x32/modified_alpha_16-beta_0.1/fakeram7_256x32_typ.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNH2V2X_RVT_TT_nldm_FAKE.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNV2X_RVT_TT_nldm_FAKE.lib
+read_db -hier ./results/asap7/riscv32i-mock-sram/modified_alpha_16-beta_0.1/3_place.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets -sink_clustering_size 10 -sink_clustering_max_diameter 50
+[INFO CTS-0050] Root buffer is BUFx16f_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx16f_ASAP7_75t_R
+                    BUFx24_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0011]  Clock net "clk" for macros has 4 sinks.
+[INFO CTS-0011]  Clock net "clk_regs" for registers has 296 sinks.
+[INFO CTS-0008] TritonCTS found 2 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 4.
+[INFO CTS-0029]  Macro  sinks will be clustered in groups of up to 4 and with maximum cluster diameter of 64.8 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0023]  Original sink region: [(12782, 35100), (42188, 35100)].
+[INFO CTS-0024]  Normalized sink region: [(9.46815, 26), (31.2504, 26)].
+[INFO CTS-0025]     Width:  21.7822.
+[INFO CTS-0026]     Height: 0.0000.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 2
+    Sub-region size: 10.8911 X 0.0000
+[INFO CTS-0034]     Segment length (rounded): 5.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 4.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_regs.
+[INFO CTS-0028]  Total number of sinks: 296.
+[INFO CTS-0029]  Register sinks will be clustered in groups of up to 10 and with maximum cluster diameter of 50.0 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0204] A clustering solution was found from clustering size of 10 and clustering diameter of 50.
+[INFO CTS-0205] Better solution may be possible if either -sink_clustering_size, -sink_clustering_max_diameter, or both options are omitted to enable automatic clustering.
+[INFO CTS-0019]  Total number of sinks after clustering: 31.
+[INFO CTS-0024]  Normalized sink region: [(6.35156, 6.07963), (42.4676, 42.4398)].
+[INFO CTS-0025]     Width:  36.1161.
+[INFO CTS-0026]     Height: 36.3602.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 16
+    Sub-region size: 36.1161 X 18.1801
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 2
+    Direction: Horizontal
+    Sinks per sub-region: 8
+    Sub-region size: 18.0580 X 18.1801
+[INFO CTS-0034]     Segment length (rounded): 10.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 31.
+[INFO CTS-0018]     Created 3 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 3 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:2..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0018]     Created 36 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 36 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:1, 4:1, 5:1, 7:1, 9:1, 10:30..
+[INFO CTS-0017]     Max level of the clock tree: 2.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 4
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 74.06 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 0
+[INFO CTS-0098] Clock net "clk_regs"
+[INFO CTS-0099]  Sinks 316
+[INFO CTS-0100]  Leaf buffers 31
+[INFO CTS-0101]  Average sink wire length 40.19 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 20
+[INFO CTS-0033] Balancing latency for clock clk
+[INFO CTS-0036]  inserted 1 delay buffers
+[INFO CTS-0037] Total number of delay buffers: 1
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9014
+Diamond Move Success:           9014 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        350.3 u
+average displacement        0.0 u
+max displacement           23.9 u
+original HPWL           42779.4 u
+legalized HPWL          43587.7 u
+delta HPWL                    2 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 21 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 21 out of 21 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% |  -89.678 |     -683.0 |     21 | dataadr[31]
+       10 |       0 |       1 |       11 |      0 |     4 |    +0.1% |  -72.676 |     -488.5 |     21 | dataadr[31]
+       20 |       0 |       3 |       19 |      0 |     8 |    +0.1% |  -65.353 |     -380.3 |     21 | dataadr[31]
+       30 |       0 |       8 |       24 |      0 |    10 |    +0.1% |  -49.167 |     -244.2 |     21 | dataadr[31]
+       40 |       0 |      13 |       28 |      0 |    12 |    +0.2% |  -40.231 |     -168.2 |     21 | dataadr[31]
+       50 |       0 |      20 |       30 |      0 |    14 |    +0.2% |  -29.069 |      -81.8 |     21 | dataadr[31]
+       60 |       0 |      27 |       35 |      0 |    15 |    +0.2% |  -25.696 |      -73.0 |     21 | dataadr[31]
+       70 |       0 |      33 |       39 |      0 |    17 |    +0.2% |  -23.116 |      -68.4 |     21 | dataadr[31]
+       80 |       0 |      38 |       43 |      0 |    18 |    +0.3% |   -9.354 |      -23.8 |     21 | dataadr[26]
+       81 |       0 |      39 |       43 |      0 |    18 |    +0.3% |   -7.438 |      -14.4 |     19 | dataadr[31]
+       82 |       0 |      39 |       43 |      0 |    18 |    +0.3% |   -7.438 |      -14.4 |     18 | dataadr[31]
+       83 |       0 |      39 |       43 |      0 |    18 |    +0.3% |   -7.438 |      -14.4 |     17 | dataadr[31]
+       84 |       0 |      39 |       43 |      0 |    18 |    +0.3% |   -7.438 |      -14.4 |     16 | dataadr[31]
+       90 |       0 |      42 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -13.1 |     16 | dataadr[31]
+       99 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |     15 | dataadr[31]
+      100 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |     15 | dataadr[31]
+      100 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |     14 | dataadr[31]
+      101 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |     13 | dataadr[31]
+      102 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |     12 | dataadr[31]
+      103 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |     11 | dataadr[31]
+      104 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |     10 | dataadr[31]
+      105 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      9 | dataadr[31]
+      106 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      8 | dataadr[31]
+      107 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      7 | dataadr[31]
+      108 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      6 | dataadr[31]
+      109 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      5 | dataadr[31]
+      110 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      5 | dataadr[31]
+      110 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      4 | dataadr[31]
+      111 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      3 | dataadr[31]
+      112 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      2 | dataadr[31]
+      113 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      1 | dataadr[31]
+      114 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      0 | dataadr[31]
+      115 |       0 |      44 |       44 |      0 |    19 |    +0.3% |   -7.438 |      -10.6 |      0 | dataadr[31]
+     117* |       0 |      45 |       44 |      0 |    19 |    +0.3% |   -6.193 |       -9.3 |      2 | dataadr[31]
+     118* |       0 |      45 |       44 |      0 |    19 |    +0.3% |   -6.193 |       -9.3 |      2 | dataadr[31]
+    final |       0 |      45 |       44 |      0 |    19 |    +0.3% |   -6.193 |       -9.3 |      2 | dataadr[31]
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0040] Inserted 44 buffers.
+[INFO RSZ-0051] Resized 45 instances: 45 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 19 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0033] No hold violations found.
+Took 7 seconds: repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9058
+Diamond Move Success:           9058 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        127.2 u
+average displacement        0.0 u
+max displacement            1.5 u
+original HPWL           43646.5 u
+legalized HPWL          43762.9 u
+delta HPWL                    0 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 1949 um^2 67% utilization.
+write_db ./results/asap7/riscv32i-mock-sram/modified_alpha_16-beta_0.1/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/riscv32i-mock-sram/modified_alpha_16-beta_0.1/4_cts.sdc
+Elapsed time: 0:11.05[h:]min:sec. CPU time: user 48.07 sys 21.72 (631%). Peak memory: 309716KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                           11            302 fe52433365094210f914

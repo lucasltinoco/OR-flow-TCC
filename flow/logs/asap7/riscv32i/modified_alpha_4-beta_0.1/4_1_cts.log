@@ -1,0 +1,1196 @@
+OpenROAD ee3d65ce03b2656092ed62bf9205c5c11049c575 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/fakeram7_256x32.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNH2V2X_RVT_TT_nldm_FAKE.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNV2X_RVT_TT_nldm_FAKE.lib
+read_db -hier ./results/asap7/riscv32i/modified_alpha_4-beta_0.1/3_place.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets -sink_clustering_size 10 -sink_clustering_max_diameter 50
+[INFO CTS-0050] Root buffer is BUFx16f_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx16f_ASAP7_75t_R
+                    BUFx24_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0011]  Clock net "clk" for macros has 4 sinks.
+[INFO CTS-0011]  Clock net "clk_regs" for registers has 511 sinks.
+[INFO CTS-0008] TritonCTS found 2 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 4.
+[INFO CTS-0029]  Macro  sinks will be clustered in groups of up to 4 and with maximum cluster diameter of 84.0 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0023]  Original sink region: [(29272, 24876), (58016, 24876)].
+[INFO CTS-0024]  Normalized sink region: [(21.683, 18.4267), (42.9748, 18.4267)].
+[INFO CTS-0025]     Width:  21.2919.
+[INFO CTS-0026]     Height: 0.0000.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 2
+    Sub-region size: 10.6459 X 0.0000
+[INFO CTS-0034]     Segment length (rounded): 5.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 4.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_regs.
+[INFO CTS-0028]  Total number of sinks: 511.
+[INFO CTS-0029]  Register sinks will be clustered in groups of up to 10 and with maximum cluster diameter of 50.0 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0204] A clustering solution was found from clustering size of 10 and clustering diameter of 50.
+[INFO CTS-0205] Better solution may be possible if either -sink_clustering_size, -sink_clustering_max_diameter, or both options are omitted to enable automatic clustering.
+[INFO CTS-0019]  Total number of sinks after clustering: 52.
+[INFO CTS-0024]  Normalized sink region: [(4.6497, 4.75993), (40.7656, 46.1199)].
+[INFO CTS-0025]     Width:  36.1159.
+[INFO CTS-0026]     Height: 41.3600.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 26
+    Sub-region size: 36.1159 X 20.6800
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 2
+    Direction: Horizontal
+    Sinks per sub-region: 13
+    Sub-region size: 18.0580 X 20.6800
+[INFO CTS-0034]     Segment length (rounded): 10.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 52.
+[INFO CTS-0018]     Created 3 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 3 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:2..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0018]     Created 57 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 57 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 4:1, 7:1, 8:1, 10:50, 13:1, 14:1, 17:1..
+[INFO CTS-0017]     Max level of the clock tree: 2.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 4
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 83.58 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 0
+[INFO CTS-0098] Clock net "clk_regs"
+[INFO CTS-0099]  Sinks 562
+[INFO CTS-0100]  Leaf buffers 52
+[INFO CTS-0101]  Average sink wire length 42.75 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 51
+[INFO CTS-0033] Balancing latency for clock clk
+[INFO CTS-0036]  inserted 3 delay buffers
+[INFO CTS-0037] Total number of delay buffers: 3
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9664
+Diamond Move Success:           9664 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        305.3 u
+average displacement        0.0 u
+max displacement           12.8 u
+original HPWL           45648.0 u
+legalized HPWL          46465.3 u
+delta HPWL                    2 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 926 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 926 out of 926 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% |  -98.703 |   -35682.5 |    926 | _tray_size4_2014/D1
+       10 |       0 |       6 |        0 |      0 |     3 |    +0.0% |  -76.228 |   -32117.8 |    926 | _tray_size4_2080/D0
+       20 |       0 |      15 |        0 |      0 |     4 |    +0.0% |  -63.018 |   -23746.9 |    926 | _tray_size4_2014/D1
+       30 |       0 |      21 |        0 |      3 |     5 |    +0.0% |  -65.549 |   -17806.5 |    926 | _tray_size4_1967/D1
+       40 |       0 |      25 |        8 |      4 |     6 |    +0.1% |  -39.992 |   -11495.5 |    926 | _tray_size4_2014/D1
+       50 |       0 |      28 |       11 |      4 |    11 |    +0.1% |  -34.392 |    -8104.4 |    926 | _tray_size4_2014/D1
+       60 |       0 |      36 |       13 |      5 |    11 |    +0.1% |  -33.200 |    -7468.3 |    926 | _tray_size4_2014/D1
+       70 |       0 |      39 |       18 |      5 |    13 |    +0.2% |  -24.026 |    -3726.2 |    926 | _tray_size4_2014/D1
+       80 |       0 |      46 |       19 |      5 |    15 |    +0.2% |  -19.806 |    -2522.2 |    926 | _tray_size4_2014/D1
+       90 |       0 |      53 |       21 |      6 |    15 |    +0.2% |  -13.371 |    -1133.6 |    926 | _tray_size4_2014/D1
+      100 |       0 |      56 |       24 |      7 |    18 |    +0.2% |  -13.327 |    -1081.5 |    926 | _tray_size4_2014/D1
+      110 |       0 |      60 |       29 |      7 |    19 |    +0.2% |   -9.917 |     -511.2 |    926 | _tray_size4_2006/D1
+      120 |       0 |      66 |       30 |      9 |    20 |    +0.3% |   -7.310 |     -395.9 |    926 | _tray_size4_2014/D1
+      130 |       0 |      70 |       34 |      9 |    23 |    +0.3% |   -4.307 |     -151.7 |    926 | _tray_size4_2014/D1
+      140 |       0 |      76 |       35 |     10 |    25 |    +0.3% |   -0.150 |       -0.1 |    926 | _tray_size4_2014/D1
+      141 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    924 | _tray_size4_2014/D1
+      142 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    923 | _tray_size4_2014/D1
+      143 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    922 | _tray_size4_2014/D1
+      144 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    921 | _tray_size4_2014/D1
+      145 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    920 | _tray_size4_2014/D1
+      146 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    919 | _tray_size4_2014/D1
+      147 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    918 | _tray_size4_2014/D1
+      148 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    917 | _tray_size4_2014/D1
+      149 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    916 | _tray_size4_2014/D1
+      150 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    916 | _tray_size4_2014/D1
+      150 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    915 | _tray_size4_2014/D1
+      151 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    914 | _tray_size4_2014/D1
+      152 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    913 | _tray_size4_2014/D1
+      153 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    912 | _tray_size4_2014/D1
+      154 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    911 | _tray_size4_2014/D1
+      155 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    910 | _tray_size4_2014/D1
+      156 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    909 | _tray_size4_2014/D1
+      157 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    908 | _tray_size4_2014/D1
+      158 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    907 | _tray_size4_2014/D1
+      159 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    906 | _tray_size4_2014/D1
+      160 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    906 | _tray_size4_2014/D1
+      160 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    905 | _tray_size4_2014/D1
+      161 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    904 | _tray_size4_2014/D1
+      162 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    903 | _tray_size4_2014/D1
+      163 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    902 | _tray_size4_2014/D1
+      164 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    901 | _tray_size4_2014/D1
+      165 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    900 | _tray_size4_2014/D1
+      166 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    899 | _tray_size4_2014/D1
+      167 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    898 | _tray_size4_2014/D1
+      168 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    897 | _tray_size4_2014/D1
+      169 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    896 | _tray_size4_2014/D1
+      170 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    896 | _tray_size4_2014/D1
+      170 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    895 | _tray_size4_2014/D1
+      171 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    894 | _tray_size4_2014/D1
+      172 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    893 | _tray_size4_2014/D1
+      173 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    892 | _tray_size4_2014/D1
+      174 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    891 | _tray_size4_2014/D1
+      175 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    890 | _tray_size4_2014/D1
+      176 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    889 | _tray_size4_2014/D1
+      177 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    888 | _tray_size4_2014/D1
+      178 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    887 | _tray_size4_2014/D1
+      179 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    886 | _tray_size4_2014/D1
+      180 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    886 | _tray_size4_2014/D1
+      180 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    885 | _tray_size4_2014/D1
+      181 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    884 | _tray_size4_2014/D1
+      182 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    883 | _tray_size4_2014/D1
+      183 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    882 | _tray_size4_2014/D1
+      184 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    881 | _tray_size4_2014/D1
+      185 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    880 | _tray_size4_2014/D1
+      186 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    879 | _tray_size4_2014/D1
+      187 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    878 | _tray_size4_2014/D1
+      188 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    877 | _tray_size4_2014/D1
+      189 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    876 | _tray_size4_2014/D1
+      190 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    876 | _tray_size4_2014/D1
+      190 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    875 | _tray_size4_2014/D1
+      191 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    874 | _tray_size4_2014/D1
+      192 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    873 | _tray_size4_2014/D1
+      193 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    872 | _tray_size4_2014/D1
+      194 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    871 | _tray_size4_2014/D1
+      195 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    870 | _tray_size4_2014/D1
+      196 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    869 | _tray_size4_2014/D1
+      197 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    868 | _tray_size4_2014/D1
+      198 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    867 | _tray_size4_2014/D1
+      199 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    866 | _tray_size4_2014/D1
+      200 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    866 | _tray_size4_2014/D1
+      200 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    865 | _tray_size4_2014/D1
+      201 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    864 | _tray_size4_2014/D1
+      202 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    863 | _tray_size4_2014/D1
+      203 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    862 | _tray_size4_2014/D1
+      204 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    861 | _tray_size4_2014/D1
+      205 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    860 | _tray_size4_2014/D1
+      206 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    859 | _tray_size4_2014/D1
+      207 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    858 | _tray_size4_2014/D1
+      208 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    857 | _tray_size4_2014/D1
+      209 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    856 | _tray_size4_2014/D1
+      210 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    856 | _tray_size4_2014/D1
+      210 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    855 | _tray_size4_2014/D1
+      211 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    854 | _tray_size4_2014/D1
+      212 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    853 | _tray_size4_2014/D1
+      213 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    852 | _tray_size4_2014/D1
+      214 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    851 | _tray_size4_2014/D1
+      215 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    850 | _tray_size4_2014/D1
+      216 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    849 | _tray_size4_2014/D1
+      217 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    848 | _tray_size4_2014/D1
+      218 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    847 | _tray_size4_2014/D1
+      219 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    846 | _tray_size4_2014/D1
+      220 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    846 | _tray_size4_2014/D1
+      220 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    845 | _tray_size4_2014/D1
+      221 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    844 | _tray_size4_2014/D1
+      222 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    843 | _tray_size4_2014/D1
+      223 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    842 | _tray_size4_2014/D1
+      224 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    841 | _tray_size4_2014/D1
+      225 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    840 | _tray_size4_2014/D1
+      226 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    839 | _tray_size4_2014/D1
+      227 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    838 | _tray_size4_2014/D1
+      228 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    837 | _tray_size4_2014/D1
+      229 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    836 | _tray_size4_2014/D1
+      230 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    836 | _tray_size4_2014/D1
+      230 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    835 | _tray_size4_2014/D1
+      231 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    834 | _tray_size4_2014/D1
+      232 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    833 | _tray_size4_2014/D1
+      233 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    832 | _tray_size4_2014/D1
+      234 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    831 | _tray_size4_2014/D1
+      235 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    830 | _tray_size4_2014/D1
+      236 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    829 | _tray_size4_2014/D1
+      237 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    828 | _tray_size4_2014/D1
+      238 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    827 | _tray_size4_2014/D1
+      239 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    826 | _tray_size4_2014/D1
+      240 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    826 | _tray_size4_2014/D1
+      240 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    825 | _tray_size4_2014/D1
+      241 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    824 | _tray_size4_2014/D1
+      242 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    823 | _tray_size4_2014/D1
+      243 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    822 | _tray_size4_2014/D1
+      244 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    821 | _tray_size4_2014/D1
+      245 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    820 | _tray_size4_2014/D1
+      246 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    819 | _tray_size4_2014/D1
+      247 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    818 | _tray_size4_2014/D1
+      248 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    817 | _tray_size4_2014/D1
+      249 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    816 | _tray_size4_2014/D1
+      250 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    816 | _tray_size4_2014/D1
+      250 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    815 | _tray_size4_2014/D1
+      251 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    814 | _tray_size4_2014/D1
+      252 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    813 | _tray_size4_2014/D1
+      253 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    812 | _tray_size4_2014/D1
+      254 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    811 | _tray_size4_2014/D1
+      255 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    810 | _tray_size4_2014/D1
+      256 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    809 | _tray_size4_2014/D1
+      257 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    808 | _tray_size4_2014/D1
+      258 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    807 | _tray_size4_2014/D1
+      259 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    806 | _tray_size4_2014/D1
+      260 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    806 | _tray_size4_2014/D1
+      260 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    805 | _tray_size4_2014/D1
+      261 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    804 | _tray_size4_2014/D1
+      262 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    803 | _tray_size4_2014/D1
+      263 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    802 | _tray_size4_2014/D1
+      264 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    801 | _tray_size4_2014/D1
+      265 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    800 | _tray_size4_2014/D1
+      266 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    799 | _tray_size4_2014/D1
+      267 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    798 | _tray_size4_2014/D1
+      268 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    797 | _tray_size4_2014/D1
+      269 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    796 | _tray_size4_2014/D1
+      270 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    796 | _tray_size4_2014/D1
+      270 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    795 | _tray_size4_2014/D1
+      271 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    794 | _tray_size4_2014/D1
+      272 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    793 | _tray_size4_2014/D1
+      273 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    792 | _tray_size4_2014/D1
+      274 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    791 | _tray_size4_2014/D1
+      275 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    790 | _tray_size4_2014/D1
+      276 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    789 | _tray_size4_2014/D1
+      277 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    788 | _tray_size4_2014/D1
+      278 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    787 | _tray_size4_2014/D1
+      279 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    786 | _tray_size4_2014/D1
+      280 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    786 | _tray_size4_2014/D1
+      280 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    785 | _tray_size4_2014/D1
+      281 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    784 | _tray_size4_2014/D1
+      282 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    783 | _tray_size4_2014/D1
+      283 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    782 | _tray_size4_2014/D1
+      284 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    781 | _tray_size4_2014/D1
+      285 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    780 | _tray_size4_2014/D1
+      286 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    779 | _tray_size4_2014/D1
+      287 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    778 | _tray_size4_2014/D1
+      288 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    777 | _tray_size4_2014/D1
+      289 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    776 | _tray_size4_2014/D1
+      290 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    776 | _tray_size4_2014/D1
+      290 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    775 | _tray_size4_2014/D1
+      291 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    774 | _tray_size4_2014/D1
+      292 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    773 | _tray_size4_2014/D1
+      293 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    772 | _tray_size4_2014/D1
+      294 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    771 | _tray_size4_2014/D1
+      295 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    770 | _tray_size4_2014/D1
+      296 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    769 | _tray_size4_2014/D1
+      297 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    768 | _tray_size4_2014/D1
+      298 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    767 | _tray_size4_2014/D1
+      299 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    766 | _tray_size4_2014/D1
+      300 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    766 | _tray_size4_2014/D1
+      300 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    765 | _tray_size4_2014/D1
+      301 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    764 | _tray_size4_2014/D1
+      302 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    763 | _tray_size4_2014/D1
+      303 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    762 | _tray_size4_2014/D1
+      304 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    761 | _tray_size4_2014/D1
+      305 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    760 | _tray_size4_2014/D1
+      306 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    759 | _tray_size4_2014/D1
+      307 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    758 | _tray_size4_2014/D1
+      308 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    757 | _tray_size4_2014/D1
+      309 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    756 | _tray_size4_2014/D1
+      310 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    756 | _tray_size4_2014/D1
+      310 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    755 | _tray_size4_2014/D1
+      311 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    754 | _tray_size4_2014/D1
+      312 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    753 | _tray_size4_2014/D1
+      313 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    752 | _tray_size4_2014/D1
+      314 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    751 | _tray_size4_2014/D1
+      315 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    750 | _tray_size4_2014/D1
+      316 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    749 | _tray_size4_2014/D1
+      317 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    748 | _tray_size4_2014/D1
+      318 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    747 | _tray_size4_2014/D1
+      319 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    746 | _tray_size4_2014/D1
+      320 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    746 | _tray_size4_2014/D1
+      320 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    745 | _tray_size4_2014/D1
+      321 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    744 | _tray_size4_2014/D1
+      322 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    743 | _tray_size4_2014/D1
+      323 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    742 | _tray_size4_2014/D1
+      324 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    741 | _tray_size4_2014/D1
+      325 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    740 | _tray_size4_2014/D1
+      326 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    739 | _tray_size4_2014/D1
+      327 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    738 | _tray_size4_2014/D1
+      328 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    737 | _tray_size4_2014/D1
+      329 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    736 | _tray_size4_2014/D1
+      330 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    736 | _tray_size4_2014/D1
+      330 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    735 | _tray_size4_2014/D1
+      331 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    734 | _tray_size4_2014/D1
+      332 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    733 | _tray_size4_2014/D1
+      333 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    732 | _tray_size4_2014/D1
+      334 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    731 | _tray_size4_2014/D1
+      335 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    730 | _tray_size4_2014/D1
+      336 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    729 | _tray_size4_2014/D1
+      337 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    728 | _tray_size4_2014/D1
+      338 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    727 | _tray_size4_2014/D1
+      339 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    726 | _tray_size4_2014/D1
+      340 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    726 | _tray_size4_2014/D1
+      340 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    725 | _tray_size4_2014/D1
+      341 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    724 | _tray_size4_2014/D1
+      342 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    723 | _tray_size4_2014/D1
+      343 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    722 | _tray_size4_2014/D1
+      344 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    721 | _tray_size4_2014/D1
+      345 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    720 | _tray_size4_2014/D1
+      346 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    719 | _tray_size4_2014/D1
+      347 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    718 | _tray_size4_2014/D1
+      348 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    717 | _tray_size4_2014/D1
+      349 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    716 | _tray_size4_2014/D1
+      350 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    716 | _tray_size4_2014/D1
+      350 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    715 | _tray_size4_2014/D1
+      351 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    714 | _tray_size4_2014/D1
+      352 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    713 | _tray_size4_2014/D1
+      353 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    712 | _tray_size4_2014/D1
+      354 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    711 | _tray_size4_2014/D1
+      355 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    710 | _tray_size4_2014/D1
+      356 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    709 | _tray_size4_2014/D1
+      357 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    708 | _tray_size4_2014/D1
+      358 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    707 | _tray_size4_2014/D1
+      359 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    706 | _tray_size4_2014/D1
+      360 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    706 | _tray_size4_2014/D1
+      360 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    705 | _tray_size4_2014/D1
+      361 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    704 | _tray_size4_2014/D1
+      362 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    703 | _tray_size4_2014/D1
+      363 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    702 | _tray_size4_2014/D1
+      364 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    701 | _tray_size4_2014/D1
+      365 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    700 | _tray_size4_2014/D1
+      366 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    699 | _tray_size4_2014/D1
+      367 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    698 | _tray_size4_2014/D1
+      368 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    697 | _tray_size4_2014/D1
+      369 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    696 | _tray_size4_2014/D1
+      370 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    696 | _tray_size4_2014/D1
+      370 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    695 | _tray_size4_2014/D1
+      371 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    694 | _tray_size4_2014/D1
+      372 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    693 | _tray_size4_2014/D1
+      373 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    692 | _tray_size4_2014/D1
+      374 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    691 | _tray_size4_2014/D1
+      375 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    690 | _tray_size4_2014/D1
+      376 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    689 | _tray_size4_2014/D1
+      377 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    688 | _tray_size4_2014/D1
+      378 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    687 | _tray_size4_2014/D1
+      379 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    686 | _tray_size4_2014/D1
+      380 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    686 | _tray_size4_2014/D1
+      380 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    685 | _tray_size4_2014/D1
+      381 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    684 | _tray_size4_2014/D1
+      382 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    683 | _tray_size4_2014/D1
+      383 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    682 | _tray_size4_2014/D1
+      384 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    681 | _tray_size4_2014/D1
+      385 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    680 | _tray_size4_2014/D1
+      386 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    679 | _tray_size4_2014/D1
+      387 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    678 | _tray_size4_2014/D1
+      388 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    677 | _tray_size4_2014/D1
+      389 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    676 | _tray_size4_2014/D1
+      390 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    676 | _tray_size4_2014/D1
+      390 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    675 | _tray_size4_2014/D1
+      391 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    674 | _tray_size4_2014/D1
+      392 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    673 | _tray_size4_2014/D1
+      393 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    672 | _tray_size4_2014/D1
+      394 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    671 | _tray_size4_2014/D1
+      395 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    670 | _tray_size4_2014/D1
+      396 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    669 | _tray_size4_2014/D1
+      397 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    668 | _tray_size4_2014/D1
+      398 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    667 | _tray_size4_2014/D1
+      399 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    666 | _tray_size4_2014/D1
+      400 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    666 | _tray_size4_2014/D1
+      400 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    665 | _tray_size4_2014/D1
+      401 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    664 | _tray_size4_2014/D1
+      402 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    663 | _tray_size4_2014/D1
+      403 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    662 | _tray_size4_2014/D1
+      404 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    661 | _tray_size4_2014/D1
+      405 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    660 | _tray_size4_2014/D1
+      406 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    659 | _tray_size4_2014/D1
+      407 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    658 | _tray_size4_2014/D1
+      408 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    657 | _tray_size4_2014/D1
+      409 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    656 | _tray_size4_2014/D1
+      410 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    656 | _tray_size4_2014/D1
+      410 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    655 | _tray_size4_2014/D1
+      411 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    654 | _tray_size4_2014/D1
+      412 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    653 | _tray_size4_2014/D1
+      413 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    652 | _tray_size4_2014/D1
+      414 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    651 | _tray_size4_2014/D1
+      415 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    650 | _tray_size4_2014/D1
+      416 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    649 | _tray_size4_2014/D1
+      417 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    648 | _tray_size4_2014/D1
+      418 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    647 | _tray_size4_2014/D1
+      419 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    646 | _tray_size4_2014/D1
+      420 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    646 | _tray_size4_2014/D1
+      420 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    645 | _tray_size4_2014/D1
+      421 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    644 | _tray_size4_2014/D1
+      422 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    643 | _tray_size4_2014/D1
+      423 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    642 | _tray_size4_2014/D1
+      424 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    641 | _tray_size4_2014/D1
+      425 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    640 | _tray_size4_2014/D1
+      426 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    639 | _tray_size4_2014/D1
+      427 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    638 | _tray_size4_2014/D1
+      428 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    637 | _tray_size4_2014/D1
+      429 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    636 | _tray_size4_2014/D1
+      430 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    636 | _tray_size4_2014/D1
+      430 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    635 | _tray_size4_2014/D1
+      431 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    634 | _tray_size4_2014/D1
+      432 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    633 | _tray_size4_2014/D1
+      433 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    632 | _tray_size4_2014/D1
+      434 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    631 | _tray_size4_2014/D1
+      435 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    630 | _tray_size4_2014/D1
+      436 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    629 | _tray_size4_2014/D1
+      437 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    628 | _tray_size4_2014/D1
+      438 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    627 | _tray_size4_2014/D1
+      439 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    626 | _tray_size4_2014/D1
+      440 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    626 | _tray_size4_2014/D1
+      440 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    625 | _tray_size4_2014/D1
+      441 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    624 | _tray_size4_2014/D1
+      442 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    623 | _tray_size4_2014/D1
+      443 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    622 | _tray_size4_2014/D1
+      444 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    621 | _tray_size4_2014/D1
+      445 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    620 | _tray_size4_2014/D1
+      446 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    619 | _tray_size4_2014/D1
+      447 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    618 | _tray_size4_2014/D1
+      448 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    617 | _tray_size4_2014/D1
+      449 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    616 | _tray_size4_2014/D1
+      450 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    616 | _tray_size4_2014/D1
+      450 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    615 | _tray_size4_2014/D1
+      451 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    614 | _tray_size4_2014/D1
+      452 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    613 | _tray_size4_2014/D1
+      453 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    612 | _tray_size4_2014/D1
+      454 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    611 | _tray_size4_2014/D1
+      455 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    610 | _tray_size4_2014/D1
+      456 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    609 | _tray_size4_2014/D1
+      457 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    608 | _tray_size4_2014/D1
+      458 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    607 | _tray_size4_2014/D1
+      459 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    606 | _tray_size4_2014/D1
+      460 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    606 | _tray_size4_2014/D1
+      460 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    605 | _tray_size4_2014/D1
+      461 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    604 | _tray_size4_2014/D1
+      462 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    603 | _tray_size4_2014/D1
+      463 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    602 | _tray_size4_2014/D1
+      464 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    601 | _tray_size4_2014/D1
+      465 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    600 | _tray_size4_2014/D1
+      466 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    599 | _tray_size4_2014/D1
+      467 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    598 | _tray_size4_2014/D1
+      468 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    597 | _tray_size4_2014/D1
+      469 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    596 | _tray_size4_2014/D1
+      470 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    596 | _tray_size4_2014/D1
+      470 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    595 | _tray_size4_2014/D1
+      471 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    594 | _tray_size4_2014/D1
+      472 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    593 | _tray_size4_2014/D1
+      473 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    592 | _tray_size4_2014/D1
+      474 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    591 | _tray_size4_2014/D1
+      475 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    590 | _tray_size4_2014/D1
+      476 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    589 | _tray_size4_2014/D1
+      477 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    588 | _tray_size4_2014/D1
+      478 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    587 | _tray_size4_2014/D1
+      479 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    586 | _tray_size4_2014/D1
+      480 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    586 | _tray_size4_2014/D1
+      480 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    585 | _tray_size4_2014/D1
+      481 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    584 | _tray_size4_2014/D1
+      482 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    583 | _tray_size4_2014/D1
+      483 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    582 | _tray_size4_2014/D1
+      484 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    581 | _tray_size4_2014/D1
+      485 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    580 | _tray_size4_2014/D1
+      486 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    579 | _tray_size4_2014/D1
+      487 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    578 | _tray_size4_2014/D1
+      488 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    577 | _tray_size4_2014/D1
+      489 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    576 | _tray_size4_2014/D1
+      490 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    576 | _tray_size4_2014/D1
+      490 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    575 | _tray_size4_2014/D1
+      491 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    574 | _tray_size4_2014/D1
+      492 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    573 | _tray_size4_2014/D1
+      493 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    572 | _tray_size4_2014/D1
+      494 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    571 | _tray_size4_2014/D1
+      495 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    570 | _tray_size4_2014/D1
+      496 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    569 | _tray_size4_2014/D1
+      497 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    568 | _tray_size4_2014/D1
+      498 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    567 | _tray_size4_2014/D1
+      499 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    566 | _tray_size4_2014/D1
+      500 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    566 | _tray_size4_2014/D1
+      500 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    565 | _tray_size4_2014/D1
+      501 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    564 | _tray_size4_2014/D1
+      502 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    563 | _tray_size4_2014/D1
+      503 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    562 | _tray_size4_2014/D1
+      504 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    561 | _tray_size4_2014/D1
+      505 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    560 | _tray_size4_2014/D1
+      506 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    559 | _tray_size4_2014/D1
+      507 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    558 | _tray_size4_2014/D1
+      508 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    557 | _tray_size4_2014/D1
+      509 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    556 | _tray_size4_2014/D1
+      510 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    556 | _tray_size4_2014/D1
+      510 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    555 | _tray_size4_2014/D1
+      511 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    554 | _tray_size4_2014/D1
+      512 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    553 | _tray_size4_2014/D1
+      513 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    552 | _tray_size4_2014/D1
+      514 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    551 | _tray_size4_2014/D1
+      515 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    550 | _tray_size4_2014/D1
+      516 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    549 | _tray_size4_2014/D1
+      517 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    548 | _tray_size4_2014/D1
+      518 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    547 | _tray_size4_2014/D1
+      519 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    546 | _tray_size4_2014/D1
+      520 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    546 | _tray_size4_2014/D1
+      520 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    545 | _tray_size4_2014/D1
+      521 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    544 | _tray_size4_2014/D1
+      522 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    543 | _tray_size4_2014/D1
+      523 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    542 | _tray_size4_2014/D1
+      524 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    541 | _tray_size4_2014/D1
+      525 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    540 | _tray_size4_2014/D1
+      526 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    539 | _tray_size4_2014/D1
+      527 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    538 | _tray_size4_2014/D1
+      528 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    537 | _tray_size4_2014/D1
+      529 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    536 | _tray_size4_2014/D1
+      530 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    536 | _tray_size4_2014/D1
+      530 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    535 | _tray_size4_2014/D1
+      531 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    534 | _tray_size4_2014/D1
+      532 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    533 | _tray_size4_2014/D1
+      533 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    532 | _tray_size4_2014/D1
+      534 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    531 | _tray_size4_2014/D1
+      535 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    530 | _tray_size4_2014/D1
+      536 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    529 | _tray_size4_2014/D1
+      537 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    528 | _tray_size4_2014/D1
+      538 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    527 | _tray_size4_2014/D1
+      539 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    526 | _tray_size4_2014/D1
+      540 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    526 | _tray_size4_2014/D1
+      540 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    525 | _tray_size4_2014/D1
+      541 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    524 | _tray_size4_2014/D1
+      542 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    523 | _tray_size4_2014/D1
+      543 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    522 | _tray_size4_2014/D1
+      544 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    521 | _tray_size4_2014/D1
+      545 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    520 | _tray_size4_2014/D1
+      546 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    519 | _tray_size4_2014/D1
+      547 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    518 | _tray_size4_2014/D1
+      548 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    517 | _tray_size4_2014/D1
+      549 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    516 | _tray_size4_2014/D1
+      550 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    516 | _tray_size4_2014/D1
+      550 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    515 | _tray_size4_2014/D1
+      551 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    514 | _tray_size4_2014/D1
+      552 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    513 | _tray_size4_2014/D1
+      553 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    512 | _tray_size4_2014/D1
+      554 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    511 | _tray_size4_2014/D1
+      555 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    510 | _tray_size4_2014/D1
+      556 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    509 | _tray_size4_2014/D1
+      557 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    508 | _tray_size4_2014/D1
+      558 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    507 | _tray_size4_2014/D1
+      559 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    506 | _tray_size4_2014/D1
+      560 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    506 | _tray_size4_2014/D1
+      560 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    505 | _tray_size4_2014/D1
+      561 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    504 | _tray_size4_2014/D1
+      562 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    503 | _tray_size4_2014/D1
+      563 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    502 | _tray_size4_2014/D1
+      564 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    501 | _tray_size4_2014/D1
+      565 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    500 | _tray_size4_2014/D1
+      566 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    499 | _tray_size4_2014/D1
+      567 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    498 | _tray_size4_2014/D1
+      568 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    497 | _tray_size4_2014/D1
+      569 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    496 | _tray_size4_2014/D1
+      570 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    496 | _tray_size4_2014/D1
+      570 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    495 | _tray_size4_2014/D1
+      571 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    494 | _tray_size4_2014/D1
+      572 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    493 | _tray_size4_2014/D1
+      573 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    492 | _tray_size4_2014/D1
+      574 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    491 | _tray_size4_2014/D1
+      575 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    490 | _tray_size4_2014/D1
+      576 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    489 | _tray_size4_2014/D1
+      577 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    488 | _tray_size4_2014/D1
+      578 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    487 | _tray_size4_2014/D1
+      579 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    486 | _tray_size4_2014/D1
+      580 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    486 | _tray_size4_2014/D1
+      580 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    485 | _tray_size4_2014/D1
+      581 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    484 | _tray_size4_2014/D1
+      582 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    483 | _tray_size4_2014/D1
+      583 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    482 | _tray_size4_2014/D1
+      584 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    481 | _tray_size4_2014/D1
+      585 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    480 | _tray_size4_2014/D1
+      586 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    479 | _tray_size4_2014/D1
+      587 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    478 | _tray_size4_2014/D1
+      588 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    477 | _tray_size4_2014/D1
+      589 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    476 | _tray_size4_2014/D1
+      590 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    476 | _tray_size4_2014/D1
+      590 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    475 | _tray_size4_2014/D1
+      591 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    474 | _tray_size4_2014/D1
+      592 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    473 | _tray_size4_2014/D1
+      593 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    472 | _tray_size4_2014/D1
+      594 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    471 | _tray_size4_2014/D1
+      595 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    470 | _tray_size4_2014/D1
+      596 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    469 | _tray_size4_2014/D1
+      597 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    468 | _tray_size4_2014/D1
+      598 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    467 | _tray_size4_2014/D1
+      599 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    466 | _tray_size4_2014/D1
+      600 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    466 | _tray_size4_2014/D1
+      600 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    465 | _tray_size4_2014/D1
+      601 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    464 | _tray_size4_2014/D1
+      602 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    463 | _tray_size4_2014/D1
+      603 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    462 | _tray_size4_2014/D1
+      604 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    461 | _tray_size4_2014/D1
+      605 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    460 | _tray_size4_2014/D1
+      606 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    459 | _tray_size4_2014/D1
+      607 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    458 | _tray_size4_2014/D1
+      608 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    457 | _tray_size4_2014/D1
+      609 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    456 | _tray_size4_2014/D1
+      610 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    456 | _tray_size4_2014/D1
+      610 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    455 | _tray_size4_2014/D1
+      611 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    454 | _tray_size4_2014/D1
+      612 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    453 | _tray_size4_2014/D1
+      613 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    452 | _tray_size4_2014/D1
+      614 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    451 | _tray_size4_2014/D1
+      615 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    450 | _tray_size4_2014/D1
+      616 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    449 | _tray_size4_2014/D1
+      617 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    448 | _tray_size4_2014/D1
+      618 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    447 | _tray_size4_2014/D1
+      619 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    446 | _tray_size4_2014/D1
+      620 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    446 | _tray_size4_2014/D1
+      620 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    445 | _tray_size4_2014/D1
+      621 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    444 | _tray_size4_2014/D1
+      622 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    443 | _tray_size4_2014/D1
+      623 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    442 | _tray_size4_2014/D1
+      624 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    441 | _tray_size4_2014/D1
+      625 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    440 | _tray_size4_2014/D1
+      626 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    439 | _tray_size4_2014/D1
+      627 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    438 | _tray_size4_2014/D1
+      628 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    437 | _tray_size4_2014/D1
+      629 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    436 | _tray_size4_2014/D1
+      630 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    436 | _tray_size4_2014/D1
+      630 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    435 | _tray_size4_2014/D1
+      631 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    434 | _tray_size4_2014/D1
+      632 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    433 | _tray_size4_2014/D1
+      633 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    432 | _tray_size4_2014/D1
+      634 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    431 | _tray_size4_2014/D1
+      635 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    430 | _tray_size4_2014/D1
+      636 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    429 | _tray_size4_2014/D1
+      637 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    428 | _tray_size4_2014/D1
+      638 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    427 | _tray_size4_2014/D1
+      639 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    426 | _tray_size4_2014/D1
+      640 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    426 | _tray_size4_2014/D1
+      640 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    425 | _tray_size4_2014/D1
+      641 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    424 | _tray_size4_2014/D1
+      642 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    423 | _tray_size4_2014/D1
+      643 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    422 | _tray_size4_2014/D1
+      644 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    421 | _tray_size4_2014/D1
+      645 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    420 | _tray_size4_2014/D1
+      646 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    419 | _tray_size4_2014/D1
+      647 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    418 | _tray_size4_2014/D1
+      648 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    417 | _tray_size4_2014/D1
+      649 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    416 | _tray_size4_2014/D1
+      650 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    416 | _tray_size4_2014/D1
+      650 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    415 | _tray_size4_2014/D1
+      651 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    414 | _tray_size4_2014/D1
+      652 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    413 | _tray_size4_2014/D1
+      653 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    412 | _tray_size4_2014/D1
+      654 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    411 | _tray_size4_2014/D1
+      655 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    410 | _tray_size4_2014/D1
+      656 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    409 | _tray_size4_2014/D1
+      657 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    408 | _tray_size4_2014/D1
+      658 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    407 | _tray_size4_2014/D1
+      659 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    406 | _tray_size4_2014/D1
+      660 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    406 | _tray_size4_2014/D1
+      660 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    405 | _tray_size4_2014/D1
+      661 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    404 | _tray_size4_2014/D1
+      662 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    403 | _tray_size4_2014/D1
+      663 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    402 | _tray_size4_2014/D1
+      664 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    401 | _tray_size4_2014/D1
+      665 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    400 | _tray_size4_2014/D1
+      666 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    399 | _tray_size4_2014/D1
+      667 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    398 | _tray_size4_2014/D1
+      668 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    397 | _tray_size4_2014/D1
+      669 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    396 | _tray_size4_2014/D1
+      670 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    396 | _tray_size4_2014/D1
+      670 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    395 | _tray_size4_2014/D1
+      671 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    394 | _tray_size4_2014/D1
+      672 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    393 | _tray_size4_2014/D1
+      673 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    392 | _tray_size4_2014/D1
+      674 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    391 | _tray_size4_2014/D1
+      675 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    390 | _tray_size4_2014/D1
+      676 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    389 | _tray_size4_2014/D1
+      677 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    388 | _tray_size4_2014/D1
+      678 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    387 | _tray_size4_2014/D1
+      679 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    386 | _tray_size4_2014/D1
+      680 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    386 | _tray_size4_2014/D1
+      680 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    385 | _tray_size4_2014/D1
+      681 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    384 | _tray_size4_2014/D1
+      682 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    383 | _tray_size4_2014/D1
+      683 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    382 | _tray_size4_2014/D1
+      684 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    381 | _tray_size4_2014/D1
+      685 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    380 | _tray_size4_2014/D1
+      686 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    379 | _tray_size4_2014/D1
+      687 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    378 | _tray_size4_2014/D1
+      688 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    377 | _tray_size4_2014/D1
+      689 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    376 | _tray_size4_2014/D1
+      690 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    376 | _tray_size4_2014/D1
+      690 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    375 | _tray_size4_2014/D1
+      691 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    374 | _tray_size4_2014/D1
+      692 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    373 | _tray_size4_2014/D1
+      693 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    372 | _tray_size4_2014/D1
+      694 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    371 | _tray_size4_2014/D1
+      695 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    370 | _tray_size4_2014/D1
+      696 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    369 | _tray_size4_2014/D1
+      697 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    368 | _tray_size4_2014/D1
+      698 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    367 | _tray_size4_2014/D1
+      699 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    366 | _tray_size4_2014/D1
+      700 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    366 | _tray_size4_2014/D1
+      700 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    365 | _tray_size4_2014/D1
+      701 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    364 | _tray_size4_2014/D1
+      702 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    363 | _tray_size4_2014/D1
+      703 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    362 | _tray_size4_2014/D1
+      704 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    361 | _tray_size4_2014/D1
+      705 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    360 | _tray_size4_2014/D1
+      706 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    359 | _tray_size4_2014/D1
+      707 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    358 | _tray_size4_2014/D1
+      708 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    357 | _tray_size4_2014/D1
+      709 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    356 | _tray_size4_2014/D1
+      710 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    356 | _tray_size4_2014/D1
+      710 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    355 | _tray_size4_2014/D1
+      711 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    354 | _tray_size4_2014/D1
+      712 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    353 | _tray_size4_2014/D1
+      713 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    352 | _tray_size4_2014/D1
+      714 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    351 | _tray_size4_2014/D1
+      715 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    350 | _tray_size4_2014/D1
+      716 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    349 | _tray_size4_2014/D1
+      717 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    348 | _tray_size4_2014/D1
+      718 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    347 | _tray_size4_2014/D1
+      719 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    346 | _tray_size4_2014/D1
+      720 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    346 | _tray_size4_2014/D1
+      720 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    345 | _tray_size4_2014/D1
+      721 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    344 | _tray_size4_2014/D1
+      722 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    343 | _tray_size4_2014/D1
+      723 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    342 | _tray_size4_2014/D1
+      724 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    341 | _tray_size4_2014/D1
+      725 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    340 | _tray_size4_2014/D1
+      726 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    339 | _tray_size4_2014/D1
+      727 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    338 | _tray_size4_2014/D1
+      728 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    337 | _tray_size4_2014/D1
+      729 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    336 | _tray_size4_2014/D1
+      730 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    336 | _tray_size4_2014/D1
+      730 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    335 | _tray_size4_2014/D1
+      731 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    334 | _tray_size4_2014/D1
+      732 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    333 | _tray_size4_2014/D1
+      733 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    332 | _tray_size4_2014/D1
+      734 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    331 | _tray_size4_2014/D1
+      735 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    330 | _tray_size4_2014/D1
+      736 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    329 | _tray_size4_2014/D1
+      737 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    328 | _tray_size4_2014/D1
+      738 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    327 | _tray_size4_2014/D1
+      739 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    326 | _tray_size4_2014/D1
+      740 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    326 | _tray_size4_2014/D1
+      740 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    325 | _tray_size4_2014/D1
+      741 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    324 | _tray_size4_2014/D1
+      742 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    323 | _tray_size4_2014/D1
+      743 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    322 | _tray_size4_2014/D1
+      744 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    321 | _tray_size4_2014/D1
+      745 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    320 | _tray_size4_2014/D1
+      746 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    319 | _tray_size4_2014/D1
+      747 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    318 | _tray_size4_2014/D1
+      748 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    317 | _tray_size4_2014/D1
+      749 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    316 | _tray_size4_2014/D1
+      750 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    316 | _tray_size4_2014/D1
+      750 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    315 | _tray_size4_2014/D1
+      751 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    314 | _tray_size4_2014/D1
+      752 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    313 | _tray_size4_2014/D1
+      753 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    312 | _tray_size4_2014/D1
+      754 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    311 | _tray_size4_2014/D1
+      755 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    310 | _tray_size4_2014/D1
+      756 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    309 | _tray_size4_2014/D1
+      757 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    308 | _tray_size4_2014/D1
+      758 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    307 | _tray_size4_2014/D1
+      759 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    306 | _tray_size4_2014/D1
+      760 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    306 | _tray_size4_2014/D1
+      760 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    305 | _tray_size4_2014/D1
+      761 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    304 | _tray_size4_2014/D1
+      762 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    303 | _tray_size4_2014/D1
+      763 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    302 | _tray_size4_2014/D1
+      764 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    301 | _tray_size4_2014/D1
+      765 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    300 | _tray_size4_2014/D1
+      766 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    299 | _tray_size4_2014/D1
+      767 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    298 | _tray_size4_2014/D1
+      768 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    297 | _tray_size4_2014/D1
+      769 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    296 | _tray_size4_2014/D1
+      770 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    296 | _tray_size4_2014/D1
+      770 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    295 | _tray_size4_2014/D1
+      771 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    294 | _tray_size4_2014/D1
+      772 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    293 | _tray_size4_2014/D1
+      773 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    292 | _tray_size4_2014/D1
+      774 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    291 | _tray_size4_2014/D1
+      775 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    290 | _tray_size4_2014/D1
+      776 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    289 | _tray_size4_2014/D1
+      777 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    288 | _tray_size4_2014/D1
+      778 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    287 | _tray_size4_2014/D1
+      779 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    286 | _tray_size4_2014/D1
+      780 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    286 | _tray_size4_2014/D1
+      780 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    285 | _tray_size4_2014/D1
+      781 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    284 | _tray_size4_2014/D1
+      782 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    283 | _tray_size4_2014/D1
+      783 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    282 | _tray_size4_2014/D1
+      784 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    281 | _tray_size4_2014/D1
+      785 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    280 | _tray_size4_2014/D1
+      786 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    279 | _tray_size4_2014/D1
+      787 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    278 | _tray_size4_2014/D1
+      788 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    277 | _tray_size4_2014/D1
+      789 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    276 | _tray_size4_2014/D1
+      790 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    276 | _tray_size4_2014/D1
+      790 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    275 | _tray_size4_2014/D1
+      791 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    274 | _tray_size4_2014/D1
+      792 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    273 | _tray_size4_2014/D1
+      793 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    272 | _tray_size4_2014/D1
+      794 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    271 | _tray_size4_2014/D1
+      795 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    270 | _tray_size4_2014/D1
+      796 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    269 | _tray_size4_2014/D1
+      797 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    268 | _tray_size4_2014/D1
+      798 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    267 | _tray_size4_2014/D1
+      799 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    266 | _tray_size4_2014/D1
+      800 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    266 | _tray_size4_2014/D1
+      800 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    265 | _tray_size4_2014/D1
+      801 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    264 | _tray_size4_2014/D1
+      802 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    263 | _tray_size4_2014/D1
+      803 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    262 | _tray_size4_2014/D1
+      804 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    261 | _tray_size4_2014/D1
+      805 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    260 | _tray_size4_2014/D1
+      806 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    259 | _tray_size4_2014/D1
+      807 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    258 | _tray_size4_2014/D1
+      808 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    257 | _tray_size4_2014/D1
+      809 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    256 | _tray_size4_2014/D1
+      810 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    256 | _tray_size4_2014/D1
+      810 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    255 | _tray_size4_2014/D1
+      811 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    254 | _tray_size4_2014/D1
+      812 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    253 | _tray_size4_2014/D1
+      813 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    252 | _tray_size4_2014/D1
+      814 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    251 | _tray_size4_2014/D1
+      815 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    250 | _tray_size4_2014/D1
+      816 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    249 | _tray_size4_2014/D1
+      817 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    248 | _tray_size4_2014/D1
+      818 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    247 | _tray_size4_2014/D1
+      819 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    246 | _tray_size4_2014/D1
+      820 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    246 | _tray_size4_2014/D1
+      820 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    245 | _tray_size4_2014/D1
+      821 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    244 | _tray_size4_2014/D1
+      822 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    243 | _tray_size4_2014/D1
+      823 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    242 | _tray_size4_2014/D1
+      824 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    241 | _tray_size4_2014/D1
+      825 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    240 | _tray_size4_2014/D1
+      826 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    239 | _tray_size4_2014/D1
+      827 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    238 | _tray_size4_2014/D1
+      828 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    237 | _tray_size4_2014/D1
+      829 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    236 | _tray_size4_2014/D1
+      830 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    236 | _tray_size4_2014/D1
+      830 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    235 | _tray_size4_2014/D1
+      831 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    234 | _tray_size4_2014/D1
+      832 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    233 | _tray_size4_2014/D1
+      833 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    232 | _tray_size4_2014/D1
+      834 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    231 | _tray_size4_2014/D1
+      835 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    230 | _tray_size4_2014/D1
+      836 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    229 | _tray_size4_2014/D1
+      837 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    228 | _tray_size4_2014/D1
+      838 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    227 | _tray_size4_2014/D1
+      839 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    226 | _tray_size4_2014/D1
+      840 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    226 | _tray_size4_2014/D1
+      840 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    225 | _tray_size4_2014/D1
+      841 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    224 | _tray_size4_2014/D1
+      842 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    223 | _tray_size4_2014/D1
+      843 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    222 | _tray_size4_2014/D1
+      844 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    221 | _tray_size4_2014/D1
+      845 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    220 | _tray_size4_2014/D1
+      846 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    219 | _tray_size4_2014/D1
+      847 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    218 | _tray_size4_2014/D1
+      848 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    217 | _tray_size4_2014/D1
+      849 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    216 | _tray_size4_2014/D1
+      850 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    216 | _tray_size4_2014/D1
+      850 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    215 | _tray_size4_2014/D1
+      851 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    214 | _tray_size4_2014/D1
+      852 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    213 | _tray_size4_2014/D1
+      853 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    212 | _tray_size4_2014/D1
+      854 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    211 | _tray_size4_2014/D1
+      855 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    210 | _tray_size4_2014/D1
+      856 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    209 | _tray_size4_2014/D1
+      857 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    208 | _tray_size4_2014/D1
+      858 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    207 | _tray_size4_2014/D1
+      859 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    206 | _tray_size4_2014/D1
+      860 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    206 | _tray_size4_2014/D1
+      860 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    205 | _tray_size4_2014/D1
+      861 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    204 | _tray_size4_2014/D1
+      862 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    203 | _tray_size4_2014/D1
+      863 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    202 | _tray_size4_2014/D1
+      864 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    201 | _tray_size4_2014/D1
+      865 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    200 | _tray_size4_2014/D1
+      866 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    199 | _tray_size4_2014/D1
+      867 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    198 | _tray_size4_2014/D1
+      868 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    197 | _tray_size4_2014/D1
+      869 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    196 | _tray_size4_2014/D1
+      870 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    196 | _tray_size4_2014/D1
+      870 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    195 | _tray_size4_2014/D1
+      871 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    194 | _tray_size4_2014/D1
+      872 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    193 | _tray_size4_2014/D1
+      873 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    192 | _tray_size4_2014/D1
+      874 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    191 | _tray_size4_2014/D1
+      875 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    190 | _tray_size4_2014/D1
+      876 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    189 | _tray_size4_2014/D1
+      877 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    188 | _tray_size4_2014/D1
+      878 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    187 | _tray_size4_2014/D1
+      879 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    186 | _tray_size4_2014/D1
+      880 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    186 | _tray_size4_2014/D1
+      880 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    185 | _tray_size4_2014/D1
+      881 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    184 | _tray_size4_2014/D1
+      882 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    183 | _tray_size4_2014/D1
+      883 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    182 | _tray_size4_2014/D1
+      884 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    181 | _tray_size4_2014/D1
+      885 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    180 | _tray_size4_2014/D1
+      886 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    179 | _tray_size4_2014/D1
+      887 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    178 | _tray_size4_2014/D1
+      888 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    177 | _tray_size4_2014/D1
+      889 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    176 | _tray_size4_2014/D1
+      890 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    176 | _tray_size4_2014/D1
+      890 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    175 | _tray_size4_2014/D1
+      891 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    174 | _tray_size4_2014/D1
+      892 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    173 | _tray_size4_2014/D1
+      893 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    172 | _tray_size4_2014/D1
+      894 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    171 | _tray_size4_2014/D1
+      895 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    170 | _tray_size4_2014/D1
+      896 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    169 | _tray_size4_2014/D1
+      897 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    168 | _tray_size4_2014/D1
+      898 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    167 | _tray_size4_2014/D1
+      899 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    166 | _tray_size4_2014/D1
+      900 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    166 | _tray_size4_2014/D1
+      900 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    165 | _tray_size4_2014/D1
+      901 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    164 | _tray_size4_2014/D1
+      902 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    163 | _tray_size4_2014/D1
+      903 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    162 | _tray_size4_2014/D1
+      904 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    161 | _tray_size4_2014/D1
+      905 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    160 | _tray_size4_2014/D1
+      906 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    159 | _tray_size4_2014/D1
+      907 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    158 | _tray_size4_2014/D1
+      908 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    157 | _tray_size4_2014/D1
+      909 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    156 | _tray_size4_2014/D1
+      910 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    156 | _tray_size4_2014/D1
+      910 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    155 | _tray_size4_2014/D1
+      911 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    154 | _tray_size4_2014/D1
+      912 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    153 | _tray_size4_2014/D1
+      913 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    152 | _tray_size4_2014/D1
+      914 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    151 | _tray_size4_2014/D1
+      915 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    150 | _tray_size4_2014/D1
+      916 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    149 | _tray_size4_2014/D1
+      917 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    148 | _tray_size4_2014/D1
+      918 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    147 | _tray_size4_2014/D1
+      919 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    146 | _tray_size4_2014/D1
+      920 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    146 | _tray_size4_2014/D1
+      920 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    145 | _tray_size4_2014/D1
+      921 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    144 | _tray_size4_2014/D1
+      922 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    143 | _tray_size4_2014/D1
+      923 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    142 | _tray_size4_2014/D1
+      924 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    141 | _tray_size4_2014/D1
+      925 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    140 | _tray_size4_2014/D1
+      926 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    139 | _tray_size4_2014/D1
+      927 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    138 | _tray_size4_2014/D1
+      928 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    137 | _tray_size4_2014/D1
+      929 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    136 | _tray_size4_2014/D1
+      930 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    136 | _tray_size4_2014/D1
+      930 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    135 | _tray_size4_2014/D1
+      931 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    134 | _tray_size4_2014/D1
+      932 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    133 | _tray_size4_2014/D1
+      933 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    132 | _tray_size4_2014/D1
+      934 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    131 | _tray_size4_2014/D1
+      935 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    130 | _tray_size4_2014/D1
+      936 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    129 | _tray_size4_2014/D1
+      937 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    128 | _tray_size4_2014/D1
+      938 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    127 | _tray_size4_2014/D1
+      939 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    126 | _tray_size4_2014/D1
+      940 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    126 | _tray_size4_2014/D1
+      940 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    125 | _tray_size4_2014/D1
+      941 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    124 | _tray_size4_2014/D1
+      942 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    123 | _tray_size4_2014/D1
+      943 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    122 | _tray_size4_2014/D1
+      944 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    121 | _tray_size4_2014/D1
+      945 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    120 | _tray_size4_2014/D1
+      946 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    119 | _tray_size4_2014/D1
+      947 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    118 | _tray_size4_2014/D1
+      948 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    117 | _tray_size4_2014/D1
+      949 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    116 | _tray_size4_2014/D1
+      950 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    116 | _tray_size4_2014/D1
+      950 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    115 | _tray_size4_2014/D1
+      951 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    114 | _tray_size4_2014/D1
+      952 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    113 | _tray_size4_2014/D1
+      953 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    112 | _tray_size4_2014/D1
+      954 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    111 | _tray_size4_2014/D1
+      955 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    110 | _tray_size4_2014/D1
+      956 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    109 | _tray_size4_2014/D1
+      957 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    108 | _tray_size4_2014/D1
+      958 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    107 | _tray_size4_2014/D1
+      959 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    106 | _tray_size4_2014/D1
+      960 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    106 | _tray_size4_2014/D1
+      960 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    105 | _tray_size4_2014/D1
+      961 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    104 | _tray_size4_2014/D1
+      962 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    103 | _tray_size4_2014/D1
+      963 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    102 | _tray_size4_2014/D1
+      964 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    101 | _tray_size4_2014/D1
+      965 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |    100 | _tray_size4_2014/D1
+      966 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     99 | _tray_size4_2014/D1
+      967 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     98 | _tray_size4_2014/D1
+      968 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     97 | _tray_size4_2014/D1
+      969 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     96 | _tray_size4_2014/D1
+      970 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     96 | _tray_size4_2014/D1
+      970 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     95 | _tray_size4_2014/D1
+      971 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     94 | _tray_size4_2014/D1
+      972 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     93 | _tray_size4_2014/D1
+      973 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     92 | _tray_size4_2014/D1
+      974 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     91 | _tray_size4_2014/D1
+      975 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     90 | _tray_size4_2014/D1
+      976 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     89 | _tray_size4_2014/D1
+      977 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     88 | _tray_size4_2014/D1
+      978 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     87 | _tray_size4_2014/D1
+      979 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     86 | _tray_size4_2014/D1
+      980 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     86 | _tray_size4_2014/D1
+      980 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     85 | _tray_size4_2014/D1
+      981 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     84 | _tray_size4_2014/D1
+      982 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     83 | _tray_size4_2014/D1
+      983 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     82 | _tray_size4_2014/D1
+      984 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     81 | _tray_size4_2014/D1
+      985 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     80 | _tray_size4_2014/D1
+      986 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     79 | _tray_size4_2014/D1
+      987 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     78 | _tray_size4_2014/D1
+      988 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     77 | _tray_size4_2014/D1
+      989 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     76 | _tray_size4_2014/D1
+      990 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     76 | _tray_size4_2014/D1
+      990 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     75 | _tray_size4_2014/D1
+      991 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     74 | _tray_size4_2014/D1
+      992 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     73 | _tray_size4_2014/D1
+      993 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     72 | _tray_size4_2014/D1
+      994 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     71 | _tray_size4_2014/D1
+      995 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     70 | _tray_size4_2014/D1
+      996 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     69 | _tray_size4_2014/D1
+      997 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     68 | _tray_size4_2014/D1
+      998 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     67 | _tray_size4_2014/D1
+      999 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     66 | _tray_size4_2014/D1
+     1000 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     66 | _tray_size4_2014/D1
+     1000 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     65 | _tray_size4_2014/D1
+     1001 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     64 | _tray_size4_2014/D1
+     1002 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     63 | _tray_size4_2014/D1
+     1003 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     62 | _tray_size4_2014/D1
+     1004 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     61 | _tray_size4_2014/D1
+     1005 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     60 | _tray_size4_2014/D1
+     1006 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     59 | _tray_size4_2014/D1
+     1007 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     58 | _tray_size4_2014/D1
+     1008 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     57 | _tray_size4_2014/D1
+     1009 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     56 | _tray_size4_2014/D1
+     1010 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     56 | _tray_size4_2014/D1
+     1010 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     55 | _tray_size4_2014/D1
+     1011 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     54 | _tray_size4_2014/D1
+     1012 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     53 | _tray_size4_2014/D1
+     1013 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     52 | _tray_size4_2014/D1
+     1014 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     51 | _tray_size4_2014/D1
+     1015 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     50 | _tray_size4_2014/D1
+     1016 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     49 | _tray_size4_2014/D1
+     1017 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     48 | _tray_size4_2014/D1
+     1018 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     47 | _tray_size4_2014/D1
+     1019 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     46 | _tray_size4_2014/D1
+     1020 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     46 | _tray_size4_2014/D1
+     1020 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     45 | _tray_size4_2014/D1
+     1021 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     44 | _tray_size4_2014/D1
+     1022 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     43 | _tray_size4_2014/D1
+     1023 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     42 | _tray_size4_2014/D1
+     1024 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     41 | _tray_size4_2014/D1
+     1025 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     40 | _tray_size4_2014/D1
+     1026 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     39 | _tray_size4_2014/D1
+     1027 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     38 | _tray_size4_2014/D1
+     1028 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     37 | _tray_size4_2014/D1
+     1029 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     36 | _tray_size4_2014/D1
+     1030 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     36 | _tray_size4_2014/D1
+     1030 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     35 | _tray_size4_2014/D1
+     1031 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     34 | _tray_size4_2014/D1
+     1032 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     33 | _tray_size4_2014/D1
+     1033 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     32 | _tray_size4_2014/D1
+     1034 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     31 | _tray_size4_2014/D1
+     1035 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     30 | _tray_size4_2014/D1
+     1036 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     29 | _tray_size4_2014/D1
+     1037 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     28 | _tray_size4_2014/D1
+     1038 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     27 | _tray_size4_2014/D1
+     1039 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     26 | _tray_size4_2014/D1
+     1040 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     26 | _tray_size4_2014/D1
+     1040 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     25 | _tray_size4_2014/D1
+     1041 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     24 | _tray_size4_2014/D1
+     1042 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     23 | _tray_size4_2014/D1
+     1043 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     22 | _tray_size4_2014/D1
+     1044 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     21 | _tray_size4_2014/D1
+     1045 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     20 | _tray_size4_2014/D1
+     1046 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     19 | _tray_size4_2014/D1
+     1047 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     18 | _tray_size4_2014/D1
+     1048 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     17 | _tray_size4_2014/D1
+     1049 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     16 | _tray_size4_2014/D1
+     1050 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     16 | _tray_size4_2014/D1
+     1050 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     15 | _tray_size4_2014/D1
+     1051 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     14 | _tray_size4_2014/D1
+     1052 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     13 | _tray_size4_2014/D1
+     1053 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     12 | _tray_size4_2014/D1
+     1054 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     11 | _tray_size4_2014/D1
+     1055 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |     10 | _tray_size4_2014/D1
+     1056 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      9 | _tray_size4_2014/D1
+     1057 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      8 | _tray_size4_2014/D1
+     1058 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      7 | _tray_size4_2014/D1
+     1059 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      6 | _tray_size4_2014/D1
+     1060 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      6 | _tray_size4_2014/D1
+     1060 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      5 | _tray_size4_2014/D1
+     1061 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      4 | _tray_size4_2014/D1
+     1062 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      3 | _tray_size4_2014/D1
+     1063 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      2 | _tray_size4_2014/D1
+     1064 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      1 | _tray_size4_2014/D1
+     1065 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      0 | _tray_size4_2014/D1
+     1066 |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      0 | _tray_size4_2014/D1
+    final |       0 |      77 |       35 |     10 |    25 |    +0.3% |    0.551 |        0.0 |      0 | _tray_size4_2014/D1
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0040] Inserted 35 buffers.
+[INFO RSZ-0051] Resized 77 instances: 77 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 25 instances.
+[INFO RSZ-0049] Cloned 10 instances.
+[INFO RSZ-0033] No hold violations found.
+Took 6 seconds: repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9709
+Diamond Move Success:           9709 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement         87.3 u
+average displacement        0.0 u
+max displacement            1.5 u
+original HPWL           46857.9 u
+legalized HPWL          46919.4 u
+delta HPWL                    0 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 2657 um^2 66% utilization.
+write_db ./results/asap7/riscv32i/modified_alpha_4-beta_0.1/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/riscv32i/modified_alpha_4-beta_0.1/4_cts.sdc
+Elapsed time: 0:10.14[h:]min:sec. CPU time: user 40.10 sys 22.35 (615%). Peak memory: 305004KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                           10            297 07b13049f26fb530b8e0

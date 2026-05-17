@@ -1,0 +1,244 @@
+OpenROAD fe1aa0f9d0254fac87b82c886c04ee1544e46885 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_liberty ./results/asap7/riscv32i-mock-sram_fakeram7_256x32/baseline_alpha_2-beta_0.1/fakeram7_256x32_typ.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNH2V2X_RVT_TT_nldm_FAKE.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNV2X_RVT_TT_nldm_FAKE.lib
+read_db -hier ./results/asap7/riscv32i-mock-sram/baseline_alpha_2-beta_0.1/3_place.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets -sink_clustering_size 10 -sink_clustering_max_diameter 50
+[INFO CTS-0050] Root buffer is BUFx16f_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx16f_ASAP7_75t_R
+                    BUFx24_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0011]  Clock net "clk" for macros has 4 sinks.
+[INFO CTS-0011]  Clock net "clk_regs" for registers has 927 sinks.
+[INFO CTS-0008] TritonCTS found 2 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 4.
+[INFO CTS-0029]  Macro  sinks will be clustered in groups of up to 4 and with maximum cluster diameter of 64.8 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0023]  Original sink region: [(27844, 29196), (51532, 29196)].
+[INFO CTS-0024]  Normalized sink region: [(20.6252, 21.6267), (38.1719, 21.6267)].
+[INFO CTS-0025]     Width:  17.5467.
+[INFO CTS-0026]     Height: 0.0000.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 2
+    Sub-region size: 8.7733 X 0.0000
+[INFO CTS-0034]     Segment length (rounded): 4.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 4.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_regs.
+[INFO CTS-0028]  Total number of sinks: 927.
+[INFO CTS-0029]  Register sinks will be clustered in groups of up to 10 and with maximum cluster diameter of 50.0 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0204] A clustering solution was found from clustering size of 10 and clustering diameter of 50.
+[INFO CTS-0205] Better solution may be possible if either -sink_clustering_size, -sink_clustering_max_diameter, or both options are omitted to enable automatic clustering.
+[INFO CTS-0019]  Total number of sinks after clustering: 93.
+[INFO CTS-0024]  Normalized sink region: [(4.23118, 4.28), (42.7353, 31.3325)].
+[INFO CTS-0025]     Width:  38.5041.
+[INFO CTS-0026]     Height: 27.0525.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 47
+    Sub-region size: 19.2521 X 27.0525
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 24
+    Sub-region size: 19.2521 X 13.5263
+[INFO CTS-0034]     Segment length (rounded): 6.
+ Level 3
+    Direction: Horizontal
+    Sinks per sub-region: 12
+    Sub-region size: 9.6260 X 13.5263
+[INFO CTS-0034]     Segment length (rounded): 4.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 93.
+[INFO CTS-0018]     Created 3 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 3 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:2..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0018]     Created 102 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 102 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 7:2, 9:2, 10:92, 12:2, 13:1, 14:1, 17:1..
+[INFO CTS-0017]     Max level of the clock tree: 3.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 4
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 79.59 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 0
+[INFO CTS-0098] Clock net "clk_regs"
+[INFO CTS-0099]  Sinks 982
+[INFO CTS-0100]  Leaf buffers 93
+[INFO CTS-0101]  Average sink wire length 32.84 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 55
+[INFO CTS-0033] Balancing latency for clock clk
+[INFO CTS-0036]  inserted 1 delay buffers
+[INFO CTS-0037] Total number of delay buffers: 1
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9669
+Diamond Move Success:           9669 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        924.3 u
+average displacement        0.1 u
+max displacement           10.2 u
+original HPWL           41668.4 u
+legalized HPWL          43124.6 u
+delta HPWL                    3 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 53 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 53 out of 53 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% |  -99.409 |    -1381.3 |     53 | dataadr[0]
+       10 |       0 |       1 |        8 |      0 |     4 |    +0.0% |  -84.463 |    -1183.8 |     53 | dataadr[23]
+       20 |       0 |       3 |       16 |      0 |     8 |    +0.1% |  -77.546 |    -1041.1 |     53 | dataadr[23]
+       30 |       0 |       7 |       22 |      0 |    11 |    +0.1% |  -63.759 |     -959.9 |     53 | dataadr[23]
+       40 |       0 |      13 |       24 |      0 |    14 |    +0.1% |  -57.736 |     -659.4 |     53 | dataadr[23]
+       50 |       0 |      17 |       27 |      0 |    18 |    +0.2% |  -53.715 |     -660.7 |     53 | dataadr[0]
+       60 |       0 |      21 |       33 |      0 |    20 |    +0.2% |  -39.496 |     -263.2 |     53 | dataadr[23]
+       70 |       0 |      26 |       38 |      0 |    23 |    +0.2% |  -33.902 |     -233.2 |     53 | dataadr[31]
+       80 |       1 |      33 |       38 |      1 |    24 |    +0.2% |  -21.475 |     -161.3 |     53 | dataadr[31]
+       90 |       1 |      40 |       38 |      2 |    26 |    +0.3% |  -22.978 |     -205.0 |     53 | dataadr[31]
+      100 |       1 |      45 |       44 |      3 |    26 |    +0.3% |  -16.864 |     -157.4 |     53 | dataadr[31]
+      110 |       1 |      50 |       49 |      3 |    28 |    +0.3% |  -16.033 |      -81.0 |     53 | dataadr[0]
+      119 |       1 |      54 |       51 |      3 |    31 |    +0.3% |  -10.955 |      -45.6 |     51 | dataadr[0]
+      120 |       1 |      54 |       51 |      3 |    31 |    +0.3% |  -10.955 |      -45.6 |     51 | dataadr[0]
+      120 |       1 |      54 |       51 |      3 |    31 |    +0.3% |  -10.955 |      -45.6 |     50 | dataadr[0]
+      123 |       1 |      55 |       52 |      3 |    31 |    +0.3% |  -10.955 |      -35.9 |     48 | dataadr[0]
+      124 |       1 |      55 |       52 |      3 |    31 |    +0.3% |  -10.955 |      -35.9 |     47 | dataadr[0]
+      125 |       1 |      55 |       52 |      3 |    31 |    +0.3% |  -10.955 |      -35.9 |     46 | dataadr[0]
+      127 |       1 |      56 |       52 |      3 |    31 |    +0.3% |  -10.955 |      -31.7 |     44 | dataadr[0]
+      130 |       1 |      57 |       53 |      3 |    31 |    +0.4% |  -10.955 |      -20.1 |     44 | dataadr[0]
+      131 |       1 |      58 |       53 |      3 |    31 |    +0.4% |  -10.955 |      -19.1 |     42 | dataadr[0]
+      132 |       1 |      58 |       53 |      3 |    31 |    +0.4% |  -10.955 |      -19.1 |     41 | dataadr[0]
+      133 |       1 |      58 |       53 |      3 |    31 |    +0.4% |  -10.955 |      -19.1 |     40 | dataadr[0]
+      136 |       1 |      59 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.4 |     38 | dataadr[0]
+      137 |       1 |      59 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.4 |     37 | dataadr[0]
+      138 |       1 |      59 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.4 |     36 | dataadr[0]
+      139 |       1 |      59 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.4 |     35 | dataadr[0]
+      140 |       1 |      59 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.4 |     35 | dataadr[0]
+      140 |       1 |      59 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.4 |     34 | dataadr[0]
+      142 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     32 | dataadr[0]
+      143 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     31 | dataadr[0]
+      144 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     30 | dataadr[0]
+      145 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     29 | dataadr[0]
+      146 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     28 | dataadr[0]
+      147 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     27 | dataadr[0]
+      148 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     26 | dataadr[0]
+      149 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     25 | dataadr[0]
+      150 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     25 | dataadr[0]
+      150 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     24 | dataadr[0]
+      151 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     23 | dataadr[0]
+      152 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     22 | dataadr[0]
+      153 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     21 | dataadr[0]
+      154 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     20 | dataadr[0]
+      155 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     19 | dataadr[0]
+      156 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     18 | dataadr[0]
+      157 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     17 | dataadr[0]
+      158 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     16 | dataadr[0]
+      159 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     15 | dataadr[0]
+      160 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     15 | dataadr[0]
+      160 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     14 | dataadr[0]
+      161 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     13 | dataadr[0]
+      162 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     12 | dataadr[0]
+      163 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     11 | dataadr[0]
+      164 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |     10 | dataadr[0]
+      165 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      9 | dataadr[0]
+      166 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      8 | dataadr[0]
+      167 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      7 | dataadr[0]
+      168 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      6 | dataadr[0]
+      169 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      5 | dataadr[0]
+      170 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      5 | dataadr[0]
+      170 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      4 | dataadr[0]
+      171 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      3 | dataadr[0]
+      172 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      2 | dataadr[0]
+      173 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      1 | dataadr[0]
+      174 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      0 | dataadr[0]
+      175 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      0 | dataadr[0]
+      176 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      0 | dataadr[0]
+      177 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      0 | dataadr[0]
+      178 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      0 | dataadr[0]
+      179 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      0 | dataadr[0]
+      180 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      0 | dataadr[0]
+      180 |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      0 | dataadr[0]
+     180* |       1 |      60 |       54 |      3 |    31 |    +0.4% |  -10.955 |      -11.0 |      1 | dataadr[0]
+     185* |       1 |      63 |       54 |      3 |    32 |    +0.4% |   -7.847 |       -7.8 |      1 | dataadr[0]
+    final |       1 |      63 |       54 |      3 |    32 |    +0.4% |   -7.847 |       -7.8 |      1 | dataadr[0]
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0059] Removed 1 buffers.
+[INFO RSZ-0040] Inserted 54 buffers.
+[INFO RSZ-0051] Resized 63 instances: 63 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 32 instances.
+[INFO RSZ-0049] Cloned 3 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0033] No hold violations found.
+Took 7 seconds: repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9725
+Diamond Move Success:           9725 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        198.4 u
+average displacement        0.0 u
+max displacement            3.3 u
+original HPWL           43329.5 u
+legalized HPWL          43472.8 u
+delta HPWL                    0 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 1974 um^2 67% utilization.
+write_db ./results/asap7/riscv32i-mock-sram/baseline_alpha_2-beta_0.1/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/riscv32i-mock-sram/baseline_alpha_2-beta_0.1/4_cts.sdc
+Elapsed time: 0:12.18[h:]min:sec. CPU time: user 54.20 sys 27.32 (669%). Peak memory: 307448KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                           12            300 eee52d5ba4877965cc96

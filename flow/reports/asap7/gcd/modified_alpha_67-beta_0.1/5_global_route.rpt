@@ -1,0 +1,425 @@
+
+==========================================================================
+global route report_tns
+--------------------------------------------------------------------------
+tns max -347.88
+
+==========================================================================
+global route report_wns
+--------------------------------------------------------------------------
+wns max -39.53
+
+==========================================================================
+global route report_worst_slack
+--------------------------------------------------------------------------
+worst slack max -39.53
+
+==========================================================================
+global route report_clock_min_period
+--------------------------------------------------------------------------
+core_clock period_min = 349.53 fmax = 2860.96
+
+==========================================================================
+global route report_clock_skew
+--------------------------------------------------------------------------
+Clock core_clock
+  35.65 source latency dpath.b_reg.out[14]$_DFFE_PP_/CLK ^
+ -31.69 target latency _tray_size4_63/CLK ^
+  -0.44 CRPR
+--------------
+   3.52 setup skew
+
+
+==========================================================================
+global route report_checks -path_delay min
+--------------------------------------------------------------------------
+Startpoint: reset (input port clocked by core_clock)
+Endpoint: _tray_size4_68 (rising edge-triggered flip-flop clocked by core_clock)
+Path Group: core_clock
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00   clock core_clock (rise edge)
+                          0.00    0.00   clock network delay (propagated)
+                         62.00   62.00 ^ input external delay
+     1    0.68    0.00    0.00   62.00 ^ reset (in)
+                                         reset (net)
+                  0.13    0.04   62.04 ^ input34/A (BUFx2_ASAP7_75t_R)
+     4    2.98   12.21   13.62   75.66 ^ input34/Y (BUFx2_ASAP7_75t_R)
+                                         net34 (net)
+                 12.25    0.37   76.03 ^ _446_/B (AOI21x1_ASAP7_75t_R)
+     1    0.55    6.27    6.16   82.19 v _446_/Y (AOI21x1_ASAP7_75t_R)
+                                         _001_ (net)
+                  6.27    0.03   82.22 v _tray_size4_68/D2 (DFFHQNH2V2Xx1_ASAP7_75t_R)
+                                 82.22   data arrival time
+
+                          0.00    0.00   clock core_clock (rise edge)
+                          0.00    0.00   clock source latency
+     1    2.16    0.00    0.00    0.00 ^ clk (in)
+                                         clk (net)
+                  0.66    0.21    0.21 ^ clkbuf_0_clk/A (BUFx2_ASAP7_75t_R)
+     2    1.52    7.81   11.57   11.78 ^ clkbuf_0_clk/Y (BUFx2_ASAP7_75t_R)
+                                         clknet_0_clk (net)
+                  7.82    0.16   11.94 ^ clkbuf_1_0__f_clk/A (BUFx2_ASAP7_75t_R)
+    10    7.97   27.70   22.72   34.66 ^ clkbuf_1_0__f_clk/Y (BUFx2_ASAP7_75t_R)
+                                         clknet_1_0__leaf_clk (net)
+                 27.74    0.62   35.29 ^ _tray_size4_68/CLK (DFFHQNH2V2Xx1_ASAP7_75t_R)
+                          0.00   35.29   clock reconvergence pessimism
+                         17.72   53.00   library hold time
+                                 53.00   data required time
+-----------------------------------------------------------------------------
+                                 53.00   data required time
+                                -82.22   data arrival time
+-----------------------------------------------------------------------------
+                                 29.21   slack (MET)
+
+
+
+==========================================================================
+global route report_checks -path_delay max
+--------------------------------------------------------------------------
+Startpoint: _tray_size4_64
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: resp_msg[12] (output port clocked by core_clock)
+Path Group: core_clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00   clock core_clock (rise edge)
+                          0.00    0.00   clock source latency
+     1    2.16    0.00    0.00    0.00 ^ clk (in)
+                                         clk (net)
+                  0.66    0.21    0.21 ^ clkbuf_0_clk/A (BUFx2_ASAP7_75t_R)
+     2    1.52    7.81   11.57   11.78 ^ clkbuf_0_clk/Y (BUFx2_ASAP7_75t_R)
+                                         clknet_0_clk (net)
+                  7.82    0.15   11.93 ^ clkbuf_1_1__f_clk/A (BUFx2_ASAP7_75t_R)
+     8    7.07   24.56   21.69   33.61 ^ clkbuf_1_1__f_clk/Y (BUFx2_ASAP7_75t_R)
+                                         clknet_1_1__leaf_clk (net)
+                 24.59    0.46   34.08 ^ _tray_size4_64/CLK (DFFHQNH2V2Xx1_ASAP7_75t_R)
+     1    0.91   19.34   54.35   88.43 ^ _tray_size4_64/QN2 (DFFHQNH2V2Xx1_ASAP7_75t_R)
+                                         _009_ (net)
+                 19.35    0.10   88.52 ^ _312_/A (INVx1_ASAP7_75t_R)
+     3    2.92   18.86   14.05  102.58 v _312_/Y (INVx1_ASAP7_75t_R)
+                                         dpath.a_lt_b$in0[4] (net)
+                 18.90    0.50  103.08 v _590_/A (HAxp5_ASAP7_75t_R)
+     2    1.55   25.66   17.71  120.80 ^ _590_/CON (HAxp5_ASAP7_75t_R)
+                                         _046_ (net)
+     1    1.11   23.06   12.19  132.98 v _590_/SN (HAxp5_ASAP7_75t_R)
+                                         _047_ (net)
+                 23.06    0.15  133.14 v rebuffer93/A (BUFx3_ASAP7_75t_R)
+     3    3.27    9.53   19.42  152.55 v rebuffer93/Y (BUFx3_ASAP7_75t_R)
+                                         net93 (net)
+                  9.57    0.36  152.91 v rebuffer92/A (BUFx6f_ASAP7_75t_R)
+     2    1.60    4.67   12.48  165.39 v rebuffer92/Y (BUFx6f_ASAP7_75t_R)
+                                         net92 (net)
+                  4.68    0.11  165.50 v _355_/B (OR2x2_ASAP7_75t_R)
+     1    1.25    7.48   15.75  181.25 v _355_/Y (OR2x2_ASAP7_75t_R)
+                                         _131_ (net)
+                  7.50    0.21  181.46 v _356_/B (AO21x1_ASAP7_75t_R)
+     2    1.73   12.81   18.39  199.85 v _356_/Y (AO21x1_ASAP7_75t_R)
+                                         _132_ (net)
+                 12.82    0.17  200.03 v _394_/A2 (OA211x2_ASAP7_75t_R)
+     4    4.31   19.00   29.28  229.30 v _394_/Y (OA211x2_ASAP7_75t_R)
+                                         _168_ (net)
+                 19.04    0.48  229.79 v _399_/A2 (OA21x2_ASAP7_75t_R)
+     1    1.25    7.74   20.65  250.44 v _399_/Y (OA21x2_ASAP7_75t_R)
+                                         _173_ (net)
+                  7.75    0.11  250.55 v _400_/A (XOR2x2_ASAP7_75t_R)
+     2    1.80   10.12   24.86  275.41 ^ _400_/Y (XOR2x2_ASAP7_75t_R)
+                                         net40 (net)
+                 10.14    0.25  275.66 ^ output40/A (BUFx3_ASAP7_75t_R)
+     1    0.30    4.23   11.86  287.51 ^ output40/Y (BUFx3_ASAP7_75t_R)
+                                         resp_msg[12] (net)
+                  4.23    0.02  287.53 ^ resp_msg[12] (out)
+                                287.53   data arrival time
+
+                        310.00  310.00   clock core_clock (rise edge)
+                          0.00  310.00   clock network delay (propagated)
+                          0.00  310.00   clock reconvergence pessimism
+                        -62.00  248.00   output external delay
+                                248.00   data required time
+-----------------------------------------------------------------------------
+                                248.00   data required time
+                               -287.53   data arrival time
+-----------------------------------------------------------------------------
+                                -39.53   slack (VIOLATED)
+
+
+
+==========================================================================
+global route report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: _tray_size4_64
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: resp_msg[12] (output port clocked by core_clock)
+Path Group: core_clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00   clock core_clock (rise edge)
+                          0.00    0.00   clock source latency
+     1    2.16    0.00    0.00    0.00 ^ clk (in)
+                                         clk (net)
+                  0.66    0.21    0.21 ^ clkbuf_0_clk/A (BUFx2_ASAP7_75t_R)
+     2    1.52    7.81   11.57   11.78 ^ clkbuf_0_clk/Y (BUFx2_ASAP7_75t_R)
+                                         clknet_0_clk (net)
+                  7.82    0.15   11.93 ^ clkbuf_1_1__f_clk/A (BUFx2_ASAP7_75t_R)
+     8    7.07   24.56   21.69   33.61 ^ clkbuf_1_1__f_clk/Y (BUFx2_ASAP7_75t_R)
+                                         clknet_1_1__leaf_clk (net)
+                 24.59    0.46   34.08 ^ _tray_size4_64/CLK (DFFHQNH2V2Xx1_ASAP7_75t_R)
+     1    0.91   19.34   54.35   88.43 ^ _tray_size4_64/QN2 (DFFHQNH2V2Xx1_ASAP7_75t_R)
+                                         _009_ (net)
+                 19.35    0.10   88.52 ^ _312_/A (INVx1_ASAP7_75t_R)
+     3    2.92   18.86   14.05  102.58 v _312_/Y (INVx1_ASAP7_75t_R)
+                                         dpath.a_lt_b$in0[4] (net)
+                 18.90    0.50  103.08 v _590_/A (HAxp5_ASAP7_75t_R)
+     2    1.55   25.66   17.71  120.80 ^ _590_/CON (HAxp5_ASAP7_75t_R)
+                                         _046_ (net)
+     1    1.11   23.06   12.19  132.98 v _590_/SN (HAxp5_ASAP7_75t_R)
+                                         _047_ (net)
+                 23.06    0.15  133.14 v rebuffer93/A (BUFx3_ASAP7_75t_R)
+     3    3.27    9.53   19.42  152.55 v rebuffer93/Y (BUFx3_ASAP7_75t_R)
+                                         net93 (net)
+                  9.57    0.36  152.91 v rebuffer92/A (BUFx6f_ASAP7_75t_R)
+     2    1.60    4.67   12.48  165.39 v rebuffer92/Y (BUFx6f_ASAP7_75t_R)
+                                         net92 (net)
+                  4.68    0.11  165.50 v _355_/B (OR2x2_ASAP7_75t_R)
+     1    1.25    7.48   15.75  181.25 v _355_/Y (OR2x2_ASAP7_75t_R)
+                                         _131_ (net)
+                  7.50    0.21  181.46 v _356_/B (AO21x1_ASAP7_75t_R)
+     2    1.73   12.81   18.39  199.85 v _356_/Y (AO21x1_ASAP7_75t_R)
+                                         _132_ (net)
+                 12.82    0.17  200.03 v _394_/A2 (OA211x2_ASAP7_75t_R)
+     4    4.31   19.00   29.28  229.30 v _394_/Y (OA211x2_ASAP7_75t_R)
+                                         _168_ (net)
+                 19.04    0.48  229.79 v _399_/A2 (OA21x2_ASAP7_75t_R)
+     1    1.25    7.74   20.65  250.44 v _399_/Y (OA21x2_ASAP7_75t_R)
+                                         _173_ (net)
+                  7.75    0.11  250.55 v _400_/A (XOR2x2_ASAP7_75t_R)
+     2    1.80   10.12   24.86  275.41 ^ _400_/Y (XOR2x2_ASAP7_75t_R)
+                                         net40 (net)
+                 10.14    0.25  275.66 ^ output40/A (BUFx3_ASAP7_75t_R)
+     1    0.30    4.23   11.86  287.51 ^ output40/Y (BUFx3_ASAP7_75t_R)
+                                         resp_msg[12] (net)
+                  4.23    0.02  287.53 ^ resp_msg[12] (out)
+                                287.53   data arrival time
+
+                        310.00  310.00   clock core_clock (rise edge)
+                          0.00  310.00   clock network delay (propagated)
+                          0.00  310.00   clock reconvergence pessimism
+                        -62.00  248.00   output external delay
+                                248.00   data required time
+-----------------------------------------------------------------------------
+                                248.00   data required time
+                               -287.53   data arrival time
+-----------------------------------------------------------------------------
+                                -39.53   slack (VIOLATED)
+
+
+
+==========================================================================
+global route report_check_types -max_slew -max_cap -max_fanout -violators
+--------------------------------------------------------------------------
+
+==========================================================================
+global route max_slew_check_slack
+--------------------------------------------------------------------------
+234.42218017578125
+
+==========================================================================
+global route max_slew_check_limit
+--------------------------------------------------------------------------
+320.0
+
+==========================================================================
+global route max_slew_check_slack_limit
+--------------------------------------------------------------------------
+0.7326
+
+==========================================================================
+global route max_fanout_check_slack
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+global route max_fanout_check_limit
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+global route max_capacitance_check_slack
+--------------------------------------------------------------------------
+18.791316986083984
+
+==========================================================================
+global route max_capacitance_check_limit
+--------------------------------------------------------------------------
+23.040000915527344
+
+==========================================================================
+global route max_capacitance_check_slack_limit
+--------------------------------------------------------------------------
+0.8156
+
+==========================================================================
+global route max_slew_violation_count
+--------------------------------------------------------------------------
+max slew violation count 0
+
+==========================================================================
+global route max_fanout_violation_count
+--------------------------------------------------------------------------
+max fanout violation count 0
+
+==========================================================================
+global route max_cap_violation_count
+--------------------------------------------------------------------------
+max cap violation count 0
+
+==========================================================================
+global route setup_violation_count
+--------------------------------------------------------------------------
+setup violation count 12
+
+==========================================================================
+global route hold_violation_count
+--------------------------------------------------------------------------
+hold violation count 0
+
+==========================================================================
+global route report_checks -path_delay max reg to reg
+--------------------------------------------------------------------------
+Startpoint: _tray_size4_64
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: _tray_size2_67 (rising edge-triggered flip-flop clocked by core_clock)
+Path Group: core_clock
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock core_clock (rise edge)
+   0.00    0.00   clock source latency
+   0.00    0.00 ^ clk (in)
+  11.78   11.78 ^ clkbuf_0_clk/Y (BUFx2_ASAP7_75t_R)
+  21.84   33.61 ^ clkbuf_1_1__f_clk/Y (BUFx2_ASAP7_75t_R)
+   0.46   34.08 ^ _tray_size4_64/CLK (DFFHQNH2V2Xx1_ASAP7_75t_R)
+  54.35   88.43 ^ _tray_size4_64/QN2 (DFFHQNH2V2Xx1_ASAP7_75t_R)
+  14.15  102.58 v _312_/Y (INVx1_ASAP7_75t_R)
+  18.22  120.80 ^ _590_/CON (HAxp5_ASAP7_75t_R)
+  12.19  132.98 v _590_/SN (HAxp5_ASAP7_75t_R)
+  19.57  152.55 v rebuffer93/Y (BUFx3_ASAP7_75t_R)
+  12.84  165.39 v rebuffer92/Y (BUFx6f_ASAP7_75t_R)
+  15.86  181.25 v _355_/Y (OR2x2_ASAP7_75t_R)
+  18.60  199.85 v _356_/Y (AO21x1_ASAP7_75t_R)
+  29.45  229.30 v _394_/Y (OA211x2_ASAP7_75t_R)
+  37.21  266.51 v _453_/Y (OA21x2_ASAP7_75t_R)
+  19.22  285.73 ^ _455_/Y (NOR2x1_ASAP7_75t_R)
+  23.26  309.00 ^ place75/Y (BUFx3_ASAP7_75t_R)
+  27.06  336.06 ^ _575_/Y (AO221x1_ASAP7_75t_R)
+   0.06  336.12 ^ _tray_size2_67/D0 (DFFHQNV2Xx1_ASAP7_75t_R)
+         336.12   data arrival time
+
+ 310.00  310.00   clock core_clock (rise edge)
+   0.00  310.00   clock source latency
+   0.00  310.00 ^ clk (in)
+  11.33  321.33 ^ clkbuf_0_clk/Y (BUFx2_ASAP7_75t_R)
+  21.13  342.47 ^ clkbuf_1_0__f_clk/Y (BUFx2_ASAP7_75t_R)
+   0.62  343.09 ^ _tray_size2_67/CLK (DFFHQNV2Xx1_ASAP7_75t_R)
+   0.44  343.53   clock reconvergence pessimism
+  -7.91  335.63   library setup time
+         335.63   data required time
+---------------------------------------------------------
+         335.63   data required time
+        -336.12   data arrival time
+---------------------------------------------------------
+          -0.50   slack (VIOLATED)
+
+
+
+==========================================================================
+global route report_checks -path_delay min reg to reg
+--------------------------------------------------------------------------
+Startpoint: dpath.b_reg.out[0]$_DFFE_PP_
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: _tray_size4_68 (rising edge-triggered flip-flop clocked by core_clock)
+Path Group: core_clock
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock core_clock (rise edge)
+   0.00    0.00   clock source latency
+   0.00    0.00 ^ clk (in)
+  11.33   11.33 ^ clkbuf_0_clk/Y (BUFx2_ASAP7_75t_R)
+  21.13   32.47 ^ clkbuf_1_0__f_clk/Y (BUFx2_ASAP7_75t_R)
+   0.53   33.00 ^ dpath.b_reg.out[0]$_DFFE_PP_/CLK (DFFHQNx1_ASAP7_75t_R)
+  42.31   75.31 ^ dpath.b_reg.out[0]$_DFFE_PP_/QN (DFFHQNx1_ASAP7_75t_R)
+  12.00   87.30 v _323_/Y (INVx1_ASAP7_75t_R)
+  19.59  106.89 v _563_/Y (AO221x1_ASAP7_75t_R)
+   0.03  106.92 v _tray_size4_68/D3 (DFFHQNH2V2Xx1_ASAP7_75t_R)
+         106.92   data arrival time
+
+   0.00    0.00   clock core_clock (rise edge)
+   0.00    0.00   clock source latency
+   0.00    0.00 ^ clk (in)
+  11.78   11.78 ^ clkbuf_0_clk/Y (BUFx2_ASAP7_75t_R)
+  22.88   34.66 ^ clkbuf_1_0__f_clk/Y (BUFx2_ASAP7_75t_R)
+   0.62   35.29 ^ _tray_size4_68/CLK (DFFHQNH2V2Xx1_ASAP7_75t_R)
+  -2.19   33.09   clock reconvergence pessimism
+  17.59   50.68   library hold time
+          50.68   data required time
+---------------------------------------------------------
+          50.68   data required time
+        -106.92   data arrival time
+---------------------------------------------------------
+          56.24   slack (MET)
+
+
+
+==========================================================================
+global route critical path target clock latency max path
+--------------------------------------------------------------------------
+31.6865
+
+==========================================================================
+global route critical path target clock latency min path
+--------------------------------------------------------------------------
+35.2868
+
+==========================================================================
+global route critical path source clock latency min path
+--------------------------------------------------------------------------
+0.0000
+
+==========================================================================
+global route critical path delay
+--------------------------------------------------------------------------
+287.5331
+
+==========================================================================
+global route critical path slack
+--------------------------------------------------------------------------
+-39.5331
+
+==========================================================================
+global route slack div critical path delay
+--------------------------------------------------------------------------
+-13.749061
+
+==========================================================================
+global route report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.67e-04   1.66e-05   4.61e-09   1.83e-04  20.8%
+Combinational          3.53e-04   2.78e-04   2.37e-08   6.30e-04  71.6%
+Clock                  3.49e-05   3.18e-05   3.59e-10   6.67e-05   7.6%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  5.54e-04   3.26e-04   2.87e-08   8.80e-04 100.0%
+                          62.9%      37.1%       0.0%
