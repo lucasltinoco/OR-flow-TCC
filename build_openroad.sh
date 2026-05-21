@@ -16,7 +16,7 @@ cd "$DIR"
 NICE=""
 
 OPENROAD_APP_REMOTE="origin"
-OPENROAD_APP_BRANCH="master"
+OPENROAD_APP_BRANCH="baseline"
 
 INSTALL_PATH="$(pwd)/tools/install"
 

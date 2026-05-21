@@ -15,13 +15,15 @@ DESIGNS_BLACKLIST = [
     "aes-block",
     "aes-block_aes_rcon",
     "aes-block_aes_sbox",
+    "aes-mbff",
     "aes-mbff-tcc-v1",
-    "gcd-ccs",
-    "riscv32i-mock-sram",
     "ethmac_lvt",
+    "gcd-ccs",
     "jpeg_lvt",
     "mock-cpu",
-    "riscv32i-mock-sram_fakeram7_256x32"
+    "riscv32i-mock-sram",
+    "riscv32i-mock-sram_fakeram7_256x32",
+    "swerv_wrapper"
 ]
 
 # ------------------------------------------------------------

@@ -3,50 +3,35 @@ import re
 import os
 
 CSV_PATH = "../tables/final_results_pct_vs_nc.csv"
-OUTPUT_DIR = "../tables/"
+OUTPUT_TEX = "../tables/results_unified.tex"
 
 # ------------------------------------------------------------
 # CONFIG
 # ------------------------------------------------------------
 
-TARGET_ALPHA = 256
+TARGET_ALPHA = 8
 
-TABLES = {
-    "power": {
-        "caption": "Power-related metrics relative to the non-clustered (NC) baseline",
-        "metrics": [
-            ("switching_power", "switching_power_%", "Switching Power (mW)"),
-            ("tot_power", "tot_power_%", "Total Power (mW)"),
-            ("#clk bufs", "#clk bufs_%", "Clock Buffers"),
-        ]
-    },
+# ------------------------------------------------------------
+# METRICS
+# value_col, pct_col, display_name
+# ------------------------------------------------------------
 
-    "timing": {
-        "caption": "Timing-related metrics relative to the non-clustered (NC) baseline",
-        "metrics": [
-            ("WNS", "WNS_%", "WNS (ns)"),
-            ("TNS", "TNS_%", "TNS (ns)"),
-        ]
-    },
+metrics = [
+    ("switching_power", "switching_power_%", "Swit. P (mW)"),
+    ("tot_power", "tot_power_%",             "Total P (mW)"),
 
-    "physical": {
-        "caption": "Physical design metrics relative to the non-clustered (NC) baseline",
-        "metrics": [
-            ("area", "area_%", "Area ($\\mu m^2$)"),
-            ("WL", "WL_%", "Wirelength ($\\mu m$)"),
-            ("#inst", "#inst_%", "Instances"),
-        ]
-    },
+    ("WNS", "WNS_%", "WNS (ns)"),
+    ("TNS", "TNS_%", "TNS (ns)"),
 
-    "mbff": {
-        "caption": "MBFF composition for each clustering strategy",
-        "metrics": [
-            ("#1-bit FFs", None, "1-bit FFs"),
-            ("#2-bit FFs", None, "2-bit FFs"),
-            ("#4-bit FFs", None, "4-bit FFs"),
-        ]
-    }
-}
+    ("area", "area_%", "Area ($\\mu m^2$)"),
+    ("WL", "WL_%",     "WL ($\\mu m$)    "),
+
+    ("#clk bufs", "#clk bufs_%", "\#clk bufs"),
+
+    ("#1-bit FFs", None, "\#1b"),
+    ("#2-bit FFs", None, "\#2b"),
+    ("#4-bit FFs", None, "\#4b"),
+]
 
 # ------------------------------------------------------------
 # LOAD
@@ -117,31 +102,28 @@ def format_flow(flow):
         return "NC"
 
     alpha_match = re.search(r'alpha[_=](\d+)', flow_lower)
+
     alpha_txt = ""
 
     if alpha_match:
         alpha_txt = rf" ($\alpha$={alpha_match.group(1)})"
 
     if "sftray" in flow_lower or "baseline" in flow_lower:
-        return "SFTray"
+        return rf"SFTray"
 
     if "ours" in flow_lower or "modified" in flow_lower:
-        return "Ours"
+        return rf"Ours"
 
     return latex_escape(flow_original)
 
 # ------------------------------------------------------------
-# FORMATTERS
+# UNIT CONVERSION
 # ------------------------------------------------------------
 
-def format_value(value, value_col=None):
+def convert_units(value, value_col):
 
     if pd.isna(value):
-        return ""
-
-    # --------------------------------------------------------
-    # UNIT CONVERSIONS
-    # --------------------------------------------------------
+        return value
 
     # W -> mW
     if value_col in ["switching_power", "tot_power"]:
@@ -151,26 +133,34 @@ def format_value(value, value_col=None):
     if value_col == "WL":
         value /= 1000.0
 
-    # --------------------------------------------------------
+    return value
 
-    if isinstance(value, float):
-        return f"{value:.3f}"
+# ------------------------------------------------------------
+# FORMATTERS
+# ------------------------------------------------------------
 
-    return str(value)
-
-
-def format_pct(value):
+def format_absolute(value, value_col=None):
 
     if pd.isna(value):
         return ""
 
-    if isinstance(value, float):
-        return f"{value:+.2f}"
+    value = convert_units(value, value_col)
 
-    return str(value)
+    if isinstance(value, float):
+        return f"{value:.3f}"
+
+    return str(int(value))
+
+
+def format_percentage(value):
+
+    if pd.isna(value):
+        return ""
+
+    return f"{float(value):+.2f}%"
 
 # ------------------------------------------------------------
-# SORT
+# SORT HELPERS
 # ------------------------------------------------------------
 
 def flow_order(flow):
@@ -189,7 +179,7 @@ def flow_order(flow):
     return 99
 
 # ------------------------------------------------------------
-# GET DESIGN ORDER (#INST DESC)
+# GET DESIGN ORDER (#1-bit FFs DESC)
 # ------------------------------------------------------------
 
 design_order = {}
@@ -205,7 +195,7 @@ for design in df["design"].unique():
         design_order[design] = 0
         continue
 
-    design_order[design] = nc_rows.iloc[0]["#inst"]
+    design_order[design] = nc_rows.iloc[0]["#1-bit FFs"]
 
 # ------------------------------------------------------------
 # SORT DATAFRAME
@@ -222,184 +212,172 @@ df = df.sort_values(
 df = df.drop(columns=["_design_order", "_flow_order"])
 
 # ------------------------------------------------------------
-# GENERATE TABLES
+# LATEX TABLE
 # ------------------------------------------------------------
 
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+latex = []
 
-for table_name, table_cfg in TABLES.items():
+latex.append(r"\begin{table*}[t]")
+latex.append(r"\centering")
 
-    metrics = table_cfg["metrics"]
-    caption = table_cfg["caption"]
+latex.append(
+    rf"\caption{{Comparison of MBFF clustering strategies "
+    rf"for $\alpha = {TARGET_ALPHA}$ and $\beta = 0.1$. "
+    r"NC rows present absolute values, while SFTray and Ours "
+    r"show percentage variation relative to NC (except for \#1b, \#2b and \#4b).}}"
+)
 
-    latex = []
+latex.append(
+    rf"\label{{tab:results_alpha_{TARGET_ALPHA}}}"
+)
 
-    latex.append(r"\begin{table*}[t]")
-    latex.append(r"\centering")
+latex.append(r"\resizebox{\textwidth}{!}{")
 
-    latex.append(
-        rf"\caption{{{caption} for $\alpha = {TARGET_ALPHA}$ "
-        r"and $\beta = 0.1$.}"
+# ------------------------------------------------------------
+# COLUMN FORMAT
+# ------------------------------------------------------------
+
+col_fmt = (
+    "ll|"   # Design | Condition |
+
+    "cc|"   # Power
+
+    "cc|"   # Timing
+
+    "ccc|" # Physical + clk buffers
+
+    "ccc"   # FF composition
+)
+
+latex.append(r"\begin{tabular}{" + col_fmt + "}")
+latex.append(r"\toprule")
+
+# ------------------------------------------------------------
+# HEADER
+# ------------------------------------------------------------
+
+header = [
+    r"Design",
+    r"Condition"
+]
+
+for _, _, name in metrics:
+    header.append(name)
+
+latex.append(" & ".join(header) + r" \\")
+latex.append(r"\midrule")
+
+# ------------------------------------------------------------
+# BODY
+# ------------------------------------------------------------
+
+grouped = df.groupby("design", sort=False)
+
+for design, group in grouped:
+
+    group = group.sort_values(
+        by="flow",
+        key=lambda col: col.map(flow_order)
     )
 
-    latex.append(
-        rf"\label{{tab:{table_name}_alpha_{TARGET_ALPHA}}}"
-    )
+    rows = list(group.iterrows())
+    nrows = len(rows)
 
-    # --------------------------------------------------------
-    # MBFF TABLE
-    # --------------------------------------------------------
+    first = True
 
-    if table_name == "mbff":
+    for _, row in rows:
 
-        latex.append(r"\begin{tabular}{llccc}")
-        latex.append(r"\toprule")
+        flow_lower = str(row["flow"]).lower()
 
-        latex.append(
-            r"Design & Flow & 1-bit FFs & 2-bit FFs & 4-bit FFs \\"
-        )
-
-        latex.append(r"\midrule")
-
-    # --------------------------------------------------------
-    # OTHER TABLES
-    # --------------------------------------------------------
-
-    else:
-
-        latex.append(r"\resizebox{\textwidth}{!}{")
-
-        col_fmt = "ll" + ("cc" * len(metrics))
-
-        latex.append(r"\begin{tabular}{" + col_fmt + "}")
-        latex.append(r"\toprule")
+        entries = []
 
         # ----------------------------------------------------
-        # TOP HEADER
+        # MULTIROW DESIGN
         # ----------------------------------------------------
 
-        top = [
-            r"\multirow{2}{*}{Design}",
-            r"\multirow{2}{*}{Condition}"
-        ]
-
-        for _, _, name in metrics:
-            top.append(
-                rf"\multicolumn{{2}}{{c}}{{{name}}}"
+        if first:
+            entries.append(
+                rf"\multirow{{{nrows}}}{{*}}{{{latex_escape(design)}}}"
             )
+            first = False
+        else:
+            entries.append("")
 
-        latex.append(" & ".join(top) + r" \\")
-        latex.append("")
+        entries.append(format_flow(row["flow"]))
 
         # ----------------------------------------------------
-        # SECOND HEADER
+        # METRICS
         # ----------------------------------------------------
 
-        second = ["", ""]
+        is_nc = flow_lower == "nc"
 
-        for _ in metrics:
-            second += ["Value", r"$\Delta$ (\%)"]
-
-        latex.append(" & ".join(second) + r" \\")
-        latex.append(r"\midrule")
-
-    # --------------------------------------------------------
-    # BODY
-    # --------------------------------------------------------
-
-    grouped = df.groupby("design", sort=False)
-
-    for design, group in grouped:
-
-        group = group.sort_values(
-            by="flow",
-            key=lambda col: col.map(flow_order)
-        )
-
-        rows = list(group.iterrows())
-        nrows = len(rows)
-
-        first = True
-
-        for _, row in rows:
-
-            flow = format_flow(row["flow"])
-
-            entries = []
+        for value_col, pct_col, _ in metrics:
 
             # ------------------------------------------------
-            # MULTIROW DESIGN
+            # NC -> ABSOLUTE VALUE
             # ------------------------------------------------
 
-            if first:
-                entries.append(
-                    rf"\multirow{{{nrows}}}{{*}}{{{latex_escape(design)}}}"
-                )
-                first = False
-            else:
-                entries.append("")
+            if is_nc:
 
-            entries.append(flow)
-
-            # ------------------------------------------------
-            # METRICS
-            # ------------------------------------------------
-
-            for value_col, pct_col, _ in metrics:
-
-                value = format_value(
+                value = format_absolute(
                     row[value_col],
                     value_col
                 )
 
-                # MBFF TABLE
-                if pct_col is None:
+                entries.append(
+                    latex_escape(value)
+                )
+
+            # ------------------------------------------------
+            # SFTRAY / OURS -> PERCENTAGE
+            # ------------------------------------------------
+
+            else:
+
+                # if percentage column doesn't exist
+                if pct_col is None or pct_col not in df.columns:
+
+                    value = format_absolute(
+                        row[value_col],
+                        value_col
+                    )
 
                     entries.append(
                         latex_escape(value)
                     )
 
-                # OTHER TABLES
                 else:
 
-                    pct = format_pct(row[pct_col])
+                    pct_value = row[pct_col]
 
                     entries.append(
-                        latex_escape(value)
+                        latex_escape(
+                            format_percentage(pct_value)
+                        )
                     )
 
-                    entries.append(
-                        latex_escape(pct)
-                    )
+        latex.append(
+            " & ".join(entries) + r" \\"
+        )
 
-            latex.append(
-                " & ".join(entries) + r" \\"
-            )
+    latex.append(r"\midrule")
 
-        latex.append(r"\midrule")
+# ------------------------------------------------------------
+# FOOTER
+# ------------------------------------------------------------
 
-    # --------------------------------------------------------
-    # FOOTER
-    # --------------------------------------------------------
+latex.append(r"\bottomrule")
+latex.append(r"\end{tabular}")
+latex.append(r"}")
+latex.append(r"\end{table*}")
 
-    latex.append(r"\bottomrule")
-    latex.append(r"\end{tabular}")
+# ------------------------------------------------------------
+# SAVE
+# ------------------------------------------------------------
 
-    if table_name != "mbff":
-        latex.append(r"}")
+os.makedirs(os.path.dirname(OUTPUT_TEX), exist_ok=True)
 
-    latex.append(r"\end{table*}")
+with open(OUTPUT_TEX, "w") as f:
+    f.write("\n".join(latex))
 
-    # --------------------------------------------------------
-    # SAVE
-    # --------------------------------------------------------
-
-    output_path = os.path.join(
-        OUTPUT_DIR,
-        f"results_{table_name}_alpha_{TARGET_ALPHA}.tex"
-    )
-
-    with open(output_path, "w") as f:
-        f.write("\n".join(latex))
-
-    print(f"Saved: {output_path}")
+print(f"Saved: {OUTPUT_TEX}")

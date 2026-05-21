@@ -6,7 +6,9 @@ b=0.1
 
 bypass_list=()
 
-# TBD: go to tools/OpenROAD, checkout to baseline branch and rerun build_openroad.sh --local
+cd ..
+./build_openroad.sh --local --or_branch baseline
+cd flow
 
 for design in $list
 do

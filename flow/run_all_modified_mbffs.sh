@@ -6,6 +6,10 @@ b=0.1
 
 bypass_list=()
 
+cd ..
+./build_openroad.sh --local --or_branch tcc
+cd flow
+
 # TBD: go to tools/OpenROAD, checkout to tcc branch and rerun build_openroad.sh --local
 
 for design in $list
