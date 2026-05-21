@@ -17,6 +17,11 @@ TARGET_ALPHA = 8
 # ------------------------------------------------------------
 
 metrics = [
+    ("#1-bit FFs", None, "\#1b"),
+    ("#2-bit FFs", None, "\#2b"),
+    ("#4-bit FFs", None, "\#4b"),
+    (lambda r: (r["#1-bit FFs"] + r["#2-bit FFs"] + r["#4-bit FFs"]) / r["#inst"], None, "FF Ratio"),
+    
     ("switching_power", "switching_power_%", "Swit. P (mW)"),
     ("tot_power", "tot_power_%",             "Total P (mW)"),
 
@@ -24,13 +29,9 @@ metrics = [
     ("TNS", "TNS_%", "TNS (ns)"),
 
     ("area", "area_%", "Area ($\\mu m^2$)"),
-    ("WL", "WL_%",     "WL ($\\mu m$)    "),
+    ("WL", "WL_%",     "TWL ($\\mu m$)   "),
 
-    ("#clk bufs", "#clk bufs_%", "\#clk bufs"),
-
-    ("#1-bit FFs", None, "\#1b"),
-    ("#2-bit FFs", None, "\#2b"),
-    ("#4-bit FFs", None, "\#4b"),
+    ("#clk bufs", "#clk bufs_%", "\#clk bufs")
 ]
 
 # ------------------------------------------------------------
@@ -44,19 +45,15 @@ df = pd.read_csv(CSV_PATH)
 # ------------------------------------------------------------
 
 def keep_row(flow):
-
     flow = str(flow).strip().lower()
-
     if flow == "nc":
         return True
 
     alpha_match = re.search(r'alpha[_=](\d+)', flow)
-
     if not alpha_match:
         return False
 
     alpha = int(alpha_match.group(1))
-
     if alpha != TARGET_ALPHA:
         return False
 
@@ -74,19 +71,15 @@ df = df[df["flow"].apply(keep_row)]
 # ------------------------------------------------------------
 
 def latex_escape(text):
-
     replacements = {
         "_": r"\_",
         "%": r"\%",
         "&": r"\&",
         "#": r"\#",
     }
-
     text = str(text)
-
     for k, v in replacements.items():
         text = text.replace(k, v)
-
     return text
 
 # ------------------------------------------------------------
@@ -94,20 +87,13 @@ def latex_escape(text):
 # ------------------------------------------------------------
 
 def format_flow(flow):
-
     flow_original = str(flow)
     flow_lower = flow_original.lower()
 
     if flow_lower in ["nc", "base"]:
-        return "NC"
+        return "NC (abs.)"
 
     alpha_match = re.search(r'alpha[_=](\d+)', flow_lower)
-
-    alpha_txt = ""
-
-    if alpha_match:
-        alpha_txt = rf" ($\alpha$={alpha_match.group(1)})"
-
     if "sftray" in flow_lower or "baseline" in flow_lower:
         return rf"SFTray"
 
@@ -121,17 +107,17 @@ def format_flow(flow):
 # ------------------------------------------------------------
 
 def convert_units(value, value_col):
-
     if pd.isna(value):
         return value
 
-    # W -> mW
-    if value_col in ["switching_power", "tot_power"]:
-        value *= 1000.0
-
-    # DBU -> um
-    if value_col == "WL":
-        value /= 1000.0
+    # Apenas converte unidades se a coluna for uma string (métrica padrão)
+    if isinstance(value_col, str):
+        # W -> mW
+        if value_col in ["switching_power", "tot_power"]:
+            value *= 1000.0
+        # DBU -> um
+        if value_col == "WL":
+            value /= 1000.0
 
     return value
 
@@ -140,7 +126,6 @@ def convert_units(value, value_col):
 # ------------------------------------------------------------
 
 def format_absolute(value, value_col=None):
-
     if pd.isna(value):
         return ""
 
@@ -153,10 +138,8 @@ def format_absolute(value, value_col=None):
 
 
 def format_percentage(value):
-
     if pd.isna(value):
         return ""
-
     return f"{float(value):+.2f}%"
 
 # ------------------------------------------------------------
@@ -164,38 +147,29 @@ def format_percentage(value):
 # ------------------------------------------------------------
 
 def flow_order(flow):
-
     flow = str(flow).lower()
-
     if flow in ["nc", "base"]:
         return 0
-
     if "sftray" in flow or "baseline" in flow:
         return 1
-
     if "ours" in flow or "modified" in flow:
         return 2
-
     return 99
 
 # ------------------------------------------------------------
-# GET DESIGN ORDER (#1-bit FFs DESC)
+# GET DESIGN ORDER (#1-bit FFs / #inst DESC)
 # ------------------------------------------------------------
 
 design_order = {}
-
 for design in df["design"].unique():
-
     nc_rows = df[
         (df["design"] == design)
         & (df["flow"].str.lower() == "nc")
     ]
-
     if len(nc_rows) == 0:
         design_order[design] = 0
         continue
-
-    design_order[design] = nc_rows.iloc[0]["#1-bit FFs"]
+    design_order[design] = nc_rows.iloc[0]["#1-bit FFs"] / nc_rows.iloc[0]["#inst"]
 
 # ------------------------------------------------------------
 # SORT DATAFRAME
@@ -208,7 +182,6 @@ df = df.sort_values(
     by=["_design_order", "design", "_flow_order"],
     ascending=[False, True, True]
 )
-
 df = df.drop(columns=["_design_order", "_flow_order"])
 
 # ------------------------------------------------------------
@@ -216,21 +189,15 @@ df = df.drop(columns=["_design_order", "_flow_order"])
 # ------------------------------------------------------------
 
 latex = []
-
 latex.append(r"\begin{table*}[t]")
 latex.append(r"\centering")
-
 latex.append(
     rf"\caption{{Comparison of MBFF clustering strategies "
     rf"for $\alpha = {TARGET_ALPHA}$ and $\beta = 0.1$. "
     r"NC rows present absolute values, while SFTray and Ours "
     r"show percentage variation relative to NC (except for \#1b, \#2b and \#4b).}}"
 )
-
-latex.append(
-    rf"\label{{tab:results_alpha_{TARGET_ALPHA}}}"
-)
-
+latex.append(rf"\label{{tab:results_alpha_{TARGET_ALPHA}}}")
 latex.append(r"\resizebox{\textwidth}{!}{")
 
 # ------------------------------------------------------------
@@ -239,13 +206,9 @@ latex.append(r"\resizebox{\textwidth}{!}{")
 
 col_fmt = (
     "ll|"   # Design | Condition |
-
+    "cccc|" # Physical + clk buffers + FF Ratio |
     "cc|"   # Power
-
     "cc|"   # Timing
-
-    "ccc|" # Physical + clk buffers
-
     "ccc"   # FF composition
 )
 
@@ -256,11 +219,7 @@ latex.append(r"\toprule")
 # HEADER
 # ------------------------------------------------------------
 
-header = [
-    r"Design",
-    r"Condition"
-]
-
+header = [r"Design", r"Condition"]
 for _, _, name in metrics:
     header.append(name)
 
@@ -274,7 +233,6 @@ latex.append(r"\midrule")
 grouped = df.groupby("design", sort=False)
 
 for design, group in grouped:
-
     group = group.sort_values(
         by="flow",
         key=lambda col: col.map(flow_order)
@@ -282,23 +240,17 @@ for design, group in grouped:
 
     rows = list(group.iterrows())
     nrows = len(rows)
-
     first = True
 
     for _, row in rows:
-
         flow_lower = str(row["flow"]).lower()
-
         entries = []
 
         # ----------------------------------------------------
         # MULTIROW DESIGN
         # ----------------------------------------------------
-
         if first:
-            entries.append(
-                rf"\multirow{{{nrows}}}{{*}}{{{latex_escape(design)}}}"
-            )
+            entries.append(rf"\multirow{{{nrows}}}{{*}}{{{latex_escape(design)}}}")
             first = False
         else:
             entries.append("")
@@ -308,57 +260,32 @@ for design, group in grouped:
         # ----------------------------------------------------
         # METRICS
         # ----------------------------------------------------
-
         is_nc = flow_lower == "nc"
 
         for value_col, pct_col, _ in metrics:
+            
+            # Extrai o dado original caso a coluna seja uma função/lambda
+            raw_val = value_col(row) if callable(value_col) else row[value_col]
 
             # ------------------------------------------------
             # NC -> ABSOLUTE VALUE
             # ------------------------------------------------
-
             if is_nc:
-
-                value = format_absolute(
-                    row[value_col],
-                    value_col
-                )
-
-                entries.append(
-                    latex_escape(value)
-                )
+                value = format_absolute(raw_val, value_col)
+                entries.append(latex_escape(value))
 
             # ------------------------------------------------
-            # SFTRAY / OURS -> PERCENTAGE
+            # SFTRAY / OURS -> PERCENTAGE (ou absoluto se pct_col for None)
             # ------------------------------------------------
-
             else:
-
-                # if percentage column doesn't exist
                 if pct_col is None or pct_col not in df.columns:
-
-                    value = format_absolute(
-                        row[value_col],
-                        value_col
-                    )
-
-                    entries.append(
-                        latex_escape(value)
-                    )
-
+                    value = format_absolute(raw_val, value_col)
+                    entries.append(latex_escape(value))
                 else:
-
                     pct_value = row[pct_col]
+                    entries.append(latex_escape(format_percentage(pct_value)))
 
-                    entries.append(
-                        latex_escape(
-                            format_percentage(pct_value)
-                        )
-                    )
-
-        latex.append(
-            " & ".join(entries) + r" \\"
-        )
+        latex.append(" & ".join(entries) + r" \\")
 
     latex.append(r"\midrule")
 
@@ -376,7 +303,6 @@ latex.append(r"\end{table*}")
 # ------------------------------------------------------------
 
 os.makedirs(os.path.dirname(OUTPUT_TEX), exist_ok=True)
-
 with open(OUTPUT_TEX, "w") as f:
     f.write("\n".join(latex))
 
