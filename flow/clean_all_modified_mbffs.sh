@@ -7,5 +7,5 @@ for alpha in "${alphas[@]}"
 do
   echo "Running flow for design: $design with alpha: $alpha and beta: $b"
   make clean_all DESIGN_CONFIG=./designs/asap7/cva6/config.mk \
-      FLOW_VARIANT="modified_alpha_$alpha-beta_$b"
+      FLOW_VARIANT="modified_alpha_$alpha-beta_$b-v3"
 done

@@ -20,17 +20,15 @@ metrics = [
     ("#1-bit FFs", None, "\#1b"),
     ("#2-bit FFs", None, "\#2b"),
     ("#4-bit FFs", None, "\#4b"),
-    (lambda r: (r["#1-bit FFs"] + r["#2-bit FFs"] + r["#4-bit FFs"]) / r["#inst"], None, "FF Ratio"),
+    (lambda r: round((((r["#1-bit FFs"] + r["#2-bit FFs"] + r["#4-bit FFs"]) / r["#inst"]) * 100), 1), None, "FF \%"),
     
     ("switching_power", "switching_power_%", "Swit. P (mW)"),
     ("tot_power", "tot_power_%",             "Total P (mW)"),
 
-    ("WNS", "WNS_%", "WNS (ns)"),
-    ("TNS", "TNS_%", "TNS (ns)"),
+    ("WNS", "WNS_%", "WS (ps)"),
+    # ("TNS", "TNS_%", "TS (ps)"),
 
     ("area", "area_%", "Area ($\\mu m^2$)"),
-    ("WL", "WL_%",     "TWL ($\\mu m$)   "),
-
     ("#clk bufs", "#clk bufs_%", "\#clk bufs")
 ]
 
@@ -206,10 +204,9 @@ latex.append(r"\resizebox{\textwidth}{!}{")
 
 col_fmt = (
     "ll|"   # Design | Condition |
-    "cccc|" # Physical + clk buffers + FF Ratio |
-    "cc|"   # Power
-    "cc|"   # Timing
-    "ccc"   # FF composition
+    "cccc|" # Physical + FF Ratio |
+    "ccc|"   # Power + Timing
+    "cc"     # Area + WL
 )
 
 latex.append(r"\begin{tabular}{" + col_fmt + "}")
@@ -219,7 +216,7 @@ latex.append(r"\toprule")
 # HEADER
 # ------------------------------------------------------------
 
-header = [r"Design", r"Condition"]
+header = [r"Design", r"Version"]
 for _, _, name in metrics:
     header.append(name)
 

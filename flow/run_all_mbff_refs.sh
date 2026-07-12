@@ -1,31 +1,55 @@
 #!/bin/bash
 
 list=$(ls ./designs/asap7)
-alphas=(2 4 8 16 67 130 193 256)
+# alphas=(2 4 8 16 67 130 193 256)
+alphas=(8)
 b=0.1
 
-bypass_list=()
+exclusive_designs=()
 
-cd ..
-./build_openroad.sh --local --or_branch baseline
-cd flow
+bypass_list=(
+  aes_lvt
+  aes-block
+  aes-block_aes_rcon
+  aes-block_aes_sbox
+  aes-mbff
+  aes-mbff-tcc-v1
+  ethmac_lvt
+  gcd-ccs
+  jpeg_lvt
+  riscv32i-mock-sram
+  riscv32i-mock-sram_fakeram7_256x32
+  swerv_wrapper
+  mock-cpu
+)
 
-for design in $list
-do
-  # if design is cva6, continue
-  if [[ " ${bypass_list[@]} " =~ " ${design} " ]]; then
-    echo "Skipping design: $design"
-    continue
-  fi
-  for alpha in "${alphas[@]}"
+# cd ..
+# rm -rf tools/OpenROAD/build
+# ./build_openroad.sh --local --or_branch baseline
+# cd flow
+
+RUNTIME_ITER=3
+
+for ((i=(1+RUNTIME_ITER); i<=RUNTIME_ITER*2; i++))
   do
-    echo "Running flow for design: $design with alpha: $alpha and beta: $b"
-    make DESIGN_CONFIG=./designs/asap7/$design/config.mk \
-        FLOW_VARIANT="baseline_alpha_$alpha-beta_$b" \
-        ALPHA=$alpha \
-        BETA=$b \
-        EQUIVALENCE_CHECK=0 \
-        LEC_CHECK=0 \
-        CLUSTER_FLOPS=1
+  echo "Iteration $i of $RUNTIME_ITER"
+  for design in $list
+  do
+    # if design is cva6, continue
+    if [[ " ${bypass_list[@]} " =~ " ${design} " ]]; then
+      echo "Skipping design: $design"
+      continue
+    fi
+    for alpha in "${alphas[@]}"
+    do
+      echo "Running flow for design: $design with alpha: $alpha and beta: $b"
+      make DESIGN_CONFIG=./designs/asap7/$design/config.mk \
+          FLOW_VARIANT="baseline_alpha_$alpha-beta_$b-run$i" \
+          ALPHA=$alpha \
+          BETA=$b \
+          EQUIVALENCE_CHECK=0 \
+          LEC_CHECK=0 \
+          CLUSTER_FLOPS=1
+    done
   done
 done

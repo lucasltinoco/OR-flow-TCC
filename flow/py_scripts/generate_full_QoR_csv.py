@@ -4,7 +4,7 @@ import json
 import csv
 
 BASE_DIR = "../logs/asap7"
-OUTPUT_CSV = "../tables/final_results_pct_vs_nc.csv"
+OUTPUT_CSV = "../tables/final_results_pct_vs_nc_v3.csv"
 
 REPORT_FILE = "6_report.json"
 ROUTE_FILE = "5_2_route.json"
@@ -212,8 +212,10 @@ def main():
     # --------------------------------------------------------
     # COLLECT RAW DATA
     # --------------------------------------------------------
+    
+    listdir = os.listdir(BASE_DIR)
 
-    for design in sorted(os.listdir(BASE_DIR)):
+    for design in sorted(listdir):
 
         if design in DESIGNS_BLACKLIST:
             print(f"Skipping blacklisted design: {design}")
@@ -230,6 +232,12 @@ def main():
 
             if not os.path.isdir(config_path):
                 continue
+            
+            # if path contains isnt baseline or is not from type -> modified_alpha_X-beta_Y-v3, continue
+            if not (config.startswith("base") or (config.startswith("modified_") and config.endswith("-v3"))):
+                print(f"Skipping config: {config}")
+                continue
+            
 
             report_path = os.path.join(
                 config_path,

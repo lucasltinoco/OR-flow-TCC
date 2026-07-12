@@ -1,0 +1,171 @@
+OpenROAD 843a08803f27d34a8dee7637ed89fc9bb87aebfb 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_db ./results/asap7/jpeg/base-run5/3_place.odb
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
+[INFO CTS-0050] Root buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx24_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0010]  Clock net "clk" has 4383 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 1 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 4383.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0206] Best clustering solution was found from clustering size of 10 and clustering diameter of 50.
+[INFO CTS-0019]  Total number of sinks after clustering: 218.
+[INFO CTS-0024]  Normalized sink region: [(2.7723, 2.61111), (70.079, 70.4426)].
+[INFO CTS-0025]     Width:  67.3067.
+[INFO CTS-0026]     Height: 67.8315.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 109
+    Sub-region size: 67.3067 X 33.9158
+[INFO CTS-0034]     Segment length (rounded): 16.
+ Level 2
+    Direction: Horizontal
+    Sinks per sub-region: 55
+    Sub-region size: 33.6533 X 33.9158
+[INFO CTS-0034]     Segment length (rounded): 16.
+ Level 3
+    Direction: Vertical
+    Sinks per sub-region: 28
+    Sub-region size: 33.6533 X 16.9579
+[INFO CTS-0034]     Segment length (rounded): 8.
+ Level 4
+    Direction: Horizontal
+    Sinks per sub-region: 14
+    Sub-region size: 16.8267 X 16.9579
+[INFO CTS-0034]     Segment length (rounded): 8.
+ Level 5
+    Direction: Vertical
+    Sinks per sub-region: 7
+    Sub-region size: 16.8267 X 8.4789
+[INFO CTS-0034]     Segment length (rounded): 4.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 10.
+[INFO CTS-0035]  Number of sinks covered: 218.
+[INFO CTS-0018]     Created 255 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 4.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 4.
+[INFO CTS-0015]     Created 255 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 5:1, 6:6, 7:26, 9:1, 10:2, 11:1, 12:1, 13:2, 14:2, 15:9, 16:10, 17:11, 18:18, 19:23, 20:34, 21:24, 22:27, 23:20, 24:17, 25:9, 26:5, 28:1..
+[INFO CTS-0017]     Max level of the clock tree: 5.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 4572
+[INFO CTS-0100]  Leaf buffers 218
+[INFO CTS-0101]  Average sink wire length 163.78 um
+[INFO CTS-0102]  Path depth 3 - 4
+[INFO CTS-0207]  Dummy loads inserted 189
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                   56004
+Diamond Move Success:          56004 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement       1240.8 u
+average displacement        0.0 u
+max displacement            1.2 u
+original HPWL          142787.1 u
+legalized HPWL         148281.1 u
+delta HPWL                    4 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 18 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 18 out of 18 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% |  -26.934 |     -172.0 |     18 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_0.macu.mult_res[17]$_DFFE_PP_/D
+        7 |       0 |       0 |        6 |      0 |     3 |    +0.0% |  -18.877 |      -99.3 |     16 | fdct_zigzag.dct_mod.dct_block_1.dct_unit_5.macu.mult_res[17]$_DFFE_PP_/D
+        8 |       0 |       0 |        6 |      0 |     3 |    +0.0% |  -18.877 |      -99.3 |     15 | fdct_zigzag.dct_mod.dct_block_1.dct_unit_5.macu.mult_res[17]$_DFFE_PP_/D
+       10 |       0 |       0 |        6 |      0 |     4 |    +0.0% |  -20.115 |     -101.7 |     15 | fdct_zigzag.dct_mod.dct_block_1.dct_unit_5.macu.mult_res[17]$_DFFE_PP_/D
+       11 |       0 |       0 |        8 |      0 |     4 |    +0.0% |  -17.263 |      -77.4 |     13 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_2.macu.mult_res[17]$_DFFE_PP_/D
+       16 |       0 |       0 |       11 |      0 |     6 |    +0.0% |  -14.752 |      -60.1 |     11 | fdct_zigzag.dct_mod.dct_block_3.dct_unit_7.macu.mult_res[17]$_DFFE_PP_/D
+       19 |       0 |       0 |       13 |      0 |     7 |    +0.0% |   -9.129 |      -41.8 |      9 | fdct_zigzag.dct_mod.dct_block_0.dct_unit_3.macu.mult_res[17]$_DFFE_PP_/D
+       20 |       0 |       0 |       13 |      0 |     7 |    +0.0% |   -9.129 |      -41.8 |      9 | fdct_zigzag.dct_mod.dct_block_0.dct_unit_3.macu.mult_res[17]$_DFFE_PP_/D
+       20 |       0 |       0 |       13 |      0 |     7 |    +0.0% |   -9.129 |      -41.8 |      8 | fdct_zigzag.dct_mod.dct_block_0.dct_unit_3.macu.mult_res[17]$_DFFE_PP_/D
+       23 |       0 |       0 |       14 |      0 |     8 |    +0.0% |   -9.129 |      -36.2 |      6 | fdct_zigzag.dct_mod.dct_block_0.dct_unit_3.macu.mult_res[17]$_DFFE_PP_/D
+       26 |       0 |       0 |       16 |      0 |     9 |    +0.0% |   -8.305 |      -27.1 |      4 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_7.macu.mult_res[17]$_DFFE_PP_/D
+       30 |       0 |       0 |       18 |      0 |    11 |    +0.0% |   -6.823 |      -25.6 |      4 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_7.macu.mult_res[17]$_DFFE_PP_/D
+       31 |       0 |       0 |       20 |      0 |    11 |    +0.0% |   -4.209 |      -18.8 |      2 | fdct_zigzag.dct_mod.dct_block_3.dct_unit_2.macu.mult_res[17]$_DFFE_PP_/D
+       34 |       0 |       0 |       22 |      0 |    12 |    +0.0% |   -3.994 |      -14.6 |      0 | fdct_zigzag.dct_mod.dct_block_0.dct_unit_6.macu.mult_res[17]$_DFFE_PP_/D
+       37 |       0 |       0 |       24 |      0 |    13 |    +0.0% |   -3.493 |      -10.6 |      0 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_2.macu.mult_res[18]$_DFFE_PP_/D
+       38 |       0 |       0 |       24 |      0 |    13 |    +0.0% |   -3.493 |      -10.6 |      0 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_2.macu.mult_res[18]$_DFFE_PP_/D
+       40 |       0 |       0 |       24 |      0 |    14 |    +0.0% |   -3.371 |      -10.4 |      0 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_2.macu.mult_res[18]$_DFFE_PP_/D
+       43 |       0 |       0 |       27 |      0 |    15 |    +0.0% |   -3.086 |       -5.7 |      0 | fdct_zigzag.dct_mod.dct_block_6.dct_unit_2.macu.mult_res[17]$_DFFE_PP_/D
+       48 |       0 |       0 |       31 |      0 |    17 |    +0.0% |   -1.894 |       -2.7 |      0 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_0.macu.mult_res[17]$_DFFE_PP_/D
+       49 |       0 |       0 |       31 |      0 |    17 |    +0.0% |   -1.894 |       -2.7 |      0 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_0.macu.mult_res[17]$_DFFE_PP_/D
+       50 |       0 |       0 |       31 |      0 |    17 |    +0.0% |   -1.894 |       -2.7 |      0 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_0.macu.mult_res[17]$_DFFE_PP_/D
+       50 |       0 |       0 |       31 |      0 |    17 |    +0.0% |   -1.894 |       -2.7 |      0 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_0.macu.mult_res[17]$_DFFE_PP_/D
+       51 |       0 |       0 |       31 |      0 |    17 |    +0.0% |   -1.894 |       -2.7 |      0 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_0.macu.mult_res[17]$_DFFE_PP_/D
+       54 |       0 |       0 |       33 |      0 |    18 |    +0.0% |   -1.894 |       -1.9 |      0 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_0.macu.mult_res[17]$_DFFE_PP_/D
+      55* |       0 |       0 |       33 |      0 |    18 |    +0.0% |   -1.894 |       -1.9 |      1 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_0.macu.mult_res[17]$_DFFE_PP_/D
+    final |       0 |       0 |       33 |      0 |    18 |    +0.0% |   -1.894 |       -1.9 |      1 | fdct_zigzag.dct_mod.dct_block_7.dct_unit_0.macu.mult_res[17]$_DFFE_PP_/D
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0040] Inserted 33 buffers.
+[INFO RSZ-0043] Swapped pins on 18 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0046] Found 24 endpoints with hold violations.
+Iteration | Resized | Buffers | Cloned Gates |   Area   |   WNS   |   TNS   | Endpoint
+--------------------------------------------------------------------------------------
+        0 |       0 |       0 |            0 |    +0.0% | -36.810 | -486.690 | qnr.divider.id[7]$_DFFE_PP_/D
+       10 |       0 |      26 |            0 |    +0.0% | -15.520 | -28.953 | fdct_zigzag.dct_mod.ddin[6]$_DFFE_PN0P_/D
+       20 |       0 |      29 |            0 |    +0.0% |  -4.953 |  -7.978 | fdct_zigzag.dct_mod.ddin[7]$_DFFE_PN0P_/D
+       30 |       0 |      36 |            0 |    +0.0% |  -0.184 |  -0.184 | qnr.divider.id[0]$_DFFE_PP_/D
+    final |       0 |      37 |            0 |    +0.0% |   0.315 |   0.000 | qnr.divider.id[7]$_DFFE_PP_/D
+--------------------------------------------------------------------------------------
+[INFO RSZ-0032] Inserted 37 hold buffers.
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                   56074
+Diamond Move Success:          56074 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        131.2 u
+average displacement        0.0 u
+max displacement            4.4 u
+original HPWL          148338.7 u
+legalized HPWL         148439.7 u
+delta HPWL                    0 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 6429 um^2 73% utilization.
+write_db ./results/asap7/jpeg/base-run5/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/jpeg/base-run5/4_cts.sdc
+Elapsed time: 0:14.75[h:]min:sec. CPU time: user 29.23 sys 13.47 (289%). Peak memory: 621796KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                           14            607 7124fcadced2efd3b7e3

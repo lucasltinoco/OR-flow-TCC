@@ -2,35 +2,40 @@ import pandas as pd
 import re
 import os
 
-CSV_PATH = "../tables/final_results_pct_vs_nc.csv"
-OUTPUT_TEX = "../tables/results_varying_alpha.tex"
+CSV_PATH = "../tables/final_results_pct_vs_nc_v3.csv"
+OUTPUT_TEX = "../tables/results_varying_alpha_v3.tex"
 
 # ------------------------------------------------------------
 # CONFIG
 # ------------------------------------------------------------
 
 ALPHAS = [2, 4, 8, 16, 67, 130, 193, 256]
+DESIGNS_PER_TABLE = 3
 
 # ------------------------------------------------------------
 # METRICS
 # value_col, pct_col, display_name
 # ------------------------------------------------------------
+def ff_ratio(row):
+    return (
+        (row["#1-bit FFs"] +
+         row["#2-bit FFs"] +
+         row["#4-bit FFs"])
+        / row["#inst"] * 100
+    )
 
 metrics = [
     ("#1-bit FFs", None, "\#1b"),
     ("#2-bit FFs", None, "\#2b"),
     ("#4-bit FFs", None, "\#4b"),
-    (lambda r: (r["#1-bit FFs"] + r["#2-bit FFs"] + r["#4-bit FFs"]) / r["#inst"], None, "FF Ratio"),
-    
+    (ff_ratio, None, "FF \%"),
     ("switching_power", "switching_power_%", "Swit. P (mW)"),
     ("tot_power", "tot_power_%",             "Total P (mW)"),
 
-    ("WNS", "WNS_%", "WNS (ns)"),
-    ("TNS", "TNS_%", "TNS (ns)"),
+    ("WNS", "WNS_%", "WS (ps)"),
+    # ("TNS", "TNS_%", "TS (ps)"),
 
     ("area", "area_%", "Area ($\\mu m^2$)"),
-    ("WL", "WL_%",     "TWL ($\\mu m$)   "),
-
     ("#clk bufs", "#clk bufs_%", "\#clk bufs")
 ]
 
@@ -99,12 +104,48 @@ def convert_units(value, value_col):
 
     return value
 
+def is_better(metric_name, ours, sftray, nc_wns=None):
+    """
+    Returns True if Ours is better than SFTray.
+    """
+
+    if pd.isna(ours) or pd.isna(sftray):
+        return False
+
+    # More reduction is better
+    if metric_name in [
+        "switching_power_%",
+        "tot_power_%",
+        "area_%",
+        "#clk bufs_%"
+    ]:
+        return ours < sftray
+
+    # WNS special case
+    if metric_name == "WNS_%":
+
+        # NC timing violation
+        if nc_wns is not None and nc_wns < 0:
+            return ours < sftray
+
+        # NC timing clean
+        return ours > sftray
+
+    return False
+
+
+def latex_bold(text):
+    return rf"\textbf{{{text}}}"
+
 
 def format_absolute(value, value_col):
     if pd.isna(value):
         return ""
 
     value = convert_units(value, value_col)
+    
+    if callable(value_col) and value_col.__name__ == "ff_ratio":
+        return f"{float(value):.1f}%"
 
     if isinstance(value, float):
         return f"{value:.3f}"
@@ -152,37 +193,58 @@ df = df[valid_rows]
 
 # ------------------------------------------------------------
 # DESIGN ORDER (#1b / #inst DESC)
+# + TIMING CLEAN DESIGNS LAST
 # ------------------------------------------------------------
 
 design_order = {}
+positive_ws_designs = []
+
 for design in df["design"].unique():
     nc_rows = df[
         (df["design"] == design)
         & (df["flow"].str.lower() == "nc")
     ]
+
     if len(nc_rows) == 0:
         design_order[design] = 0
         continue
-    design_order[design] = nc_rows.iloc[0]["#1-bit FFs"] / nc_rows.iloc[0]["#inst"]
+
+    nc_row = nc_rows.iloc[0]
+
+    design_order[design] = (
+        nc_row["#1-bit FFs"] / nc_row["#inst"]
+    )
+
+    # WS > 0 -> move to end
+    if nc_row["WNS"] > 0:
+        positive_ws_designs.append(design)
 
 # ------------------------------------------------------------
 # SORT
 # ------------------------------------------------------------
 
 df["_design_order"] = df["design"].map(design_order)
+
+df["_positive_ws"] = df["design"].apply(
+    lambda d: 1 if d in positive_ws_designs else 0
+)
+
 df["_alpha"] = df["flow"].apply(
     lambda x: extract_alpha(x) if extract_alpha(x) is not None else -1
 )
+
 df["_flow_order"] = df["flow"].map(flow_order)
 
 df = df.sort_values(
     by=[
+        "_positive_ws",      # negative WS first
         "_design_order",
         "design",
         "_alpha",
         "_flow_order"
     ],
     ascending=[
+        True,
         False,
         True,
         True,
@@ -194,52 +256,93 @@ df = df.sort_values(
 # LATEX TABLE
 # ------------------------------------------------------------
 
-latex = []
-latex.append(r"\begin{table*}[t]")
-latex.append(r"\centering")
-latex.append(
-    r"\caption{Comparison of MBFF clustering strategies "
-    r"for varying $\alpha$ values ($\beta=0.1$). "
-    r"NC rows present absolute values, while SFTray and Ours "
-    r"show percentage variation relative to NC "
-    r"(except for \#1b, \#2b and \#4b).}"
-)
-latex.append(r"\label{tab:varying_alpha}")
-latex.append(r"\resizebox{\textwidth}{!}{")
+def begin_table(table_idx):
+    latex = []
+
+    latex.append(r"\begin{table*}[t]")
+    latex.append(r"\centering")
+
+    latex.append(
+        rf"\caption{{Comparison of MBFF clustering strategies "
+        rf"for varying $\alpha$ values with $\beta=0.1$ "
+        rf"(Part {table_idx}).}}"
+    )
+
+    latex.append(
+        rf"\label{{tab:varying_alpha_part{table_idx}}}"
+    )
+
+    latex.append(r"\resizebox{\textwidth}{!}{")
+
+    col_fmt = (
+        "ll|"
+        "cccc|"
+        "ccc|"
+        "cc"
+    )
+
+    latex.append(r"\begin{tabular}{" + col_fmt + "}")
+    latex.append(r"\toprule")
+
+    header = [r"Design", r"Version"]
+
+    for _, _, name in metrics:
+        header.append(name)
+
+    latex.append(" & ".join(header) + r" \\")
+    latex.append(r"\midrule")
+
+    return latex
+
+def end_table(latex):
+    latex.append(r"\bottomrule")
+    latex.append(r"\end{tabular}")
+    latex.append(r"}")
+    latex.append(r"\end{table*}")
+    return latex
+
+all_tables = []
+
+table_idx = 1
+latex = begin_table(table_idx)
+
+design_counter = 0
 
 # ------------------------------------------------------------
-# COLUMN FORMAT
+# ORDERED DESIGN LIST
 # ------------------------------------------------------------
 
-col_fmt = (
-    "ll|"
-    "cccc|"  # 4 colunas agora: #1b, #2b, #4b + FF Ratio
-    "cc|"
-    "cc|"
-    "ccc"
-)
+negative_designs = []
+positive_designs = []
 
-latex.append(r"\begin{tabular}{" + col_fmt + "}")
-latex.append(r"\toprule")
+for design in df["design"].unique():
 
-# ------------------------------------------------------------
-# HEADER
-# ------------------------------------------------------------
+    nc_row = df[
+        (df["design"] == design)
+        & (df["flow"].str.lower() == "nc")
+    ].iloc[0]
 
-header = [r"Design", r"Condition"]
-for _, _, name in metrics:
-    header.append(name)
+    if nc_row["WNS"] > 0:
+        positive_designs.append(design)
+    else:
+        negative_designs.append(design)
 
-latex.append(" & ".join(header) + r" \\")
-latex.append(r"\midrule")
+ordered_designs = negative_designs + positive_designs
 
 # ------------------------------------------------------------
 # BODY
 # ------------------------------------------------------------
 
-for design in df["design"].unique():
+for idx, design in enumerate(ordered_designs):
     design_df = df[df["design"] == design]
     nc_rows = design_df[design_df["flow"].str.lower() == "nc"]
+    
+    if idx > 0 and idx % DESIGNS_PER_TABLE == 0:
+        latex = end_table(latex)
+        all_tables.extend(latex)
+
+        table_idx += 1
+        latex = begin_table(table_idx)
 
     if len(nc_rows) == 0:
         continue
@@ -300,24 +403,65 @@ for design in df["design"].unique():
             entries = [""]
             entries.append(rf"Ours ($\alpha$={alpha})")
 
-            for value_col, pct_col, _ in metrics:
-                raw_val = value_col(row) if callable(value_col) else row[value_col]
-                
+            for value_col, pct_col, metric_name in metrics:
+                raw_val = (
+                    value_col(row)
+                    if callable(value_col)
+                    else row[value_col]
+                )
+
                 if pct_col is None or pct_col not in df.columns:
+
                     value = format_absolute(raw_val, value_col)
-                    entries.append(latex_escape(value))
+
+                    entries.append(
+                        latex_escape(value)
+                    )
+
                 else:
-                    entries.append(latex_escape(format_percentage(row[pct_col])))
+
+                    value_str = format_percentage(
+                        row[pct_col]
+                    )
+
+                    # compare against SFTray
+                    bold = False
+
+                    if len(sftray_rows) > 0:
+
+                        sftray_row = sftray_rows.iloc[0]
+
+                        bold = is_better(
+                            pct_col,
+                            row[pct_col],
+                            sftray_row[pct_col],
+                            nc_row["WNS"]
+                        )
+
+                    if bold:
+                        value_str = latex_bold(latex_escape(value_str))
+                    else:
+                        value_str = latex_escape(value_str)
+
+                    entries.append(value_str)
 
             latex.append(" & ".join(entries) + r" \\")
             latex.append(r"\addlinespace[0.3em]")
             
+    # # extra separator between violating and timing-clean designs
+    # if (
+    #     design == negative_designs[-1]
+    #     and len(positive_designs) > 0
+    # ):
+    #     latex.append(r"\midrule")
+    #     latex.append(r"\midrule")
+    # else:
     latex.append(r"\midrule")
+        
+    design_counter += 1
 
-latex.append(r"\bottomrule")
-latex.append(r"\end{tabular}")
-latex.append(r"}")
-latex.append(r"\end{table*}")
+latex = end_table(latex)
+all_tables.extend(latex)
 
 # ------------------------------------------------------------
 # SAVE
@@ -325,6 +469,6 @@ latex.append(r"\end{table*}")
 
 os.makedirs(os.path.dirname(OUTPUT_TEX), exist_ok=True)
 with open(OUTPUT_TEX, "w") as f:
-    f.write("\n".join(latex))
+    f.write("\n\n".join(all_tables))
 
 print(f"Saved: {OUTPUT_TEX}")

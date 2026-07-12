@@ -1,0 +1,280 @@
+OpenROAD 843a08803f27d34a8dee7637ed89fc9bb87aebfb 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNH2V2X_RVT_TT_nldm_FAKE.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNV2X_RVT_TT_nldm_FAKE.lib
+read_db ./results/asap7/uart/baseline_alpha_8-beta_0.1-run2/3_place.odb
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
+[INFO CTS-0050] Root buffer is BUFx4_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx8_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx4_ASAP7_75t_R
+                    BUFx10_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx10_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0010]  Clock net "clk" has 20 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 20.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0023]  Original sink region: [(2262, 1350), (13980, 12689)].
+[INFO CTS-0024]  Normalized sink region: [(1.67556, 1), (10.3556, 9.39926)].
+[INFO CTS-0025]     Width:  8.6800.
+[INFO CTS-0026]     Height: 8.3993.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 10
+    Sub-region size: 4.3400 X 8.3993
+[INFO CTS-0034]     Segment length (rounded): 2.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 20.
+[INFO CTS-0018]     Created 3 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 3 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 10:2..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 20
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 21.33 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 0
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                     642
+Diamond Move Success:            642 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement          4.1 u
+average displacement        0.0 u
+max displacement            0.5 u
+original HPWL            1220.6 u
+legalized HPWL           1272.8 u
+delta HPWL                    4 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -skip_gate_cloning -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove SplitLoadMove 
+[INFO RSZ-0094] Found 70 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 70 out of 70 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% |  -35.237 |    -1136.4 |     70 | _tray_size4_147/D1
+       10 |       0 |       1 |        4 |      0 |     4 |    +0.7% |  -25.060 |     -893.6 |     70 | _tray_size4_147/D1
+       16 |       0 |       2 |        4 |      0 |     6 |    +0.8% |  -22.235 |     -840.9 |     70 | _tray_size4_140/D0
+       20 |       0 |       4 |        5 |      0 |     6 |    +1.0% |  -23.428 |     -853.8 |     70 | _tray_size4_147/D1
+       28 |       0 |       2 |        4 |      0 |     6 |    +0.8% |  -22.235 |     -840.9 |     70 | _tray_size4_140/D0
+       30 |       0 |       2 |        4 |      0 |     7 |    +0.8% |  -22.235 |     -841.3 |     70 | _tray_size4_140/D0
+       32 |       0 |       2 |        4 |      0 |     9 |    +0.8% |  -22.235 |     -840.7 |     70 | _tray_size4_140/D0
+       35 |       0 |       2 |        4 |      0 |    11 |    +0.8% |  -22.235 |     -839.0 |     70 | _tray_size4_140/D0
+       40 |       0 |       3 |        4 |      0 |    14 |    +0.9% |  -22.821 |     -846.5 |     70 | _tray_size4_147/D1
+       40 |       0 |       2 |        4 |      0 |    11 |    +0.8% |  -22.235 |     -839.0 |     70 | _tray_size4_140/D0
+       44 |       0 |       2 |        4 |      0 |    12 |    +0.8% |  -22.174 |     -836.7 |     70 | _tray_size4_140/D0
+       50 |       0 |       4 |        5 |      0 |    14 |    +1.2% |  -22.174 |     -740.8 |     70 | _tray_size4_140/D0
+       58 |       0 |       4 |        5 |      0 |    18 |    +1.2% |  -22.174 |     -650.1 |     70 | _tray_size4_140/D0
+       60 |       0 |       5 |        5 |      0 |    18 |    +1.2% |  -22.505 |     -658.2 |     70 | _tray_size4_147/D1
+       66 |       0 |       4 |        5 |      0 |    18 |    +1.2% |  -22.174 |     -650.1 |     70 | _tray_size4_140/D0
+       70 |       0 |       5 |        7 |      0 |    18 |    +1.4% |  -27.789 |     -709.4 |     70 | _tray_size4_141/D1
+       80 |       0 |       8 |       12 |      0 |    20 |    +2.3% |  -24.282 |     -731.9 |     70 | _tray_size4_140/D0
+       80 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+       90 |       0 |       8 |       11 |      0 |    18 |    +2.2% |  -24.282 |     -701.1 |     70 | _tray_size4_140/D0
+       90 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+      100 |       0 |       8 |       11 |      0 |    18 |    +2.2% |  -24.282 |     -701.1 |     70 | _tray_size4_140/D0
+      100 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+      109 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+      110 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+      119 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+      120 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+      128 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+      130 |       0 |       4 |        7 |      0 |    18 |    +1.4% |  -30.342 |     -714.9 |     70 | _tray_size4_141/D1
+      137 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+      140 |       0 |       5 |        7 |      0 |    18 |    +1.4% |  -27.789 |     -709.4 |     70 | _tray_size4_141/D1
+      146 |       0 |       4 |        6 |      0 |    18 |    +1.3% |  -22.174 |     -613.8 |     70 | _tray_size4_140/D0
+      150 |       0 |       6 |        7 |      0 |    18 |    +1.6% |  -22.174 |     -611.9 |     70 | _tray_size4_140/D0
+      153 |       0 |       6 |        7 |      0 |    20 |    +1.6% |  -22.174 |     -610.4 |     70 | _tray_size4_140/D0
+      158 |       0 |       6 |        7 |      0 |    21 |    +1.6% |  -22.174 |     -608.7 |     70 | _tray_size4_140/D0
+      160 |       0 |       6 |        7 |      0 |    22 |    +1.6% |  -22.174 |     -612.4 |     70 | _tray_size4_140/D0
+      164 |       0 |       6 |        8 |      0 |    22 |    +1.7% |  -22.174 |     -606.9 |     70 | _tray_size4_140/D0
+      169 |       0 |       6 |        9 |      0 |    23 |    +1.8% |  -22.174 |     -604.6 |     70 | _tray_size4_140/D0
+      170 |       0 |       6 |        9 |      0 |    23 |    +1.8% |  -22.174 |     -604.6 |     70 | _tray_size4_140/D0
+      173 |       0 |       6 |        9 |      0 |    26 |    +1.8% |  -22.174 |     -597.5 |     70 | _tray_size4_140/D0
+      180 |       0 |       9 |       12 |      0 |    28 |    +2.2% |  -24.282 |     -624.6 |     70 | _tray_size4_140/D0
+      183 |       0 |       6 |        9 |      0 |    26 |    +1.8% |  -22.174 |     -597.5 |     70 | _tray_size4_140/D0
+      187 |       0 |       6 |        9 |      0 |    28 |    +1.8% |  -22.174 |     -596.8 |     70 | _tray_size4_140/D0
+      190 |       0 |       8 |        9 |      0 |    28 |    +2.1% |  -22.174 |     -504.9 |     70 | _tray_size4_140/D0
+      191 |       0 |       8 |        9 |      0 |    28 |    +2.1% |  -22.174 |     -504.9 |     70 | _tray_size4_140/D0
+      196 |       0 |       8 |        9 |      0 |    28 |    +2.1% |  -22.174 |     -504.9 |     69 | _tray_size4_140/D0
+      200 |       0 |       8 |        9 |      0 |    31 |    +2.1% |  -22.174 |     -503.6 |     69 | _tray_size4_140/D0
+      200 |       0 |       8 |        9 |      0 |    31 |    +2.1% |  -22.174 |     -503.6 |     69 | _tray_size4_140/D0
+      204 |       0 |       8 |        9 |      0 |    32 |    +2.1% |  -22.174 |     -503.2 |     69 | _tray_size4_140/D0
+      207 |       0 |       8 |       10 |      0 |    33 |    +2.2% |  -22.174 |     -502.0 |     67 | _tray_size4_140/D0
+      210 |       0 |       9 |       10 |      0 |    34 |    +2.2% |  -22.174 |     -499.5 |     67 | _tray_size4_140/D0
+      213 |       0 |      10 |       10 |      0 |    35 |    +2.3% |  -22.174 |     -495.8 |     67 | _tray_size4_140/D0
+      217 |       0 |      11 |       11 |      0 |    35 |    +2.4% |  -22.174 |     -535.2 |     67 | _tray_size4_140/D0
+      219 |       0 |      11 |       11 |      0 |    36 |    +2.4% |  -22.174 |     -534.9 |     67 | _tray_size4_140/D0
+      220 |       0 |      11 |       11 |      0 |    36 |    +2.4% |  -22.174 |     -534.9 |     67 | _tray_size4_140/D0
+      222 |       0 |      11 |       11 |      0 |    36 |    +2.4% |  -22.174 |     -534.9 |     67 | _tray_size4_140/D0
+      226 |       0 |      11 |       12 |      0 |    37 |    +2.5% |  -22.174 |     -546.5 |     67 | _tray_size4_140/D0
+      227 |       0 |      11 |       12 |      0 |    37 |    +2.5% |  -22.174 |     -546.5 |     66 | _tray_size4_140/D0
+      230 |       0 |      11 |       14 |      0 |    37 |    +2.8% |  -22.174 |     -641.8 |     66 | _tray_size4_140/D0
+      234 |       0 |      11 |       12 |      0 |    37 |    +2.5% |  -22.174 |     -546.5 |     66 | _tray_size4_140/D0
+      237 |       0 |      12 |       12 |      0 |    38 |    +2.7% |  -22.174 |     -542.4 |     64 | _tray_size4_140/D0
+      239 |       0 |      12 |       12 |      0 |    38 |    +2.7% |  -22.174 |     -542.4 |     64 | _tray_size4_140/D0
+      240 |       0 |      12 |       12 |      0 |    38 |    +2.7% |  -22.174 |     -542.4 |     64 | _tray_size4_140/D0
+      241 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      246 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      250 |       0 |      13 |       14 |      0 |    39 |    +3.1% |  -22.174 |     -602.3 |     64 | _tray_size4_140/D0
+      251 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      256 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      260 |       0 |      13 |       14 |      0 |    39 |    +3.1% |  -22.174 |     -602.3 |     64 | _tray_size4_140/D0
+      261 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      263 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      268 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      270 |       0 |      12 |       13 |      0 |    39 |    +2.9% |  -22.174 |     -647.0 |     64 | _tray_size4_140/D0
+      273 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      276 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      280 |       0 |      13 |       14 |      0 |    39 |    +3.1% |  -22.174 |     -602.3 |     64 | _tray_size4_140/D0
+      281 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      284 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     64 | _tray_size4_140/D0
+      285 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     63 | _tray_size4_140/D0
+      286 |       0 |      12 |       12 |      0 |    39 |    +2.7% |  -22.174 |     -540.3 |     62 | _tray_size4_140/D0
+      290 |       0 |      12 |       12 |      0 |    42 |    +2.7% |  -22.174 |     -539.8 |     62 | _tray_size4_140/D0
+      290 |       0 |      12 |       12 |      0 |    41 |    +2.7% |  -22.174 |     -539.6 |     62 | _tray_size4_140/D0
+      292 |       0 |      12 |       12 |      0 |    42 |    +2.7% |  -22.174 |     -539.2 |     62 | _tray_size4_140/D0
+      293 |       0 |      12 |       12 |      0 |    42 |    +2.7% |  -22.174 |     -539.2 |     61 | _tray_size4_140/D0
+      297 |       0 |      12 |       13 |      0 |    42 |    +2.8% |  -22.174 |     -537.2 |     61 | _tray_size4_140/D0
+      300 |       0 |      14 |       13 |      0 |    42 |    +3.0% |  -22.174 |     -535.2 |     60 | _tray_size4_140/D0
+      300 |       0 |      14 |       13 |      0 |    42 |    +3.0% |  -22.174 |     -535.2 |     59 | _tray_size4_140/D0
+      301 |       0 |      14 |       13 |      0 |    42 |    +3.0% |  -22.174 |     -535.2 |     58 | _tray_size4_140/D0
+      302 |       0 |      14 |       13 |      0 |    42 |    +3.0% |  -22.174 |     -535.2 |     57 | _tray_size4_140/D0
+      303 |       0 |      14 |       13 |      0 |    42 |    +3.0% |  -22.174 |     -535.2 |     56 | _tray_size4_140/D0
+      304 |       0 |      14 |       13 |      0 |    42 |    +3.0% |  -22.174 |     -535.2 |     55 | _tray_size4_140/D0
+      305 |       0 |      14 |       13 |      0 |    42 |    +3.0% |  -22.174 |     -535.2 |     54 | _tray_size4_140/D0
+      308 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     52 | _tray_size4_140/D0
+      309 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+      310 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+      310 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     50 | _tray_size4_140/D0
+      311 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     49 | _tray_size4_140/D0
+      315 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     49 | _tray_size4_140/D0
+      316 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     48 | _tray_size4_140/D0
+      317 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     47 | _tray_size4_140/D0
+      318 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     46 | _tray_size4_140/D0
+      319 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     45 | _tray_size4_140/D0
+      320 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     45 | _tray_size4_140/D0
+      320 |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     44 | _tray_size4_140/D0
+     320* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     321* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     322* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     323* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     324* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     325* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     326* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     327* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     328* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     329* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     330* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     330* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     331* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     332* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     333* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     334* |       0 |      16 |       13 |      0 |    42 |    +3.1% |  -22.174 |     -549.9 |     51 | _tray_size4_140/D0
+     336* |       0 |      16 |       13 |      0 |    43 |    +3.1% |  -22.174 |     -548.6 |     51 | _tray_size4_140/D0
+     338* |       0 |      17 |       13 |      0 |    43 |    +3.1% |  -22.174 |     -543.3 |     51 | _tray_size4_140/D0
+     339* |       0 |      17 |       13 |      0 |    43 |    +3.1% |  -22.174 |     -543.3 |     51 | _tray_size4_140/D0
+     340* |       0 |      17 |       13 |      0 |    43 |    +3.1% |  -22.174 |     -543.3 |     51 | _tray_size4_140/D0
+     341* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     342* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     343* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     344* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     345* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     346* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     347* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     348* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     349* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     350* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     350* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     351* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     352* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     353* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     354* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     355* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     356* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     357* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     358* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     359* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     360* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     360* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     361* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     362* |       0 |      17 |       13 |      0 |    44 |    +3.1% |  -22.174 |     -543.1 |     51 | _tray_size4_140/D0
+     364* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     365* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     366* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     367* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     368* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     369* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     370* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     370* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     371* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     372* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     373* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     374* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+     375* |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+    final |       0 |      17 |       13 |      0 |    45 |    +3.1% |  -22.174 |     -542.7 |     51 | _tray_size4_140/D0
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0045] Inserted 13 buffers, 1 to split loads.
+[INFO RSZ-0051] Resized 17 instances: 17 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 45 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0033] No hold violations found.
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                     655
+Diamond Move Success:            655 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement         22.3 u
+average displacement        0.0 u
+max displacement            1.0 u
+original HPWL            1290.0 u
+legalized HPWL           1310.7 u
+delta HPWL                    2 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 91 um^2 41% utilization.
+write_db ./results/asap7/uart/baseline_alpha_8-beta_0.1-run2/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/uart/baseline_alpha_8-beta_0.1-run2/4_cts.sdc
+Elapsed time: 0:02.65[h:]min:sec. CPU time: user 3.01 sys 0.36 (127%). Peak memory: 232140KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                            2            226 39a9131327fa80fe8b19

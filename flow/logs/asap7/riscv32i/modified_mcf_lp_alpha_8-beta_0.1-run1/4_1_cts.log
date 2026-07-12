@@ -1,0 +1,1256 @@
+OpenROAD 206ac68d3d40c3348b7d5dd95efee7cae4c2eb83 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 32 thread(s).
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/fakeram7_256x32.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNH2V2X_RVT_TT_nldm_FAKE.lib
+read_liberty /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_DFFHQNV2X_RVT_TT_nldm_FAKE.lib
+read_db -hier ./results/asap7/riscv32i/modified_mcf_lp_alpha_8-beta_0.1-run1/3_place.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+source /home/lucast/workspace/OR-flow-TCC/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets -sink_clustering_size 10 -sink_clustering_max_diameter 50
+[INFO CTS-0050] Root buffer is BUFx16f_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx16f_ASAP7_75t_R
+                    BUFx24_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0011]  Clock net "clk" for macros has 4 sinks.
+[INFO CTS-0011]  Clock net "clk_regs" for registers has 308 sinks.
+[INFO CTS-0008] TritonCTS found 2 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 4.
+[INFO CTS-0029]  Macro  sinks will be clustered in groups of up to 4 and with maximum cluster diameter of 84.0 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0023]  Original sink region: [(29272, 24876), (58016, 24876)].
+[INFO CTS-0024]  Normalized sink region: [(21.683, 18.4267), (42.9748, 18.4267)].
+[INFO CTS-0025]     Width:  21.2919.
+[INFO CTS-0026]     Height: 0.0000.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 2
+    Sub-region size: 10.6459 X 0.0000
+[INFO CTS-0034]     Segment length (rounded): 5.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 4.
+[INFO CTS-0201] 4 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_regs.
+[INFO CTS-0028]  Total number of sinks: 308.
+[INFO CTS-0029]  Register sinks will be clustered in groups of up to 10 and with maximum cluster diameter of 50.0 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0204] A clustering solution was found from clustering size of 10 and clustering diameter of 50.
+[INFO CTS-0205] Better solution may be possible if either -sink_clustering_size, -sink_clustering_max_diameter, or both options are omitted to enable automatic clustering.
+[INFO CTS-0019]  Total number of sinks after clustering: 32.
+[INFO CTS-0024]  Normalized sink region: [(5.45956, 5.08963), (40.7616, 44.4797)].
+[INFO CTS-0025]     Width:  35.3021.
+[INFO CTS-0026]     Height: 39.3901.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 16
+    Sub-region size: 35.3021 X 19.6950
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 2
+    Direction: Horizontal
+    Sinks per sub-region: 8
+    Sub-region size: 17.6510 X 19.6950
+[INFO CTS-0034]     Segment length (rounded): 8.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 32.
+[INFO CTS-0018]     Created 3 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 3 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:2..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0018]     Created 37 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 37 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:1, 6:2, 7:1, 9:1, 10:31..
+[INFO CTS-0017]     Max level of the clock tree: 2.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 4
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 83.58 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 0
+[INFO CTS-0098] Clock net "clk_regs"
+[INFO CTS-0099]  Sinks 331
+[INFO CTS-0100]  Leaf buffers 32
+[INFO CTS-0101]  Average sink wire length 40.97 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 23
+[INFO CTS-0033] Balancing latency for clock clk
+[INFO CTS-0036]  inserted 2 delay buffers
+[INFO CTS-0037] Total number of delay buffers: 2
+estimate_parasitics -placement
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9412
+Diamond Move Success:           9412 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        206.8 u
+average displacement        0.0 u
+max displacement           12.7 u
+original HPWL           46062.6 u
+legalized HPWL          46789.2 u
+delta HPWL                    2 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 972 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 972 out of 972 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpt
+--------------------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |    +0.0% | -109.236 |   -46964.8 |    972 | _tray_size4_1980/D1
+       10 |       0 |       7 |        0 |      0 |     2 |    +0.0% |  -89.460 |   -43373.2 |    972 | _tray_size4_1966/D0
+       20 |       0 |      15 |        0 |      0 |     4 |    +0.0% |  -73.284 |   -34169.5 |    972 | _tray_size4_1980/D1
+       30 |       0 |      20 |        1 |      3 |     5 |    +0.0% |  -63.752 |   -27688.4 |    972 | _tray_size4_1927/D1
+       40 |       0 |      26 |        7 |      3 |     6 |    +0.1% |  -51.959 |   -19484.5 |    972 | _tray_size4_1927/D1
+       50 |       0 |      26 |       10 |      4 |    12 |    +0.1% |  -46.560 |   -15764.7 |    972 | _tray_size4_1927/D1
+       60 |       0 |      33 |       10 |      5 |    14 |    +0.1% |  -44.819 |   -15426.4 |    972 | riscv.dp.rf.rf[4][21]$_DFFE_PP_/D
+       70 |       0 |      40 |       12 |      6 |    14 |    +0.1% |  -36.854 |   -10579.9 |    972 | riscv.dp.rf.rf[4][21]$_DFFE_PP_/D
+       80 |       0 |      46 |       15 |      6 |    15 |    +0.2% |  -24.448 |    -5115.5 |    972 | riscv.dp.rf.rf[4][21]$_DFFE_PP_/D
+       90 |       0 |      49 |       20 |      8 |    17 |    +0.2% |  -22.332 |    -4172.0 |    972 | riscv.dp.rf.rf[4][21]$_DFFE_PP_/D
+      100 |       0 |      54 |       22 |      9 |    19 |    +0.2% |  -24.012 |    -4947.6 |    972 | _tray_size4_1980/D1
+      110 |       0 |      59 |       24 |      9 |    22 |    +0.2% |  -18.952 |    -2986.8 |    972 | _tray_size4_1980/D1
+      120 |       0 |      64 |       25 |      9 |    26 |    +0.2% |  -18.816 |    -3182.3 |    972 | _tray_size4_1995/D3
+      130 |       0 |      68 |       27 |     10 |    29 |    +0.3% |  -15.103 |    -1877.1 |    972 | _tray_size4_1980/D1
+      140 |       1 |      72 |       31 |     11 |    31 |    +0.3% |   -9.686 |     -574.7 |    972 | _tray_size4_1980/D1
+      150 |       1 |      76 |       33 |     11 |    35 |    +0.3% |  -12.473 |     -975.5 |    972 | _tray_size4_1980/D1
+      160 |       2 |      79 |       38 |     11 |    39 |    +0.3% |   -7.636 |     -354.6 |    972 | _tray_size4_1980/D1
+      170 |       2 |      82 |       40 |     13 |    43 |    +0.4% |   -7.781 |     -366.8 |    972 | _tray_size4_1980/D1
+      180 |       2 |      87 |       45 |     13 |    46 |    +0.4% |   -2.996 |      -59.2 |    972 | _tray_size4_1980/D1
+      186 |       2 |      92 |       45 |     13 |    47 |    +0.4% |   -1.829 |      -30.7 |    970 | _tray_size4_1980/D1
+      190 |       2 |      94 |       45 |     13 |    48 |    +0.4% |   -1.132 |      -15.7 |    970 | _tray_size4_1930/D3
+      196 |       2 |      96 |       45 |     13 |    48 |    +0.4% |   -1.132 |      -14.2 |    969 | _tray_size4_1930/D3
+      200 |       2 |      97 |       46 |     14 |    48 |    +0.4% |   -0.711 |       -1.2 |    969 | _tray_size4_1980/D1
+      201 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    967 | _tray_size4_1980/D1
+      202 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    966 | _tray_size4_1980/D1
+      203 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    965 | _tray_size4_1980/D1
+      204 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    964 | _tray_size4_1980/D1
+      205 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    963 | _tray_size4_1980/D1
+      206 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    962 | _tray_size4_1980/D1
+      207 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    961 | _tray_size4_1980/D1
+      208 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    960 | _tray_size4_1980/D1
+      209 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    959 | _tray_size4_1980/D1
+      210 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    959 | _tray_size4_1980/D1
+      210 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    958 | _tray_size4_1980/D1
+      211 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    957 | _tray_size4_1980/D1
+      212 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    956 | _tray_size4_1980/D1
+      213 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    955 | _tray_size4_1980/D1
+      214 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    954 | _tray_size4_1980/D1
+      215 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    953 | _tray_size4_1980/D1
+      216 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    952 | _tray_size4_1980/D1
+      217 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    951 | _tray_size4_1980/D1
+      218 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    950 | _tray_size4_1980/D1
+      219 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    949 | _tray_size4_1980/D1
+      220 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    949 | _tray_size4_1980/D1
+      220 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    948 | _tray_size4_1980/D1
+      221 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    947 | _tray_size4_1980/D1
+      222 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    946 | _tray_size4_1980/D1
+      223 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    945 | _tray_size4_1980/D1
+      224 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    944 | _tray_size4_1980/D1
+      225 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    943 | _tray_size4_1980/D1
+      226 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    942 | _tray_size4_1980/D1
+      227 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    941 | _tray_size4_1980/D1
+      228 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    940 | _tray_size4_1980/D1
+      229 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    939 | _tray_size4_1980/D1
+      230 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    939 | _tray_size4_1980/D1
+      230 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    938 | _tray_size4_1980/D1
+      231 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    937 | _tray_size4_1980/D1
+      232 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    936 | _tray_size4_1980/D1
+      233 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    935 | _tray_size4_1980/D1
+      234 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    934 | _tray_size4_1980/D1
+      235 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    933 | _tray_size4_1980/D1
+      236 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    932 | _tray_size4_1980/D1
+      237 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    931 | _tray_size4_1980/D1
+      238 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    930 | _tray_size4_1980/D1
+      239 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    929 | _tray_size4_1980/D1
+      240 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    929 | _tray_size4_1980/D1
+      240 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    928 | _tray_size4_1980/D1
+      241 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    927 | _tray_size4_1980/D1
+      242 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    926 | _tray_size4_1980/D1
+      243 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    925 | _tray_size4_1980/D1
+      244 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    924 | _tray_size4_1980/D1
+      245 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    923 | _tray_size4_1980/D1
+      246 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    922 | _tray_size4_1980/D1
+      247 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    921 | _tray_size4_1980/D1
+      248 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    920 | _tray_size4_1980/D1
+      249 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    919 | _tray_size4_1980/D1
+      250 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    919 | _tray_size4_1980/D1
+      250 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    918 | _tray_size4_1980/D1
+      251 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    917 | _tray_size4_1980/D1
+      252 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    916 | _tray_size4_1980/D1
+      253 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    915 | _tray_size4_1980/D1
+      254 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    914 | _tray_size4_1980/D1
+      255 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    913 | _tray_size4_1980/D1
+      256 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    912 | _tray_size4_1980/D1
+      257 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    911 | _tray_size4_1980/D1
+      258 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    910 | _tray_size4_1980/D1
+      259 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    909 | _tray_size4_1980/D1
+      260 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    909 | _tray_size4_1980/D1
+      260 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    908 | _tray_size4_1980/D1
+      261 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    907 | _tray_size4_1980/D1
+      262 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    906 | _tray_size4_1980/D1
+      263 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    905 | _tray_size4_1980/D1
+      264 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    904 | _tray_size4_1980/D1
+      265 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    903 | _tray_size4_1980/D1
+      266 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    902 | _tray_size4_1980/D1
+      267 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    901 | _tray_size4_1980/D1
+      268 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    900 | _tray_size4_1980/D1
+      269 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    899 | _tray_size4_1980/D1
+      270 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    899 | _tray_size4_1980/D1
+      270 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    898 | _tray_size4_1980/D1
+      271 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    897 | _tray_size4_1980/D1
+      272 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    896 | _tray_size4_1980/D1
+      273 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    895 | _tray_size4_1980/D1
+      274 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    894 | _tray_size4_1980/D1
+      275 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    893 | _tray_size4_1980/D1
+      276 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    892 | _tray_size4_1980/D1
+      277 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    891 | _tray_size4_1980/D1
+      278 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    890 | _tray_size4_1980/D1
+      279 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    889 | _tray_size4_1980/D1
+      280 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    889 | _tray_size4_1980/D1
+      280 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    888 | _tray_size4_1980/D1
+      281 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    887 | _tray_size4_1980/D1
+      282 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    886 | _tray_size4_1980/D1
+      283 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    885 | _tray_size4_1980/D1
+      284 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    884 | _tray_size4_1980/D1
+      285 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    883 | _tray_size4_1980/D1
+      286 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    882 | _tray_size4_1980/D1
+      287 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    881 | _tray_size4_1980/D1
+      288 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    880 | _tray_size4_1980/D1
+      289 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    879 | _tray_size4_1980/D1
+      290 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    879 | _tray_size4_1980/D1
+      290 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    878 | _tray_size4_1980/D1
+      291 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    877 | _tray_size4_1980/D1
+      292 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    876 | _tray_size4_1980/D1
+      293 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    875 | _tray_size4_1980/D1
+      294 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    874 | _tray_size4_1980/D1
+      295 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    873 | _tray_size4_1980/D1
+      296 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    872 | _tray_size4_1980/D1
+      297 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    871 | _tray_size4_1980/D1
+      298 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    870 | _tray_size4_1980/D1
+      299 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    869 | _tray_size4_1980/D1
+      300 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    869 | _tray_size4_1980/D1
+      300 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    868 | _tray_size4_1980/D1
+      301 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    867 | _tray_size4_1980/D1
+      302 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    866 | _tray_size4_1980/D1
+      303 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    865 | _tray_size4_1980/D1
+      304 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    864 | _tray_size4_1980/D1
+      305 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    863 | _tray_size4_1980/D1
+      306 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    862 | _tray_size4_1980/D1
+      307 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    861 | _tray_size4_1980/D1
+      308 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    860 | _tray_size4_1980/D1
+      309 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    859 | _tray_size4_1980/D1
+      310 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    859 | _tray_size4_1980/D1
+      310 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    858 | _tray_size4_1980/D1
+      311 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    857 | _tray_size4_1980/D1
+      312 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    856 | _tray_size4_1980/D1
+      313 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    855 | _tray_size4_1980/D1
+      314 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    854 | _tray_size4_1980/D1
+      315 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    853 | _tray_size4_1980/D1
+      316 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    852 | _tray_size4_1980/D1
+      317 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    851 | _tray_size4_1980/D1
+      318 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    850 | _tray_size4_1980/D1
+      319 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    849 | _tray_size4_1980/D1
+      320 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    849 | _tray_size4_1980/D1
+      320 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    848 | _tray_size4_1980/D1
+      321 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    847 | _tray_size4_1980/D1
+      322 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    846 | _tray_size4_1980/D1
+      323 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    845 | _tray_size4_1980/D1
+      324 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    844 | _tray_size4_1980/D1
+      325 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    843 | _tray_size4_1980/D1
+      326 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    842 | _tray_size4_1980/D1
+      327 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    841 | _tray_size4_1980/D1
+      328 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    840 | _tray_size4_1980/D1
+      329 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    839 | _tray_size4_1980/D1
+      330 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    839 | _tray_size4_1980/D1
+      330 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    838 | _tray_size4_1980/D1
+      331 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    837 | _tray_size4_1980/D1
+      332 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    836 | _tray_size4_1980/D1
+      333 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    835 | _tray_size4_1980/D1
+      334 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    834 | _tray_size4_1980/D1
+      335 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    833 | _tray_size4_1980/D1
+      336 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    832 | _tray_size4_1980/D1
+      337 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    831 | _tray_size4_1980/D1
+      338 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    830 | _tray_size4_1980/D1
+      339 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    829 | _tray_size4_1980/D1
+      340 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    829 | _tray_size4_1980/D1
+      340 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    828 | _tray_size4_1980/D1
+      341 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    827 | _tray_size4_1980/D1
+      342 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    826 | _tray_size4_1980/D1
+      343 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    825 | _tray_size4_1980/D1
+      344 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    824 | _tray_size4_1980/D1
+      345 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    823 | _tray_size4_1980/D1
+      346 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    822 | _tray_size4_1980/D1
+      347 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    821 | _tray_size4_1980/D1
+      348 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    820 | _tray_size4_1980/D1
+      349 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    819 | _tray_size4_1980/D1
+      350 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    819 | _tray_size4_1980/D1
+      350 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    818 | _tray_size4_1980/D1
+      351 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    817 | _tray_size4_1980/D1
+      352 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    816 | _tray_size4_1980/D1
+      353 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    815 | _tray_size4_1980/D1
+      354 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    814 | _tray_size4_1980/D1
+      355 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    813 | _tray_size4_1980/D1
+      356 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    812 | _tray_size4_1980/D1
+      357 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    811 | _tray_size4_1980/D1
+      358 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    810 | _tray_size4_1980/D1
+      359 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    809 | _tray_size4_1980/D1
+      360 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    809 | _tray_size4_1980/D1
+      360 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    808 | _tray_size4_1980/D1
+      361 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    807 | _tray_size4_1980/D1
+      362 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    806 | _tray_size4_1980/D1
+      363 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    805 | _tray_size4_1980/D1
+      364 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    804 | _tray_size4_1980/D1
+      365 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    803 | _tray_size4_1980/D1
+      366 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    802 | _tray_size4_1980/D1
+      367 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    801 | _tray_size4_1980/D1
+      368 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    800 | _tray_size4_1980/D1
+      369 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    799 | _tray_size4_1980/D1
+      370 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    799 | _tray_size4_1980/D1
+      370 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    798 | _tray_size4_1980/D1
+      371 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    797 | _tray_size4_1980/D1
+      372 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    796 | _tray_size4_1980/D1
+      373 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    795 | _tray_size4_1980/D1
+      374 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    794 | _tray_size4_1980/D1
+      375 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    793 | _tray_size4_1980/D1
+      376 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    792 | _tray_size4_1980/D1
+      377 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    791 | _tray_size4_1980/D1
+      378 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    790 | _tray_size4_1980/D1
+      379 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    789 | _tray_size4_1980/D1
+      380 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    789 | _tray_size4_1980/D1
+      380 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    788 | _tray_size4_1980/D1
+      381 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    787 | _tray_size4_1980/D1
+      382 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    786 | _tray_size4_1980/D1
+      383 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    785 | _tray_size4_1980/D1
+      384 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    784 | _tray_size4_1980/D1
+      385 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    783 | _tray_size4_1980/D1
+      386 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    782 | _tray_size4_1980/D1
+      387 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    781 | _tray_size4_1980/D1
+      388 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    780 | _tray_size4_1980/D1
+      389 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    779 | _tray_size4_1980/D1
+      390 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    779 | _tray_size4_1980/D1
+      390 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    778 | _tray_size4_1980/D1
+      391 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    777 | _tray_size4_1980/D1
+      392 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    776 | _tray_size4_1980/D1
+      393 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    775 | _tray_size4_1980/D1
+      394 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    774 | _tray_size4_1980/D1
+      395 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    773 | _tray_size4_1980/D1
+      396 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    772 | _tray_size4_1980/D1
+      397 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    771 | _tray_size4_1980/D1
+      398 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    770 | _tray_size4_1980/D1
+      399 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    769 | _tray_size4_1980/D1
+      400 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    769 | _tray_size4_1980/D1
+      400 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    768 | _tray_size4_1980/D1
+      401 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    767 | _tray_size4_1980/D1
+      402 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    766 | _tray_size4_1980/D1
+      403 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    765 | _tray_size4_1980/D1
+      404 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    764 | _tray_size4_1980/D1
+      405 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    763 | _tray_size4_1980/D1
+      406 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    762 | _tray_size4_1980/D1
+      407 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    761 | _tray_size4_1980/D1
+      408 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    760 | _tray_size4_1980/D1
+      409 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    759 | _tray_size4_1980/D1
+      410 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    759 | _tray_size4_1980/D1
+      410 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    758 | _tray_size4_1980/D1
+      411 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    757 | _tray_size4_1980/D1
+      412 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    756 | _tray_size4_1980/D1
+      413 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    755 | _tray_size4_1980/D1
+      414 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    754 | _tray_size4_1980/D1
+      415 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    753 | _tray_size4_1980/D1
+      416 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    752 | _tray_size4_1980/D1
+      417 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    751 | _tray_size4_1980/D1
+      418 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    750 | _tray_size4_1980/D1
+      419 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    749 | _tray_size4_1980/D1
+      420 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    749 | _tray_size4_1980/D1
+      420 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    748 | _tray_size4_1980/D1
+      421 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    747 | _tray_size4_1980/D1
+      422 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    746 | _tray_size4_1980/D1
+      423 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    745 | _tray_size4_1980/D1
+      424 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    744 | _tray_size4_1980/D1
+      425 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    743 | _tray_size4_1980/D1
+      426 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    742 | _tray_size4_1980/D1
+      427 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    741 | _tray_size4_1980/D1
+      428 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    740 | _tray_size4_1980/D1
+      429 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    739 | _tray_size4_1980/D1
+      430 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    739 | _tray_size4_1980/D1
+      430 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    738 | _tray_size4_1980/D1
+      431 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    737 | _tray_size4_1980/D1
+      432 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    736 | _tray_size4_1980/D1
+      433 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    735 | _tray_size4_1980/D1
+      434 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    734 | _tray_size4_1980/D1
+      435 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    733 | _tray_size4_1980/D1
+      436 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    732 | _tray_size4_1980/D1
+      437 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    731 | _tray_size4_1980/D1
+      438 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    730 | _tray_size4_1980/D1
+      439 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    729 | _tray_size4_1980/D1
+      440 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    729 | _tray_size4_1980/D1
+      440 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    728 | _tray_size4_1980/D1
+      441 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    727 | _tray_size4_1980/D1
+      442 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    726 | _tray_size4_1980/D1
+      443 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    725 | _tray_size4_1980/D1
+      444 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    724 | _tray_size4_1980/D1
+      445 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    723 | _tray_size4_1980/D1
+      446 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    722 | _tray_size4_1980/D1
+      447 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    721 | _tray_size4_1980/D1
+      448 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    720 | _tray_size4_1980/D1
+      449 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    719 | _tray_size4_1980/D1
+      450 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    719 | _tray_size4_1980/D1
+      450 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    718 | _tray_size4_1980/D1
+      451 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    717 | _tray_size4_1980/D1
+      452 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    716 | _tray_size4_1980/D1
+      453 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    715 | _tray_size4_1980/D1
+      454 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    714 | _tray_size4_1980/D1
+      455 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    713 | _tray_size4_1980/D1
+      456 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    712 | _tray_size4_1980/D1
+      457 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    711 | _tray_size4_1980/D1
+      458 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    710 | _tray_size4_1980/D1
+      459 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    709 | _tray_size4_1980/D1
+      460 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    709 | _tray_size4_1980/D1
+      460 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    708 | _tray_size4_1980/D1
+      461 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    707 | _tray_size4_1980/D1
+      462 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    706 | _tray_size4_1980/D1
+      463 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    705 | _tray_size4_1980/D1
+      464 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    704 | _tray_size4_1980/D1
+      465 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    703 | _tray_size4_1980/D1
+      466 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    702 | _tray_size4_1980/D1
+      467 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    701 | _tray_size4_1980/D1
+      468 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    700 | _tray_size4_1980/D1
+      469 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    699 | _tray_size4_1980/D1
+      470 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    699 | _tray_size4_1980/D1
+      470 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    698 | _tray_size4_1980/D1
+      471 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    697 | _tray_size4_1980/D1
+      472 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    696 | _tray_size4_1980/D1
+      473 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    695 | _tray_size4_1980/D1
+      474 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    694 | _tray_size4_1980/D1
+      475 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    693 | _tray_size4_1980/D1
+      476 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    692 | _tray_size4_1980/D1
+      477 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    691 | _tray_size4_1980/D1
+      478 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    690 | _tray_size4_1980/D1
+      479 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    689 | _tray_size4_1980/D1
+      480 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    689 | _tray_size4_1980/D1
+      480 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    688 | _tray_size4_1980/D1
+      481 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    687 | _tray_size4_1980/D1
+      482 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    686 | _tray_size4_1980/D1
+      483 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    685 | _tray_size4_1980/D1
+      484 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    684 | _tray_size4_1980/D1
+      485 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    683 | _tray_size4_1980/D1
+      486 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    682 | _tray_size4_1980/D1
+      487 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    681 | _tray_size4_1980/D1
+      488 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    680 | _tray_size4_1980/D1
+      489 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    679 | _tray_size4_1980/D1
+      490 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    679 | _tray_size4_1980/D1
+      490 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    678 | _tray_size4_1980/D1
+      491 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    677 | _tray_size4_1980/D1
+      492 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    676 | _tray_size4_1980/D1
+      493 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    675 | _tray_size4_1980/D1
+      494 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    674 | _tray_size4_1980/D1
+      495 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    673 | _tray_size4_1980/D1
+      496 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    672 | _tray_size4_1980/D1
+      497 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    671 | _tray_size4_1980/D1
+      498 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    670 | _tray_size4_1980/D1
+      499 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    669 | _tray_size4_1980/D1
+      500 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    669 | _tray_size4_1980/D1
+      500 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    668 | _tray_size4_1980/D1
+      501 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    667 | _tray_size4_1980/D1
+      502 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    666 | _tray_size4_1980/D1
+      503 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    665 | _tray_size4_1980/D1
+      504 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    664 | _tray_size4_1980/D1
+      505 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    663 | _tray_size4_1980/D1
+      506 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    662 | _tray_size4_1980/D1
+      507 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    661 | _tray_size4_1980/D1
+      508 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    660 | _tray_size4_1980/D1
+      509 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    659 | _tray_size4_1980/D1
+      510 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    659 | _tray_size4_1980/D1
+      510 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    658 | _tray_size4_1980/D1
+      511 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    657 | _tray_size4_1980/D1
+      512 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    656 | _tray_size4_1980/D1
+      513 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    655 | _tray_size4_1980/D1
+      514 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    654 | _tray_size4_1980/D1
+      515 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    653 | _tray_size4_1980/D1
+      516 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    652 | _tray_size4_1980/D1
+      517 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    651 | _tray_size4_1980/D1
+      518 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    650 | _tray_size4_1980/D1
+      519 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    649 | _tray_size4_1980/D1
+      520 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    649 | _tray_size4_1980/D1
+      520 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    648 | _tray_size4_1980/D1
+      521 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    647 | _tray_size4_1980/D1
+      522 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    646 | _tray_size4_1980/D1
+      523 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    645 | _tray_size4_1980/D1
+      524 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    644 | _tray_size4_1980/D1
+      525 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    643 | _tray_size4_1980/D1
+      526 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    642 | _tray_size4_1980/D1
+      527 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    641 | _tray_size4_1980/D1
+      528 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    640 | _tray_size4_1980/D1
+      529 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    639 | _tray_size4_1980/D1
+      530 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    639 | _tray_size4_1980/D1
+      530 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    638 | _tray_size4_1980/D1
+      531 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    637 | _tray_size4_1980/D1
+      532 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    636 | _tray_size4_1980/D1
+      533 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    635 | _tray_size4_1980/D1
+      534 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    634 | _tray_size4_1980/D1
+      535 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    633 | _tray_size4_1980/D1
+      536 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    632 | _tray_size4_1980/D1
+      537 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    631 | _tray_size4_1980/D1
+      538 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    630 | _tray_size4_1980/D1
+      539 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    629 | _tray_size4_1980/D1
+      540 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    629 | _tray_size4_1980/D1
+      540 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    628 | _tray_size4_1980/D1
+      541 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    627 | _tray_size4_1980/D1
+      542 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    626 | _tray_size4_1980/D1
+      543 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    625 | _tray_size4_1980/D1
+      544 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    624 | _tray_size4_1980/D1
+      545 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    623 | _tray_size4_1980/D1
+      546 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    622 | _tray_size4_1980/D1
+      547 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    621 | _tray_size4_1980/D1
+      548 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    620 | _tray_size4_1980/D1
+      549 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    619 | _tray_size4_1980/D1
+      550 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    619 | _tray_size4_1980/D1
+      550 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    618 | _tray_size4_1980/D1
+      551 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    617 | _tray_size4_1980/D1
+      552 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    616 | _tray_size4_1980/D1
+      553 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    615 | _tray_size4_1980/D1
+      554 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    614 | _tray_size4_1980/D1
+      555 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    613 | _tray_size4_1980/D1
+      556 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    612 | _tray_size4_1980/D1
+      557 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    611 | _tray_size4_1980/D1
+      558 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    610 | _tray_size4_1980/D1
+      559 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    609 | _tray_size4_1980/D1
+      560 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    609 | _tray_size4_1980/D1
+      560 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    608 | _tray_size4_1980/D1
+      561 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    607 | _tray_size4_1980/D1
+      562 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    606 | _tray_size4_1980/D1
+      563 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    605 | _tray_size4_1980/D1
+      564 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    604 | _tray_size4_1980/D1
+      565 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    603 | _tray_size4_1980/D1
+      566 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    602 | _tray_size4_1980/D1
+      567 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    601 | _tray_size4_1980/D1
+      568 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    600 | _tray_size4_1980/D1
+      569 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    599 | _tray_size4_1980/D1
+      570 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    599 | _tray_size4_1980/D1
+      570 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    598 | _tray_size4_1980/D1
+      571 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    597 | _tray_size4_1980/D1
+      572 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    596 | _tray_size4_1980/D1
+      573 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    595 | _tray_size4_1980/D1
+      574 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    594 | _tray_size4_1980/D1
+      575 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    593 | _tray_size4_1980/D1
+      576 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    592 | _tray_size4_1980/D1
+      577 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    591 | _tray_size4_1980/D1
+      578 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    590 | _tray_size4_1980/D1
+      579 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    589 | _tray_size4_1980/D1
+      580 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    589 | _tray_size4_1980/D1
+      580 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    588 | _tray_size4_1980/D1
+      581 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    587 | _tray_size4_1980/D1
+      582 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    586 | _tray_size4_1980/D1
+      583 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    585 | _tray_size4_1980/D1
+      584 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    584 | _tray_size4_1980/D1
+      585 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    583 | _tray_size4_1980/D1
+      586 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    582 | _tray_size4_1980/D1
+      587 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    581 | _tray_size4_1980/D1
+      588 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    580 | _tray_size4_1980/D1
+      589 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    579 | _tray_size4_1980/D1
+      590 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    579 | _tray_size4_1980/D1
+      590 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    578 | _tray_size4_1980/D1
+      591 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    577 | _tray_size4_1980/D1
+      592 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    576 | _tray_size4_1980/D1
+      593 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    575 | _tray_size4_1980/D1
+      594 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    574 | _tray_size4_1980/D1
+      595 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    573 | _tray_size4_1980/D1
+      596 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    572 | _tray_size4_1980/D1
+      597 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    571 | _tray_size4_1980/D1
+      598 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    570 | _tray_size4_1980/D1
+      599 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    569 | _tray_size4_1980/D1
+      600 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    569 | _tray_size4_1980/D1
+      600 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    568 | _tray_size4_1980/D1
+      601 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    567 | _tray_size4_1980/D1
+      602 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    566 | _tray_size4_1980/D1
+      603 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    565 | _tray_size4_1980/D1
+      604 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    564 | _tray_size4_1980/D1
+      605 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    563 | _tray_size4_1980/D1
+      606 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    562 | _tray_size4_1980/D1
+      607 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    561 | _tray_size4_1980/D1
+      608 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    560 | _tray_size4_1980/D1
+      609 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    559 | _tray_size4_1980/D1
+      610 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    559 | _tray_size4_1980/D1
+      610 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    558 | _tray_size4_1980/D1
+      611 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    557 | _tray_size4_1980/D1
+      612 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    556 | _tray_size4_1980/D1
+      613 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    555 | _tray_size4_1980/D1
+      614 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    554 | _tray_size4_1980/D1
+      615 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    553 | _tray_size4_1980/D1
+      616 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    552 | _tray_size4_1980/D1
+      617 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    551 | _tray_size4_1980/D1
+      618 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    550 | _tray_size4_1980/D1
+      619 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    549 | _tray_size4_1980/D1
+      620 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    549 | _tray_size4_1980/D1
+      620 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    548 | _tray_size4_1980/D1
+      621 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    547 | _tray_size4_1980/D1
+      622 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    546 | _tray_size4_1980/D1
+      623 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    545 | _tray_size4_1980/D1
+      624 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    544 | _tray_size4_1980/D1
+      625 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    543 | _tray_size4_1980/D1
+      626 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    542 | _tray_size4_1980/D1
+      627 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    541 | _tray_size4_1980/D1
+      628 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    540 | _tray_size4_1980/D1
+      629 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    539 | _tray_size4_1980/D1
+      630 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    539 | _tray_size4_1980/D1
+      630 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    538 | _tray_size4_1980/D1
+      631 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    537 | _tray_size4_1980/D1
+      632 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    536 | _tray_size4_1980/D1
+      633 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    535 | _tray_size4_1980/D1
+      634 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    534 | _tray_size4_1980/D1
+      635 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    533 | _tray_size4_1980/D1
+      636 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    532 | _tray_size4_1980/D1
+      637 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    531 | _tray_size4_1980/D1
+      638 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    530 | _tray_size4_1980/D1
+      639 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    529 | _tray_size4_1980/D1
+      640 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    529 | _tray_size4_1980/D1
+      640 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    528 | _tray_size4_1980/D1
+      641 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    527 | _tray_size4_1980/D1
+      642 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    526 | _tray_size4_1980/D1
+      643 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    525 | _tray_size4_1980/D1
+      644 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    524 | _tray_size4_1980/D1
+      645 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    523 | _tray_size4_1980/D1
+      646 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    522 | _tray_size4_1980/D1
+      647 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    521 | _tray_size4_1980/D1
+      648 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    520 | _tray_size4_1980/D1
+      649 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    519 | _tray_size4_1980/D1
+      650 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    519 | _tray_size4_1980/D1
+      650 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    518 | _tray_size4_1980/D1
+      651 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    517 | _tray_size4_1980/D1
+      652 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    516 | _tray_size4_1980/D1
+      653 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    515 | _tray_size4_1980/D1
+      654 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    514 | _tray_size4_1980/D1
+      655 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    513 | _tray_size4_1980/D1
+      656 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    512 | _tray_size4_1980/D1
+      657 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    511 | _tray_size4_1980/D1
+      658 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    510 | _tray_size4_1980/D1
+      659 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    509 | _tray_size4_1980/D1
+      660 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    509 | _tray_size4_1980/D1
+      660 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    508 | _tray_size4_1980/D1
+      661 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    507 | _tray_size4_1980/D1
+      662 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    506 | _tray_size4_1980/D1
+      663 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    505 | _tray_size4_1980/D1
+      664 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    504 | _tray_size4_1980/D1
+      665 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    503 | _tray_size4_1980/D1
+      666 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    502 | _tray_size4_1980/D1
+      667 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    501 | _tray_size4_1980/D1
+      668 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    500 | _tray_size4_1980/D1
+      669 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    499 | _tray_size4_1980/D1
+      670 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    499 | _tray_size4_1980/D1
+      670 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    498 | _tray_size4_1980/D1
+      671 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    497 | _tray_size4_1980/D1
+      672 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    496 | _tray_size4_1980/D1
+      673 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    495 | _tray_size4_1980/D1
+      674 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    494 | _tray_size4_1980/D1
+      675 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    493 | _tray_size4_1980/D1
+      676 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    492 | _tray_size4_1980/D1
+      677 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    491 | _tray_size4_1980/D1
+      678 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    490 | _tray_size4_1980/D1
+      679 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    489 | _tray_size4_1980/D1
+      680 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    489 | _tray_size4_1980/D1
+      680 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    488 | _tray_size4_1980/D1
+      681 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    487 | _tray_size4_1980/D1
+      682 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    486 | _tray_size4_1980/D1
+      683 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    485 | _tray_size4_1980/D1
+      684 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    484 | _tray_size4_1980/D1
+      685 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    483 | _tray_size4_1980/D1
+      686 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    482 | _tray_size4_1980/D1
+      687 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    481 | _tray_size4_1980/D1
+      688 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    480 | _tray_size4_1980/D1
+      689 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    479 | _tray_size4_1980/D1
+      690 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    479 | _tray_size4_1980/D1
+      690 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    478 | _tray_size4_1980/D1
+      691 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    477 | _tray_size4_1980/D1
+      692 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    476 | _tray_size4_1980/D1
+      693 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    475 | _tray_size4_1980/D1
+      694 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    474 | _tray_size4_1980/D1
+      695 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    473 | _tray_size4_1980/D1
+      696 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    472 | _tray_size4_1980/D1
+      697 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    471 | _tray_size4_1980/D1
+      698 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    470 | _tray_size4_1980/D1
+      699 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    469 | _tray_size4_1980/D1
+      700 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    469 | _tray_size4_1980/D1
+      700 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    468 | _tray_size4_1980/D1
+      701 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    467 | _tray_size4_1980/D1
+      702 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    466 | _tray_size4_1980/D1
+      703 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    465 | _tray_size4_1980/D1
+      704 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    464 | _tray_size4_1980/D1
+      705 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    463 | _tray_size4_1980/D1
+      706 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    462 | _tray_size4_1980/D1
+      707 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    461 | _tray_size4_1980/D1
+      708 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    460 | _tray_size4_1980/D1
+      709 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    459 | _tray_size4_1980/D1
+      710 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    459 | _tray_size4_1980/D1
+      710 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    458 | _tray_size4_1980/D1
+      711 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    457 | _tray_size4_1980/D1
+      712 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    456 | _tray_size4_1980/D1
+      713 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    455 | _tray_size4_1980/D1
+      714 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    454 | _tray_size4_1980/D1
+      715 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    453 | _tray_size4_1980/D1
+      716 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    452 | _tray_size4_1980/D1
+      717 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    451 | _tray_size4_1980/D1
+      718 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    450 | _tray_size4_1980/D1
+      719 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    449 | _tray_size4_1980/D1
+      720 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    449 | _tray_size4_1980/D1
+      720 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    448 | _tray_size4_1980/D1
+      721 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    447 | _tray_size4_1980/D1
+      722 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    446 | _tray_size4_1980/D1
+      723 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    445 | _tray_size4_1980/D1
+      724 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    444 | _tray_size4_1980/D1
+      725 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    443 | _tray_size4_1980/D1
+      726 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    442 | _tray_size4_1980/D1
+      727 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    441 | _tray_size4_1980/D1
+      728 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    440 | _tray_size4_1980/D1
+      729 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    439 | _tray_size4_1980/D1
+      730 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    439 | _tray_size4_1980/D1
+      730 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    438 | _tray_size4_1980/D1
+      731 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    437 | _tray_size4_1980/D1
+      732 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    436 | _tray_size4_1980/D1
+      733 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    435 | _tray_size4_1980/D1
+      734 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    434 | _tray_size4_1980/D1
+      735 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    433 | _tray_size4_1980/D1
+      736 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    432 | _tray_size4_1980/D1
+      737 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    431 | _tray_size4_1980/D1
+      738 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    430 | _tray_size4_1980/D1
+      739 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    429 | _tray_size4_1980/D1
+      740 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    429 | _tray_size4_1980/D1
+      740 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    428 | _tray_size4_1980/D1
+      741 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    427 | _tray_size4_1980/D1
+      742 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    426 | _tray_size4_1980/D1
+      743 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    425 | _tray_size4_1980/D1
+      744 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    424 | _tray_size4_1980/D1
+      745 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    423 | _tray_size4_1980/D1
+      746 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    422 | _tray_size4_1980/D1
+      747 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    421 | _tray_size4_1980/D1
+      748 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    420 | _tray_size4_1980/D1
+      749 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    419 | _tray_size4_1980/D1
+      750 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    419 | _tray_size4_1980/D1
+      750 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    418 | _tray_size4_1980/D1
+      751 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    417 | _tray_size4_1980/D1
+      752 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    416 | _tray_size4_1980/D1
+      753 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    415 | _tray_size4_1980/D1
+      754 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    414 | _tray_size4_1980/D1
+      755 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    413 | _tray_size4_1980/D1
+      756 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    412 | _tray_size4_1980/D1
+      757 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    411 | _tray_size4_1980/D1
+      758 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    410 | _tray_size4_1980/D1
+      759 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    409 | _tray_size4_1980/D1
+      760 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    409 | _tray_size4_1980/D1
+      760 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    408 | _tray_size4_1980/D1
+      761 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    407 | _tray_size4_1980/D1
+      762 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    406 | _tray_size4_1980/D1
+      763 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    405 | _tray_size4_1980/D1
+      764 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    404 | _tray_size4_1980/D1
+      765 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    403 | _tray_size4_1980/D1
+      766 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    402 | _tray_size4_1980/D1
+      767 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    401 | _tray_size4_1980/D1
+      768 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    400 | _tray_size4_1980/D1
+      769 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    399 | _tray_size4_1980/D1
+      770 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    399 | _tray_size4_1980/D1
+      770 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    398 | _tray_size4_1980/D1
+      771 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    397 | _tray_size4_1980/D1
+      772 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    396 | _tray_size4_1980/D1
+      773 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    395 | _tray_size4_1980/D1
+      774 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    394 | _tray_size4_1980/D1
+      775 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    393 | _tray_size4_1980/D1
+      776 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    392 | _tray_size4_1980/D1
+      777 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    391 | _tray_size4_1980/D1
+      778 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    390 | _tray_size4_1980/D1
+      779 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    389 | _tray_size4_1980/D1
+      780 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    389 | _tray_size4_1980/D1
+      780 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    388 | _tray_size4_1980/D1
+      781 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    387 | _tray_size4_1980/D1
+      782 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    386 | _tray_size4_1980/D1
+      783 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    385 | _tray_size4_1980/D1
+      784 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    384 | _tray_size4_1980/D1
+      785 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    383 | _tray_size4_1980/D1
+      786 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    382 | _tray_size4_1980/D1
+      787 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    381 | _tray_size4_1980/D1
+      788 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    380 | _tray_size4_1980/D1
+      789 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    379 | _tray_size4_1980/D1
+      790 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    379 | _tray_size4_1980/D1
+      790 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    378 | _tray_size4_1980/D1
+      791 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    377 | _tray_size4_1980/D1
+      792 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    376 | _tray_size4_1980/D1
+      793 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    375 | _tray_size4_1980/D1
+      794 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    374 | _tray_size4_1980/D1
+      795 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    373 | _tray_size4_1980/D1
+      796 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    372 | _tray_size4_1980/D1
+      797 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    371 | _tray_size4_1980/D1
+      798 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    370 | _tray_size4_1980/D1
+      799 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    369 | _tray_size4_1980/D1
+      800 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    369 | _tray_size4_1980/D1
+      800 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    368 | _tray_size4_1980/D1
+      801 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    367 | _tray_size4_1980/D1
+      802 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    366 | _tray_size4_1980/D1
+      803 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    365 | _tray_size4_1980/D1
+      804 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    364 | _tray_size4_1980/D1
+      805 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    363 | _tray_size4_1980/D1
+      806 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    362 | _tray_size4_1980/D1
+      807 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    361 | _tray_size4_1980/D1
+      808 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    360 | _tray_size4_1980/D1
+      809 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    359 | _tray_size4_1980/D1
+      810 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    359 | _tray_size4_1980/D1
+      810 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    358 | _tray_size4_1980/D1
+      811 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    357 | _tray_size4_1980/D1
+      812 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    356 | _tray_size4_1980/D1
+      813 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    355 | _tray_size4_1980/D1
+      814 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    354 | _tray_size4_1980/D1
+      815 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    353 | _tray_size4_1980/D1
+      816 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    352 | _tray_size4_1980/D1
+      817 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    351 | _tray_size4_1980/D1
+      818 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    350 | _tray_size4_1980/D1
+      819 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    349 | _tray_size4_1980/D1
+      820 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    349 | _tray_size4_1980/D1
+      820 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    348 | _tray_size4_1980/D1
+      821 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    347 | _tray_size4_1980/D1
+      822 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    346 | _tray_size4_1980/D1
+      823 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    345 | _tray_size4_1980/D1
+      824 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    344 | _tray_size4_1980/D1
+      825 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    343 | _tray_size4_1980/D1
+      826 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    342 | _tray_size4_1980/D1
+      827 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    341 | _tray_size4_1980/D1
+      828 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    340 | _tray_size4_1980/D1
+      829 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    339 | _tray_size4_1980/D1
+      830 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    339 | _tray_size4_1980/D1
+      830 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    338 | _tray_size4_1980/D1
+      831 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    337 | _tray_size4_1980/D1
+      832 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    336 | _tray_size4_1980/D1
+      833 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    335 | _tray_size4_1980/D1
+      834 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    334 | _tray_size4_1980/D1
+      835 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    333 | _tray_size4_1980/D1
+      836 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    332 | _tray_size4_1980/D1
+      837 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    331 | _tray_size4_1980/D1
+      838 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    330 | _tray_size4_1980/D1
+      839 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    329 | _tray_size4_1980/D1
+      840 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    329 | _tray_size4_1980/D1
+      840 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    328 | _tray_size4_1980/D1
+      841 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    327 | _tray_size4_1980/D1
+      842 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    326 | _tray_size4_1980/D1
+      843 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    325 | _tray_size4_1980/D1
+      844 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    324 | _tray_size4_1980/D1
+      845 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    323 | _tray_size4_1980/D1
+      846 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    322 | _tray_size4_1980/D1
+      847 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    321 | _tray_size4_1980/D1
+      848 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    320 | _tray_size4_1980/D1
+      849 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    319 | _tray_size4_1980/D1
+      850 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    319 | _tray_size4_1980/D1
+      850 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    318 | _tray_size4_1980/D1
+      851 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    317 | _tray_size4_1980/D1
+      852 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    316 | _tray_size4_1980/D1
+      853 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    315 | _tray_size4_1980/D1
+      854 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    314 | _tray_size4_1980/D1
+      855 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    313 | _tray_size4_1980/D1
+      856 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    312 | _tray_size4_1980/D1
+      857 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    311 | _tray_size4_1980/D1
+      858 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    310 | _tray_size4_1980/D1
+      859 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    309 | _tray_size4_1980/D1
+      860 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    309 | _tray_size4_1980/D1
+      860 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    308 | _tray_size4_1980/D1
+      861 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    307 | _tray_size4_1980/D1
+      862 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    306 | _tray_size4_1980/D1
+      863 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    305 | _tray_size4_1980/D1
+      864 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    304 | _tray_size4_1980/D1
+      865 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    303 | _tray_size4_1980/D1
+      866 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    302 | _tray_size4_1980/D1
+      867 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    301 | _tray_size4_1980/D1
+      868 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    300 | _tray_size4_1980/D1
+      869 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    299 | _tray_size4_1980/D1
+      870 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    299 | _tray_size4_1980/D1
+      870 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    298 | _tray_size4_1980/D1
+      871 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    297 | _tray_size4_1980/D1
+      872 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    296 | _tray_size4_1980/D1
+      873 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    295 | _tray_size4_1980/D1
+      874 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    294 | _tray_size4_1980/D1
+      875 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    293 | _tray_size4_1980/D1
+      876 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    292 | _tray_size4_1980/D1
+      877 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    291 | _tray_size4_1980/D1
+      878 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    290 | _tray_size4_1980/D1
+      879 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    289 | _tray_size4_1980/D1
+      880 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    289 | _tray_size4_1980/D1
+      880 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    288 | _tray_size4_1980/D1
+      881 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    287 | _tray_size4_1980/D1
+      882 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    286 | _tray_size4_1980/D1
+      883 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    285 | _tray_size4_1980/D1
+      884 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    284 | _tray_size4_1980/D1
+      885 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    283 | _tray_size4_1980/D1
+      886 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    282 | _tray_size4_1980/D1
+      887 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    281 | _tray_size4_1980/D1
+      888 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    280 | _tray_size4_1980/D1
+      889 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    279 | _tray_size4_1980/D1
+      890 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    279 | _tray_size4_1980/D1
+      890 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    278 | _tray_size4_1980/D1
+      891 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    277 | _tray_size4_1980/D1
+      892 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    276 | _tray_size4_1980/D1
+      893 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    275 | _tray_size4_1980/D1
+      894 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    274 | _tray_size4_1980/D1
+      895 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    273 | _tray_size4_1980/D1
+      896 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    272 | _tray_size4_1980/D1
+      897 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    271 | _tray_size4_1980/D1
+      898 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    270 | _tray_size4_1980/D1
+      899 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    269 | _tray_size4_1980/D1
+      900 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    269 | _tray_size4_1980/D1
+      900 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    268 | _tray_size4_1980/D1
+      901 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    267 | _tray_size4_1980/D1
+      902 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    266 | _tray_size4_1980/D1
+      903 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    265 | _tray_size4_1980/D1
+      904 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    264 | _tray_size4_1980/D1
+      905 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    263 | _tray_size4_1980/D1
+      906 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    262 | _tray_size4_1980/D1
+      907 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    261 | _tray_size4_1980/D1
+      908 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    260 | _tray_size4_1980/D1
+      909 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    259 | _tray_size4_1980/D1
+      910 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    259 | _tray_size4_1980/D1
+      910 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    258 | _tray_size4_1980/D1
+      911 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    257 | _tray_size4_1980/D1
+      912 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    256 | _tray_size4_1980/D1
+      913 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    255 | _tray_size4_1980/D1
+      914 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    254 | _tray_size4_1980/D1
+      915 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    253 | _tray_size4_1980/D1
+      916 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    252 | _tray_size4_1980/D1
+      917 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    251 | _tray_size4_1980/D1
+      918 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    250 | _tray_size4_1980/D1
+      919 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    249 | _tray_size4_1980/D1
+      920 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    249 | _tray_size4_1980/D1
+      920 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    248 | _tray_size4_1980/D1
+      921 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    247 | _tray_size4_1980/D1
+      922 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    246 | _tray_size4_1980/D1
+      923 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    245 | _tray_size4_1980/D1
+      924 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    244 | _tray_size4_1980/D1
+      925 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    243 | _tray_size4_1980/D1
+      926 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    242 | _tray_size4_1980/D1
+      927 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    241 | _tray_size4_1980/D1
+      928 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    240 | _tray_size4_1980/D1
+      929 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    239 | _tray_size4_1980/D1
+      930 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    239 | _tray_size4_1980/D1
+      930 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    238 | _tray_size4_1980/D1
+      931 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    237 | _tray_size4_1980/D1
+      932 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    236 | _tray_size4_1980/D1
+      933 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    235 | _tray_size4_1980/D1
+      934 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    234 | _tray_size4_1980/D1
+      935 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    233 | _tray_size4_1980/D1
+      936 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    232 | _tray_size4_1980/D1
+      937 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    231 | _tray_size4_1980/D1
+      938 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    230 | _tray_size4_1980/D1
+      939 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    229 | _tray_size4_1980/D1
+      940 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    229 | _tray_size4_1980/D1
+      940 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    228 | _tray_size4_1980/D1
+      941 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    227 | _tray_size4_1980/D1
+      942 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    226 | _tray_size4_1980/D1
+      943 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    225 | _tray_size4_1980/D1
+      944 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    224 | _tray_size4_1980/D1
+      945 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    223 | _tray_size4_1980/D1
+      946 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    222 | _tray_size4_1980/D1
+      947 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    221 | _tray_size4_1980/D1
+      948 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    220 | _tray_size4_1980/D1
+      949 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    219 | _tray_size4_1980/D1
+      950 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    219 | _tray_size4_1980/D1
+      950 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    218 | _tray_size4_1980/D1
+      951 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    217 | _tray_size4_1980/D1
+      952 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    216 | _tray_size4_1980/D1
+      953 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    215 | _tray_size4_1980/D1
+      954 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    214 | _tray_size4_1980/D1
+      955 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    213 | _tray_size4_1980/D1
+      956 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    212 | _tray_size4_1980/D1
+      957 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    211 | _tray_size4_1980/D1
+      958 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    210 | _tray_size4_1980/D1
+      959 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    209 | _tray_size4_1980/D1
+      960 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    209 | _tray_size4_1980/D1
+      960 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    208 | _tray_size4_1980/D1
+      961 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    207 | _tray_size4_1980/D1
+      962 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    206 | _tray_size4_1980/D1
+      963 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    205 | _tray_size4_1980/D1
+      964 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    204 | _tray_size4_1980/D1
+      965 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    203 | _tray_size4_1980/D1
+      966 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    202 | _tray_size4_1980/D1
+      967 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    201 | _tray_size4_1980/D1
+      968 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    200 | _tray_size4_1980/D1
+      969 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    199 | _tray_size4_1980/D1
+      970 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    199 | _tray_size4_1980/D1
+      970 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    198 | _tray_size4_1980/D1
+      971 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    197 | _tray_size4_1980/D1
+      972 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    196 | _tray_size4_1980/D1
+      973 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    195 | _tray_size4_1980/D1
+      974 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    194 | _tray_size4_1980/D1
+      975 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    193 | _tray_size4_1980/D1
+      976 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    192 | _tray_size4_1980/D1
+      977 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    191 | _tray_size4_1980/D1
+      978 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    190 | _tray_size4_1980/D1
+      979 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    189 | _tray_size4_1980/D1
+      980 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    189 | _tray_size4_1980/D1
+      980 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    188 | _tray_size4_1980/D1
+      981 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    187 | _tray_size4_1980/D1
+      982 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    186 | _tray_size4_1980/D1
+      983 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    185 | _tray_size4_1980/D1
+      984 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    184 | _tray_size4_1980/D1
+      985 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    183 | _tray_size4_1980/D1
+      986 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    182 | _tray_size4_1980/D1
+      987 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    181 | _tray_size4_1980/D1
+      988 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    180 | _tray_size4_1980/D1
+      989 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    179 | _tray_size4_1980/D1
+      990 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    179 | _tray_size4_1980/D1
+      990 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    178 | _tray_size4_1980/D1
+      991 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    177 | _tray_size4_1980/D1
+      992 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    176 | _tray_size4_1980/D1
+      993 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    175 | _tray_size4_1980/D1
+      994 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    174 | _tray_size4_1980/D1
+      995 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    173 | _tray_size4_1980/D1
+      996 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    172 | _tray_size4_1980/D1
+      997 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    171 | _tray_size4_1980/D1
+      998 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    170 | _tray_size4_1980/D1
+      999 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    169 | _tray_size4_1980/D1
+     1000 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    169 | _tray_size4_1980/D1
+     1000 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    168 | _tray_size4_1980/D1
+     1001 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    167 | _tray_size4_1980/D1
+     1002 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    166 | _tray_size4_1980/D1
+     1003 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    165 | _tray_size4_1980/D1
+     1004 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    164 | _tray_size4_1980/D1
+     1005 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    163 | _tray_size4_1980/D1
+     1006 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    162 | _tray_size4_1980/D1
+     1007 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    161 | _tray_size4_1980/D1
+     1008 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    160 | _tray_size4_1980/D1
+     1009 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    159 | _tray_size4_1980/D1
+     1010 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    159 | _tray_size4_1980/D1
+     1010 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    158 | _tray_size4_1980/D1
+     1011 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    157 | _tray_size4_1980/D1
+     1012 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    156 | _tray_size4_1980/D1
+     1013 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    155 | _tray_size4_1980/D1
+     1014 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    154 | _tray_size4_1980/D1
+     1015 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    153 | _tray_size4_1980/D1
+     1016 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    152 | _tray_size4_1980/D1
+     1017 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    151 | _tray_size4_1980/D1
+     1018 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    150 | _tray_size4_1980/D1
+     1019 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    149 | _tray_size4_1980/D1
+     1020 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    149 | _tray_size4_1980/D1
+     1020 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    148 | _tray_size4_1980/D1
+     1021 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    147 | _tray_size4_1980/D1
+     1022 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    146 | _tray_size4_1980/D1
+     1023 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    145 | _tray_size4_1980/D1
+     1024 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    144 | _tray_size4_1980/D1
+     1025 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    143 | _tray_size4_1980/D1
+     1026 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    142 | _tray_size4_1980/D1
+     1027 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    141 | _tray_size4_1980/D1
+     1028 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    140 | _tray_size4_1980/D1
+     1029 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    139 | _tray_size4_1980/D1
+     1030 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    139 | _tray_size4_1980/D1
+     1030 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    138 | _tray_size4_1980/D1
+     1031 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    137 | _tray_size4_1980/D1
+     1032 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    136 | _tray_size4_1980/D1
+     1033 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    135 | _tray_size4_1980/D1
+     1034 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    134 | _tray_size4_1980/D1
+     1035 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    133 | _tray_size4_1980/D1
+     1036 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    132 | _tray_size4_1980/D1
+     1037 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    131 | _tray_size4_1980/D1
+     1038 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    130 | _tray_size4_1980/D1
+     1039 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    129 | _tray_size4_1980/D1
+     1040 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    129 | _tray_size4_1980/D1
+     1040 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    128 | _tray_size4_1980/D1
+     1041 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    127 | _tray_size4_1980/D1
+     1042 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    126 | _tray_size4_1980/D1
+     1043 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    125 | _tray_size4_1980/D1
+     1044 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    124 | _tray_size4_1980/D1
+     1045 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    123 | _tray_size4_1980/D1
+     1046 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    122 | _tray_size4_1980/D1
+     1047 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    121 | _tray_size4_1980/D1
+     1048 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    120 | _tray_size4_1980/D1
+     1049 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    119 | _tray_size4_1980/D1
+     1050 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    119 | _tray_size4_1980/D1
+     1050 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    118 | _tray_size4_1980/D1
+     1051 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    117 | _tray_size4_1980/D1
+     1052 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    116 | _tray_size4_1980/D1
+     1053 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    115 | _tray_size4_1980/D1
+     1054 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    114 | _tray_size4_1980/D1
+     1055 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    113 | _tray_size4_1980/D1
+     1056 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    112 | _tray_size4_1980/D1
+     1057 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    111 | _tray_size4_1980/D1
+     1058 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    110 | _tray_size4_1980/D1
+     1059 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    109 | _tray_size4_1980/D1
+     1060 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    109 | _tray_size4_1980/D1
+     1060 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    108 | _tray_size4_1980/D1
+     1061 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    107 | _tray_size4_1980/D1
+     1062 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    106 | _tray_size4_1980/D1
+     1063 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    105 | _tray_size4_1980/D1
+     1064 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    104 | _tray_size4_1980/D1
+     1065 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    103 | _tray_size4_1980/D1
+     1066 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    102 | _tray_size4_1980/D1
+     1067 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    101 | _tray_size4_1980/D1
+     1068 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |    100 | _tray_size4_1980/D1
+     1069 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     99 | _tray_size4_1980/D1
+     1070 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     99 | _tray_size4_1980/D1
+     1070 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     98 | _tray_size4_1980/D1
+     1071 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     97 | _tray_size4_1980/D1
+     1072 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     96 | _tray_size4_1980/D1
+     1073 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     95 | _tray_size4_1980/D1
+     1074 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     94 | _tray_size4_1980/D1
+     1075 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     93 | _tray_size4_1980/D1
+     1076 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     92 | _tray_size4_1980/D1
+     1077 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     91 | _tray_size4_1980/D1
+     1078 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     90 | _tray_size4_1980/D1
+     1079 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     89 | _tray_size4_1980/D1
+     1080 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     89 | _tray_size4_1980/D1
+     1080 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     88 | _tray_size4_1980/D1
+     1081 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     87 | _tray_size4_1980/D1
+     1082 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     86 | _tray_size4_1980/D1
+     1083 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     85 | _tray_size4_1980/D1
+     1084 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     84 | _tray_size4_1980/D1
+     1085 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     83 | _tray_size4_1980/D1
+     1086 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     82 | _tray_size4_1980/D1
+     1087 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     81 | _tray_size4_1980/D1
+     1088 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     80 | _tray_size4_1980/D1
+     1089 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     79 | _tray_size4_1980/D1
+     1090 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     79 | _tray_size4_1980/D1
+     1090 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     78 | _tray_size4_1980/D1
+     1091 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     77 | _tray_size4_1980/D1
+     1092 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     76 | _tray_size4_1980/D1
+     1093 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     75 | _tray_size4_1980/D1
+     1094 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     74 | _tray_size4_1980/D1
+     1095 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     73 | _tray_size4_1980/D1
+     1096 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     72 | _tray_size4_1980/D1
+     1097 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     71 | _tray_size4_1980/D1
+     1098 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     70 | _tray_size4_1980/D1
+     1099 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     69 | _tray_size4_1980/D1
+     1100 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     69 | _tray_size4_1980/D1
+     1100 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     69 | _tray_size4_1980/D1
+     1101 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     68 | _tray_size4_1980/D1
+     1102 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     67 | _tray_size4_1980/D1
+     1103 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     66 | _tray_size4_1980/D1
+     1104 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     65 | _tray_size4_1980/D1
+     1105 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     64 | _tray_size4_1980/D1
+     1106 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     63 | _tray_size4_1980/D1
+     1107 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     62 | _tray_size4_1980/D1
+     1108 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     61 | _tray_size4_1980/D1
+     1109 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     60 | _tray_size4_1980/D1
+     1110 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     60 | _tray_size4_1980/D1
+     1110 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     59 | _tray_size4_1980/D1
+     1111 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     58 | _tray_size4_1980/D1
+     1112 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     57 | _tray_size4_1980/D1
+     1113 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     56 | _tray_size4_1980/D1
+     1114 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     55 | _tray_size4_1980/D1
+     1115 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     54 | _tray_size4_1980/D1
+     1116 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     53 | _tray_size4_1980/D1
+     1117 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     52 | _tray_size4_1980/D1
+     1118 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     51 | _tray_size4_1980/D1
+     1119 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     50 | _tray_size4_1980/D1
+     1120 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     50 | _tray_size4_1980/D1
+     1120 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     49 | _tray_size4_1980/D1
+     1121 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     48 | _tray_size4_1980/D1
+     1122 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     47 | _tray_size4_1980/D1
+     1123 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     46 | _tray_size4_1980/D1
+     1124 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     45 | _tray_size4_1980/D1
+     1125 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     44 | _tray_size4_1980/D1
+     1126 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     43 | _tray_size4_1980/D1
+     1127 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     42 | _tray_size4_1980/D1
+     1128 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     41 | _tray_size4_1980/D1
+     1129 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     40 | _tray_size4_1980/D1
+     1130 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     40 | _tray_size4_1980/D1
+     1130 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     39 | _tray_size4_1980/D1
+     1131 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     38 | _tray_size4_1980/D1
+     1132 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     37 | _tray_size4_1980/D1
+     1133 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     36 | _tray_size4_1980/D1
+     1134 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     35 | _tray_size4_1980/D1
+     1135 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     34 | _tray_size4_1980/D1
+     1136 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     33 | _tray_size4_1980/D1
+     1137 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     32 | _tray_size4_1980/D1
+     1138 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     31 | _tray_size4_1980/D1
+     1139 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     30 | _tray_size4_1980/D1
+     1140 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     30 | _tray_size4_1980/D1
+     1140 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     29 | _tray_size4_1980/D1
+     1141 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     28 | _tray_size4_1980/D1
+     1142 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     27 | _tray_size4_1980/D1
+     1143 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     26 | _tray_size4_1980/D1
+     1144 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     25 | _tray_size4_1980/D1
+     1145 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     24 | _tray_size4_1980/D1
+     1146 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     23 | _tray_size4_1980/D1
+     1147 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     22 | _tray_size4_1980/D1
+     1148 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     21 | _tray_size4_1980/D1
+     1149 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     20 | _tray_size4_1980/D1
+     1150 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     20 | _tray_size4_1980/D1
+     1150 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     19 | _tray_size4_1980/D1
+     1151 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     18 | _tray_size4_1980/D1
+     1152 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     17 | _tray_size4_1980/D1
+     1153 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     16 | _tray_size4_1980/D1
+     1154 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     15 | _tray_size4_1980/D1
+     1155 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     14 | _tray_size4_1980/D1
+     1156 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     13 | _tray_size4_1980/D1
+     1157 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     12 | _tray_size4_1980/D1
+     1158 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     11 | _tray_size4_1980/D1
+     1159 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     10 | _tray_size4_1980/D1
+     1160 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |     10 | _tray_size4_1980/D1
+     1160 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      9 | _tray_size4_1980/D1
+     1161 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      8 | _tray_size4_1980/D1
+     1162 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      7 | _tray_size4_1980/D1
+     1163 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      6 | _tray_size4_1980/D1
+     1164 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      5 | _tray_size4_1980/D1
+     1165 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      4 | _tray_size4_1980/D1
+     1166 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      3 | _tray_size4_1980/D1
+     1167 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      2 | _tray_size4_1980/D1
+     1168 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      1 | _tray_size4_1980/D1
+     1169 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      0 | _tray_size4_1980/D1
+     1170 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      0 | _tray_size4_1980/D1
+     1170 |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      0 | _tray_size4_1980/D1
+    1170* |       2 |      98 |       46 |     14 |    48 |    +0.4% |   -0.358 |       -0.4 |      1 | _tray_size4_1980/D1
+    1172* |       2 |      99 |       46 |     14 |    48 |    +0.4% |    1.113 |        0.0 |      0 | _tray_size4_1980/D1
+    final |       2 |      99 |       46 |     14 |    48 |    +0.4% |    1.113 |        0.0 |      0 | _tray_size4_1980/D1
+--------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0059] Removed 2 buffers.
+[INFO RSZ-0040] Inserted 46 buffers.
+[INFO RSZ-0051] Resized 99 instances: 99 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 48 instances.
+[INFO RSZ-0049] Cloned 14 instances.
+[INFO RSZ-0033] No hold violations found.
+Took 8 seconds: repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+Movements Summary
+---------------------------------------
+Total cells:                    9470
+Diamond Move Success:           9470 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+Placement Analysis
+---------------------------------
+total displacement        106.6 u
+average displacement        0.0 u
+max displacement            1.2 u
+original HPWL           47344.9 u
+legalized HPWL          47410.0 u
+delta HPWL                    0 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 2647 um^2 66% utilization.
+write_db ./results/asap7/riscv32i/modified_mcf_lp_alpha_8-beta_0.1-run1/4_1_cts.odb
+write_sdc -no_timestamp ./results/asap7/riscv32i/modified_mcf_lp_alpha_8-beta_0.1-run1/4_cts.sdc
+Elapsed time: 0:12.27[h:]min:sec. CPU time: user 49.97 sys 25.97 (618%). Peak memory: 297440KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+4_1_cts                           12            290 011704a55a2b87ca8b9f
